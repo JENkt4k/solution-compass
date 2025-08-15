@@ -867,5 +867,762 @@
       "Service discovery",
       "Coordination"
     ]
+  },
+  {
+    "problem": "State-space search",
+    "subcategory": "Search",
+    "description": "Find path to goal through defined state transitions",
+    "tags": [
+      "search",
+      "state-space"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Pathfinding",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "game AI",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "puzzle solvers",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Pathfinding",
+      "game AI",
+      "puzzle solvers"
+    ]
+  },
+  {
+    "problem": "Heuristic search",
+    "subcategory": "Search",
+    "description": "Use heuristics to guide search faster",
+    "tags": [
+      "search",
+      "heuristic"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "A*",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "IDA*",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "beam search",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "A*",
+      "IDA*",
+      "beam search"
+    ]
+  },
+  {
+    "problem": "Linear/Integer Programming",
+    "subcategory": "Optimization",
+    "description": "Maximize or minimize under constraints",
+    "tags": [
+      "optimization",
+      "linear",
+      "programming",
+      "integer"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Supply chain optimization",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "scheduling",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Supply chain optimization",
+      "scheduling"
+    ]
+  },
+  {
+    "problem": "Greedy Algorithms",
+    "subcategory": "Optimization",
+    "description": "Make local optimal choices",
+    "tags": [
+      "optimization",
+      "algorithms",
+      "greedy"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Huffman coding",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "MST",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "activity selection",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Huffman coding",
+      "MST",
+      "activity selection"
+    ]
+  },
+  {
+    "problem": "Dynamic Programming",
+    "subcategory": "Optimization",
+    "description": "Break problem into overlapping subproblems",
+    "tags": [
+      "optimization",
+      "dynamic",
+      "programming"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "DP for knapsack",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "sequence alignment",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "DP for knapsack",
+      "sequence alignment"
+    ]
+  },
+  {
+    "problem": "Constraint Satisfaction Problems (CSP)",
+    "subcategory": "Constraint Solving",
+    "description": "Satisfy logical constraints over variables",
+    "tags": [
+      "(csp)",
+      "problems",
+      "solving",
+      "constraint",
+      "satisfaction"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Sudoku",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "scheduling",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Prolog-style reasoning",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Sudoku",
+      "scheduling",
+      "Prolog-style reasoning"
+    ]
+  },
+  {
+    "problem": "Graph traversal/search",
+    "subcategory": "Graph-Based",
+    "description": "Nodes/edges modeling relationships",
+    "tags": [
+      "search",
+      "traversal",
+      "graph-based",
+      "graph"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "BFS",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "DFS",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Dijkstra",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "BFS",
+      "DFS",
+      "Dijkstra"
+    ]
+  },
+  {
+    "problem": "Network flow",
+    "subcategory": "Graph-Based",
+    "description": "Optimizing flow in a network",
+    "tags": [
+      "network",
+      "flow",
+      "graph-based"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Max flow / min cut",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "bipartite matching",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Max flow / min cut",
+      "bipartite matching"
+    ]
+  },
+  {
+    "problem": "CRUD / Transactional",
+    "subcategory": "Data-Centric",
+    "description": "Create/Read/Update/Delete of structured data",
+    "tags": [
+      "transactional",
+      "data-centric",
+      "crud"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Databases",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "record management",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Databases",
+      "record management"
+    ]
+  },
+  {
+    "problem": "Stream processing",
+    "subcategory": "Data-Centric",
+    "description": "Process data in real-time or pipelines",
+    "tags": [
+      "processing",
+      "data-centric",
+      "stream"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Kafka consumers",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "log processing",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Kafka consumers",
+      "log processing"
+    ]
+  },
+  {
+    "problem": "Batch processing",
+    "subcategory": "Data-Centric",
+    "description": "Operate on large static datasets",
+    "tags": [
+      "batch",
+      "processing",
+      "data-centric"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "MapReduce",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "ETL jobs",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "MapReduce",
+      "ETL jobs"
+    ]
+  },
+  {
+    "problem": "Logic programming",
+    "subcategory": "Functional / Declarative",
+    "description": "Declare what should be true",
+    "tags": [
+      "programming",
+      "logic",
+      "/",
+      "functional",
+      "declarative"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Prolog",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "SQL",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Prolog",
+      "SQL"
+    ]
+  },
+  {
+    "problem": "Functional pipelines",
+    "subcategory": "Functional / Declarative",
+    "description": "Data transformed by functions",
+    "tags": [
+      "functional",
+      "pipelines",
+      "declarative",
+      "/"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Map/filter/reduce",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "stream transformations",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Map/filter/reduce",
+      "stream transformations"
+    ]
+  },
+  {
+    "problem": "Classification / Regression",
+    "subcategory": "Pattern Recognition",
+    "description": "Fit models to data, ML/AI approaches",
+    "tags": [
+      "recognition",
+      "pattern",
+      "classification",
+      "regression"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Spam detection",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "customer churn",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Spam detection",
+      "customer churn"
+    ]
+  },
+  {
+    "problem": "Race conditions & synchronization",
+    "subcategory": "Concurrency & Coordination",
+    "description": "Managing parallelism & shared resources",
+    "tags": [
+      "coordination",
+      "synchronization",
+      "&",
+      "concurrency",
+      "race",
+      "conditions"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Threading",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "mutex",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "actor model",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Threading",
+      "mutex",
+      "actor model"
+    ]
+  },
+  {
+    "problem": "Distributed consensus",
+    "subcategory": "Concurrency & Coordination",
+    "description": "Agreement across distributed systems",
+    "tags": [
+      "coordination",
+      "&",
+      "concurrency",
+      "consensus",
+      "distributed"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Paxos",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Raft",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Zookeeper",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Paxos",
+      "Raft",
+      "Zookeeper"
+    ]
+  },
+  {
+    "problem": "Finite State Machines (FSM)",
+    "subcategory": "Modeling",
+    "description": "Systems with discrete states & transitions",
+    "tags": [
+      "modeling",
+      "machines",
+      "state",
+      "finite",
+      "(fsm)"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "UI logic",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "protocol design",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "UI logic",
+      "protocol design"
+    ]
+  },
+  {
+    "problem": "Petri nets",
+    "subcategory": "Modeling",
+    "description": "More complex state modeling including concurrency",
+    "tags": [
+      "modeling",
+      "petri",
+      "nets"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Workflow engines",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Workflow engines"
+    ]
+  },
+  {
+    "problem": "Formal methods & model checking",
+    "subcategory": "Verification",
+    "description": "Prove program correctness",
+    "tags": [
+      "checking",
+      "methods",
+      "model",
+      "&",
+      "formal",
+      "verification"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "SAT solving",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "formal specs (Z, TLA+)",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "SAT solving",
+      "formal specs (Z, TLA+)"
+    ]
+  },
+  {
+    "problem": "Encoding, hashing, encryption",
+    "subcategory": "Cryptography",
+    "description": "Secure communications and integrity",
+    "tags": [
+      "encoding,",
+      "hashing,",
+      "cryptography",
+      "encryption"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "RSA",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "AES",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "SHA-256",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "digital signatures",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "RSA",
+      "AES",
+      "SHA-256",
+      "digital signatures"
+    ]
+  },
+  {
+    "problem": "Search indexes, relevance ranking",
+    "subcategory": "Information Retrieval",
+    "description": "Retrieve most relevant documents",
+    "tags": [
+      "indexes,",
+      "ranking",
+      "relevance",
+      "search",
+      "information",
+      "retrieval"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Lucene",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Meilisearch",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Elasticsearch",
+      "Lucene",
+      "Meilisearch"
+    ]
+  },
+  {
+    "problem": "Stochastic or discrete-event simulation",
+    "subcategory": "Simulation",
+    "description": "Model behavior of systems over time",
+    "tags": [
+      "or",
+      "simulation",
+      "stochastic",
+      "discrete-event"
+    ],
+    "patterns": [
+      {
+        "name": "Overview",
+        "solutions": [
+          {
+            "name": "Monte Carlo",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "queue simulation",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Monte Carlo",
+      "queue simulation"
+    ]
   }
 ]

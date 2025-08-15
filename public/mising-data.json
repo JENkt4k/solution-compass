@@ -1,0 +1,77 @@
+  {
+    "problem": "Greedy Algorithms",
+    "subcategory": "Optimization",
+    "description": "Choose locally optimal decision at each step hoping for global optimum; works when greedy-choice + optimal substructure hold.",
+    "tags": ["optimization", "greedy", "local-optimum"],
+    "patterns": [
+        {
+            "name": "Canonical problems",
+            "solutions": [
+                {"name": "Huffman coding", "tool": "Algorithm", "language": ""},
+                {"name": "Minimum Spanning Tree (Kruskal/Prim)", "tool": "Algorithm", "language": ""},
+                {"name": "Activity selection / interval scheduling", "tool": "Algorithm", "language": ""}
+            ]
+        }
+    ],
+    "examples": ["Compression", "network design", "scheduler selection"]
+},
+  {
+    "problem": "Dynamic Programming",
+    "subcategory": "Optimization",
+    "description": "Solve overlapping subproblems with optimal substructure using memoization or tabulation.",
+    "tags": ["optimization", "dp", "memoization", "tabulation"],
+    "patterns": [
+        {
+            "name": "Classic DP problems",
+            "solutions": [
+                {"name": "0/1 Knapsack", "tool": "Algorithm", "language": ""},
+                {"name": "Longest Common Subsequence (LCS)", "tool": "Algorithm", "language": ""},
+                {"name": "Matrix Chain Multiplication", "tool": "Algorithm", "language": ""},
+                {"name": "Edit distance (Levenshtein)", "tool": "Algorithm", "language": ""},
+                {"name": "Coin change", "tool": "Algorithm", "language": ""}
+            ]
+        }
+    ],
+    "examples": ["Packing/selection", "diff tools", "sequence alignment"]
+},
+ {
+    "problem": "Linear/Integer Programming",
+    "subcategory": "Optimization",
+    "description": "Formulate objective + linear constraints; solve with simplex/Interior-Point (LP) or branch-and-bound/cuts (IP/MIP).",
+    "tags": ["lp", "ilp", "mip", "optimization", "solver"],
+    "patterns": [
+        {
+            "name": "Solvers",
+            "solutions": [
+                {"name": "Google OR-Tools (LP/MIP)", "tool": "Library", "language": "C++/Python/Java"},
+                {"name": "Gurobi", "tool": "Commercial Solver", "language": "Python/Java/C++"},
+                {"name": "COIN-OR CBC", "tool": "Open-source Solver", "language": "C++"}
+            ]
+        }
+    ],
+    "examples": ["Supply chain", "scheduling", "routing"]
+},
+  {
+    "problem": "Network flow",
+    "subcategory": "Graph-Based",
+    "description": "Transport capacity-constrained flow through a network to optimize throughput or check feasibility.",
+    "tags": ["graph", "flow", "max-flow", "min-cut"],
+    "patterns": [
+        {
+            "name": "Max flow / min cut",
+            "solutions": [
+                {"name": "Edmonds–Karp", "tool": "Algorithm", "language": ""},
+                {"name": "Dinic", "tool": "Algorithm", "language": ""},
+                {"name": "Push–relabel", "tool": "Algorithm", "language": ""}
+            ]
+        },
+        {
+            "name": "Matchings / assignments",
+            "solutions": [
+                {"name": "Hopcroft–Karp (bipartite matching)", "tool": "Algorithm", "language": ""},
+                {"name": "Hungarian algorithm (assignment)", "tool": "Algorithm", "language": ""}
+            ]
+        }
+    ],
+    "examples": ["Bipartite matching", "resource assignment", "image segmentation"]
+}
