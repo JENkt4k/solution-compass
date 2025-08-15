@@ -14,6 +14,8 @@ export interface Pattern {
 export interface ProblemNode {
   problem: string;
   tags: string[];
+  subcategory?: string;
+  examples?: string[];
   patterns: Pattern[];
 }
 
