@@ -1,0 +1,302 @@
+[
+  {
+    "problem": "Concurrency",
+    "tags": [
+      "race conditions",
+      "multithreading",
+      "async"
+    ],
+    "patterns": [
+      {
+        "name": "Thread Synchronization",
+        "solutions": [
+          {
+            "name": "Mutex",
+            "tool": "Java Concurrency",
+            "language": "Java"
+          },
+          {
+            "name": "Go Routines + Channels",
+            "tool": "Golang",
+            "language": "Go"
+          },
+          {
+            "name": "async/await",
+            "tool": "Node.js",
+            "language": "JavaScript"
+          }
+        ]
+      },
+      {
+        "name": "Distributed Coordination",
+        "solutions": [
+          {
+            "name": "Leader Election",
+            "tool": "Zookeeper",
+            "language": "Java"
+          },
+          {
+            "name": "Distributed Locking",
+            "tool": "etcd",
+            "language": "Go"
+          },
+          {
+            "name": "Redlock",
+            "tool": "Redis",
+            "language": "Any"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Information Retrieval",
+    "tags": [
+      "search",
+      "text",
+      "filter"
+    ],
+    "patterns": [
+      {
+        "name": "Inverted Index",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Elastic Stack",
+            "language": "Java"
+          },
+          {
+            "name": "Meilisearch",
+            "tool": "Meilisearch",
+            "language": "Rust"
+          },
+          {
+            "name": "Solr",
+            "tool": "Apache Solr",
+            "language": "Java"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Workflow Management",
+    "tags": [
+      "state machine",
+      "process",
+      "approval"
+    ],
+    "patterns": [
+      {
+        "name": "State Machine / BPMN",
+        "solutions": [
+          {
+            "name": "Camunda",
+            "tool": "BPM Platform",
+            "language": "Java"
+          },
+          {
+            "name": "Temporal.io",
+            "tool": "Workflow Engine",
+            "language": "Go/Java/TS"
+          },
+          {
+            "name": "AWS Step Functions",
+            "tool": "AWS",
+            "language": "JSON DSL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Search & Filtering",
+    "tags": [
+      "query",
+      "filter",
+      "ranking"
+    ],
+    "patterns": [
+      {
+        "name": "Faceted Search",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Elastic Stack",
+            "language": "Java"
+          },
+          {
+            "name": "Algolia",
+            "tool": "Algolia",
+            "language": "JS/TS SDK"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Data Transformation",
+    "tags": [
+      "ETL",
+      "batch",
+      "pipeline"
+    ],
+    "patterns": [
+      {
+        "name": "Batch Processing",
+        "solutions": [
+          {
+            "name": "Apache Spark",
+            "tool": "Apache",
+            "language": "Scala/Java/Py"
+          },
+          {
+            "name": "Airflow",
+            "tool": "Apache",
+            "language": "Python"
+          },
+          {
+            "name": "dbt",
+            "tool": "Transform Tool",
+            "language": "SQL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Stream Processing",
+    "tags": [
+      "event",
+      "real-time",
+      "stream"
+    ],
+    "patterns": [
+      {
+        "name": "Event-Driven Architecture",
+        "solutions": [
+          {
+            "name": "Kafka",
+            "tool": "Apache",
+            "language": "Java"
+          },
+          {
+            "name": "Kinesis",
+            "tool": "AWS",
+            "language": "Python/Java"
+          },
+          {
+            "name": "NATS",
+            "tool": "NATS.io",
+            "language": "Go"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Caching",
+    "tags": [
+      "latency",
+      "performance",
+      "repeat-queries"
+    ],
+    "patterns": [
+      {
+        "name": "In-Memory Caching",
+        "solutions": [
+          {
+            "name": "Redis",
+            "tool": "Redis",
+            "language": "Any"
+          },
+          {
+            "name": "Memcached",
+            "tool": "Memcached",
+            "language": "Any"
+          },
+          {
+            "name": "CDN Edge Caching",
+            "tool": "Cloudflare",
+            "language": "HTTP/HTML/Assets"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Authentication & Security",
+    "tags": [
+      "auth",
+      "security",
+      "crypto"
+    ],
+    "patterns": [
+      {
+        "name": "Token-Based Auth",
+        "solutions": [
+          {
+            "name": "OAuth2",
+            "tool": "Auth Standard",
+            "language": "Any"
+          },
+          {
+            "name": "JWT",
+            "tool": "JWT.io",
+            "language": "Any"
+          },
+          {
+            "name": "SAML",
+            "tool": "SAML Protocol",
+            "language": "XML"
+          }
+        ]
+      },
+      {
+        "name": "Hashing & Encryption",
+        "solutions": [
+          {
+            "name": "bcrypt",
+            "tool": "bcrypt-lib",
+            "language": "Any"
+          },
+          {
+            "name": "OpenSSL",
+            "tool": "OpenSSL",
+            "language": "C/CLI"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Machine Learning",
+    "tags": [
+      "classification",
+      "prediction",
+      "clustering"
+    ],
+    "patterns": [
+      {
+        "name": "Model Training",
+        "solutions": [
+          {
+            "name": "scikit-learn",
+            "tool": "Python ML",
+            "language": "Python"
+          },
+          {
+            "name": "TensorFlow",
+            "tool": "Google",
+            "language": "Python"
+          },
+          {
+            "name": "PyTorch",
+            "tool": "Meta",
+            "language": "Python"
+          }
+        ]
+      }
+    ]
+  }
+]
