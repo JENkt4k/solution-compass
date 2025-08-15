@@ -2,8 +2,14 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const REPO_NAME = 'decision-tree-solver';
+
+const isDev = true;
+
+const base = isDev ? '/' : `/${REPO_NAME}/`;
+
 export default defineConfig({
-  base: '/', // Change this to match your repo name decision-tree-solver/
+  base, // Change this to match your repo name decision-tree-solver/
   plugins: [
     react(),
     VitePWA({
