@@ -1,0 +1,112 @@
+[
+  {
+    "problem": "Concurrency",
+    "tags": [
+      "race conditions",
+      "multithreading",
+      "async"
+    ],
+    "patterns": [
+      {
+        "name": "Thread Synchronization",
+        "solutions": [
+          {
+            "name": "Mutex",
+            "tool": "Java Concurrency",
+            "language": "Java"
+          },
+          {
+            "name": "Go Routines + Channels",
+            "tool": "Golang",
+            "language": "Go"
+          },
+          {
+            "name": "async/await",
+            "tool": "Node.js",
+            "language": "JavaScript"
+          }
+        ]
+      },
+      {
+        "name": "Distributed Coordination",
+        "solutions": [
+          {
+            "name": "Leader Election",
+            "tool": "Zookeeper",
+            "language": "Java"
+          },
+          {
+            "name": "Distributed Locking",
+            "tool": "etcd",
+            "language": "Go"
+          },
+          {
+            "name": "Redlock",
+            "tool": "Redis",
+            "language": "Any"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Information Retrieval",
+    "tags": [
+      "search",
+      "text",
+      "filter"
+    ],
+    "patterns": [
+      {
+        "name": "Inverted Index",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Elastic Stack",
+            "language": "Java"
+          },
+          {
+            "name": "Meilisearch",
+            "tool": "Meilisearch",
+            "language": "Rust"
+          },
+          {
+            "name": "Solr",
+            "tool": "Apache Solr",
+            "language": "Java"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "problem": "Workflow Management",
+    "tags": [
+      "state machine",
+      "process",
+      "approval"
+    ],
+    "patterns": [
+      {
+        "name": "State Machine / BPMN",
+        "solutions": [
+          {
+            "name": "Camunda",
+            "tool": "BPM Platform",
+            "language": "Java"
+          },
+          {
+            "name": "Temporal.io",
+            "tool": "Workflow Engine",
+            "language": "Go/Java/TS"
+          },
+          {
+            "name": "AWS Step Functions",
+            "tool": "AWS",
+            "language": "JSON DSL"
+          }
+        ]
+      }
+    ]
+  }
+]
