@@ -1127,22 +1127,60 @@
       "graph-based"
     ],
     "patterns": [
+  {
+    "name": "Algorithms",
+    "solutions": [
       {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Max flow / min cut",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "bipartite matching",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
+        "name": "Edmonds–Karp (max flow)",
+        "tool": "Algorithm",
+        "language": "Python",
+        "blurb": "BFS-based augmenting paths (Ford–Fulkerson with BFS); O(V·E²).",
+        "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n"
+      },
+      {
+        "name": "Dinic (max flow)",
+        "tool": "Algorithm",
+        "language": "Python",
+        "blurb": "Level graph + blocking flow; O(E·V²) general, faster in practice.",
+        "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n"
+      },
+      {
+        "name": "Push–relabel (max flow)",
+        "tool": "Algorithm",
+        "language": "",
+        "blurb": "Preflow with local pushes and relabels; near-linear on many sparse graphs.",
+        "url": "https://cp-algorithms.com/graph/push-relabel.html"
       }
-    ],
+    ]
+  },
+  {
+    "name": "Libraries",
+    "solutions": [
+      {
+        "name": "NetworkX maximum_flow",
+        "tool": "Library",
+        "language": "Python",
+        "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html",
+        "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n"
+      },
+      {
+        "name": "OR-Tools SimpleMaxFlow",
+        "tool": "Library",
+        "language": "Python",
+        "url": "https://developers.google.com/optimization/flow/maxflow",
+        "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n"
+      },
+      {
+        "name": "Boost Graph (C++)",
+        "tool": "Library",
+        "language": "C++",
+        "url": "https://www.boost.org/doc/libs/release/libs/graph/doc/maximum_flow.html",
+        "blurb": "Use push_relabel_max_flow or edmonds_karp_max_flow for high-performance C++."
+      }
+    ]
+  }
+],
+
     "examples": [
       "Max flow / min cut",
       "bipartite matching"
