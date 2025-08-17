@@ -36,7 +36,7 @@ function App() {
         <div className="brand">
           <div className="logo">∴</div>
           <div className="titles">
-            <h1>Decision Tree Solver</h1>
+            <h1>SolutionCompass</h1>
             <p className="subtitle">Problem → Pattern → Tool</p>
           </div>
         </div>
