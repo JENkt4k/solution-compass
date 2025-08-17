@@ -16,7 +16,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Decision Tree Solver',
+        name: 'Solution Compass',
         short_name: 'Solver',
         start_url: '/',
         display: 'standalone',
