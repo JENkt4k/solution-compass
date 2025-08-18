@@ -26,7 +26,8 @@ export const useTreeData = (): { data: ProblemNode[]; loading: boolean; error: s
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/complete-tree-data.json')
+    const dataUrl = new URL('complete-tree-data.json', import.meta.env.BASE_URL).toString();
+    fetch(dataUrl)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load tree data');
         return res.json();
