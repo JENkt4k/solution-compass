@@ -48,6 +48,7 @@ function App() {
         </div>
       </header>
       <main className="content">
+        <InstallPrompt />
         {loading && <div className="card">Loading…</div>}
         {error && <div className="card error">Error: {error}</div>}
         {!loading && !error && (
