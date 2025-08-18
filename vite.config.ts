@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 const REPO_NAME = 'solution-compass';
 
-const isDev = true;
+const isDev = false;
 
 const base = isDev ? '/' : `/${REPO_NAME}/`;
 
