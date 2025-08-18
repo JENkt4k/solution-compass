@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import TreeCanvas from './components/TreeCanvas';
 import SearchBar from './components/SearchBar';
+import { InstallPrompt } from './components/InstallPrompt';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 
 function App() {

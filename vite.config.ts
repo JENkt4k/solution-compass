@@ -17,12 +17,14 @@ export default defineConfig({
       includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Solution Compass',
-        short_name: 'Solver',
+        short_name: 'SCompass',
+        description: 'Navigate problem-solving patterns and solutions',
         start_url: base,
         scope: base,
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#0f172a',
+        orientation: 'portrait',
         icons: [
           {
             src: 'pwa-icon-192.png',
