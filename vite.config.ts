@@ -18,8 +18,8 @@ export default defineConfig({
       manifest: {
         name: 'Solution Compass',
         short_name: 'Solver',
-        start_url: '.',
-        scope: '.',
+        start_url: base,
+        scope: base,
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#0f172a',
