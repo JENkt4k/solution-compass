@@ -14,7 +14,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['favicon.svg','pwa-icon-192.png', 'pwa-icon-512.png'],
       manifest: {
         name: 'Solution Compass',
         short_name: 'SCompass',
