@@ -35,17 +35,23 @@
           {
             "name": "Mutex",
             "tool": "Java Concurrency",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Mutual-exclusion lock for protecting shared state from concurrent access.",
+            "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html"
           },
           {
             "name": "Go Routines + Channels",
             "tool": "Golang",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "Lightweight goroutines communicate through typed channels for structured concurrent work.",
+            "url": "https://go.dev/doc/effective_go#concurrency"
           },
           {
             "name": "async/await",
             "tool": "Node.js",
-            "language": "JavaScript"
+            "language": "JavaScript",
+            "blurb": "Promise-based syntax for composing asynchronous operations without callback nesting.",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises"
           }
         ]
       },
@@ -55,17 +61,23 @@
           {
             "name": "Leader Election",
             "tool": "Zookeeper",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Selects one coordinator among distributed peers to serialize decisions or ownership.",
+            "url": "https://zookeeper.apache.org/doc/current/recipes.html#sc_leaderElection"
           },
           {
             "name": "Distributed Locking",
             "tool": "etcd",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "Uses a shared coordination service to prevent duplicate distributed work.",
+            "url": "https://etcd.io/docs/v3.5/dev-guide/api_concurrency_reference_v3/"
           },
           {
             "name": "Redlock",
             "tool": "Redis",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Redis-based distributed lock algorithm for coordinating clients across independent Redis nodes.",
+            "url": "https://redis.io/docs/latest/develop/use/patterns/distributed-locks/"
           }
         ]
       },
@@ -75,17 +87,23 @@
           {
             "name": "Java Concurrency",
             "tool": "java.util.concurrent",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Java primitives and executors for locks, atomics, thread pools, and concurrent collections.",
+            "url": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html"
           },
           {
             "name": "Go routines",
             "tool": "goroutines/channels",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "Goroutines and channels model concurrent execution and communication in Go.",
+            "url": "https://go.dev/tour/concurrency/1"
           },
           {
             "name": "Node async",
             "tool": "async/await",
-            "language": "JavaScript/TypeScript"
+            "language": "JavaScript/TypeScript",
+            "blurb": "Event-loop based asynchronous I/O for high-concurrency server workflows.",
+            "url": "https://nodejs.org/en/learn/asynchronous-work/asynchronous-flow-control"
           }
         ]
       },
@@ -94,18 +112,24 @@
         "solutions": [
           {
             "name": "Threading",
-            "tool": "Example",
-            "language": ""
+            "tool": "Concurrency technique",
+            "language": "Any",
+            "blurb": "Runs work concurrently in threads that may share memory and require coordination.",
+            "url": "https://en.wikipedia.org/wiki/Thread_(computing)"
           },
           {
             "name": "mutex",
-            "tool": "Example",
-            "language": ""
+            "tool": "Synchronization primitive",
+            "language": "Any",
+            "blurb": "Mutual-exclusion lock for protecting shared state from concurrent access.",
+            "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html"
           },
           {
             "name": "actor model",
-            "tool": "Example",
-            "language": ""
+            "tool": "Concurrency model",
+            "language": "Any",
+            "blurb": "Models concurrent systems as isolated actors that communicate by messages.",
+            "url": "https://en.wikipedia.org/wiki/Actor_model"
           }
         ]
       }
@@ -166,17 +190,23 @@
           {
             "name": "Elasticsearch",
             "tool": "Elastic Stack",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed search and analytics engine built on Lucene for full-text and structured search.",
+            "url": "https://www.elastic.co/elasticsearch"
           },
           {
             "name": "Meilisearch",
             "tool": "Meilisearch",
-            "language": "Rust"
+            "language": "Rust",
+            "blurb": "Fast open-source search engine optimized for typo tolerance and instant search experiences.",
+            "url": "https://www.meilisearch.com/docs"
           },
           {
             "name": "Solr",
             "tool": "Apache Solr",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Apache Lucene-based enterprise search platform with faceting, ranking, and distributed indexing.",
+            "url": "https://solr.apache.org/guide/solr/latest/index.html"
           }
         ]
       },
@@ -186,12 +216,16 @@
           {
             "name": "Elasticsearch",
             "tool": "Elastic Stack",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed search and analytics engine built on Lucene for full-text and structured search.",
+            "url": "https://www.elastic.co/elasticsearch"
           },
           {
             "name": "Algolia",
             "tool": "Algolia",
-            "language": "JS/TS SDK"
+            "language": "JS/TS SDK",
+            "blurb": "Hosted search API for faceted, typo-tolerant, relevance-ranked application search.",
+            "url": "https://www.algolia.com/doc/"
           }
         ]
       },
@@ -201,17 +235,23 @@
           {
             "name": "Elasticsearch",
             "tool": "Elastic Stack",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed search and analytics engine built on Lucene for full-text and structured search.",
+            "url": "https://www.elastic.co/elasticsearch"
           },
           {
             "name": "Solr",
             "tool": "Apache Solr",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Apache Lucene-based enterprise search platform with faceting, ranking, and distributed indexing.",
+            "url": "https://solr.apache.org/guide/solr/latest/index.html"
           },
           {
             "name": "Meilisearch",
             "tool": "Meilisearch",
-            "language": "Rust"
+            "language": "Rust",
+            "blurb": "Fast open-source search engine optimized for typo tolerance and instant search experiences.",
+            "url": "https://www.meilisearch.com/docs"
           }
         ]
       },
@@ -220,18 +260,24 @@
         "solutions": [
           {
             "name": "Elasticsearch",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search engine",
+            "language": "Java/REST",
+            "blurb": "Distributed search and analytics engine built on Lucene for full-text and structured search.",
+            "url": "https://www.elastic.co/elasticsearch"
           },
           {
             "name": "Lucene",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search library",
+            "language": "Java",
+            "blurb": "Low-level indexing and search library that powers Solr, Elasticsearch, and many search systems.",
+            "url": "https://lucene.apache.org/core/"
           },
           {
             "name": "Meilisearch",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search engine",
+            "language": "Rust/REST",
+            "blurb": "Fast open-source search engine optimized for typo tolerance and instant search experiences.",
+            "url": "https://www.meilisearch.com/docs"
           }
         ]
       }
@@ -300,17 +346,23 @@
           {
             "name": "Camunda",
             "tool": "BPM Platform",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "BPMN and DMN workflow platform for long-running business processes and orchestration.",
+            "url": "https://docs.camunda.io/"
           },
           {
             "name": "Temporal.io",
             "tool": "Workflow Engine",
-            "language": "Go/Java/TS"
+            "language": "Go/Java/TS",
+            "blurb": "Runs durable workflows with retries, timers, state, and fault-tolerant orchestration.",
+            "url": "https://docs.temporal.io/"
           },
           {
             "name": "AWS Step Functions",
-            "tool": "AWS",
-            "language": "JSON DSL"
+            "tool": "AWS workflow service",
+            "language": "JSON DSL",
+            "blurb": "Serverless state-machine service for coordinating AWS services and application workflows.",
+            "url": "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html"
           }
         ]
       },
@@ -320,22 +372,30 @@
           {
             "name": "Camunda",
             "tool": "Camunda BPM",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "BPMN and DMN workflow platform for long-running business processes and orchestration.",
+            "url": "https://docs.camunda.io/"
           },
           {
             "name": "Zeebe",
             "tool": "Zeebe Workflow",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed workflow engine behind Camunda 8 for BPMN process automation.",
+            "url": "https://docs.camunda.io/docs/components/zeebe/zeebe-overview/"
           },
           {
             "name": "AWS Step Functions",
-            "tool": "AWS",
-            "language": "JSON DSL"
+            "tool": "AWS workflow service",
+            "language": "JSON DSL",
+            "blurb": "Serverless state-machine service for coordinating AWS services and application workflows.",
+            "url": "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html"
           },
           {
             "name": "Temporal",
             "tool": "Temporal.io",
-            "language": "Go/Java/TypeScript"
+            "language": "Go/Java/TypeScript",
+            "blurb": "Durable workflow engine for reliable long-running application logic.",
+            "url": "https://docs.temporal.io/"
           }
         ]
       },
@@ -344,13 +404,17 @@
         "solutions": [
           {
             "name": "UI logic",
-            "tool": "Example",
-            "language": ""
+            "tool": "State-machine technique",
+            "language": "Any",
+            "blurb": "Uses explicit UI states and transitions to keep interaction behavior predictable.",
+            "url": "https://statecharts.dev/"
           },
           {
             "name": "protocol design",
-            "tool": "Example",
-            "language": ""
+            "tool": "State-machine technique",
+            "language": "Any",
+            "blurb": "Defines legal message sequences and transitions for robust communication protocols.",
+            "url": "https://en.wikipedia.org/wiki/Finite-state_machine"
           }
         ]
       },
@@ -359,8 +423,10 @@
         "solutions": [
           {
             "name": "Workflow engines",
-            "tool": "Example",
-            "language": ""
+            "tool": "Workflow platform",
+            "language": "Any",
+            "blurb": "Executes modeled processes with state, transitions, retries, and operational visibility.",
+            "url": "https://en.wikipedia.org/wiki/Workflow_engine"
           }
         ]
       }
@@ -421,18 +487,24 @@
         "solutions": [
           {
             "name": "Apache Spark",
-            "tool": "Apache",
-            "language": "Scala/Java/Py"
+            "tool": "Distributed data engine",
+            "language": "Scala/Java/Py",
+            "blurb": "Distributed engine for large-scale batch processing, SQL, streaming, and ML workloads.",
+            "url": "https://spark.apache.org/docs/latest/"
           },
           {
             "name": "Airflow",
-            "tool": "Apache",
-            "language": "Python"
+            "tool": "Workflow scheduler",
+            "language": "Python",
+            "blurb": "Orchestrates scheduled data pipelines as Python-defined DAGs.",
+            "url": "https://airflow.apache.org/docs/"
           },
           {
             "name": "dbt",
             "tool": "Transform Tool",
-            "language": "SQL"
+            "language": "SQL",
+            "blurb": "Builds versioned, tested analytics transformations inside the data warehouse.",
+            "url": "https://docs.getdbt.com/docs/introduction"
           }
         ]
       },
@@ -441,13 +513,17 @@
         "solutions": [
           {
             "name": "MapReduce",
-            "tool": "Example",
-            "language": ""
+            "tool": "Batch processing model",
+            "language": "Any",
+            "blurb": "Splits large batch jobs into map and reduce phases over distributed data.",
+            "url": "https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html"
           },
           {
             "name": "ETL jobs",
-            "tool": "Example",
-            "language": ""
+            "tool": "Data pipeline technique",
+            "language": "Any",
+            "blurb": "Extracts, transforms, and loads data between operational systems and analytics stores.",
+            "url": "https://en.wikipedia.org/wiki/Extract,_transform,_load"
           }
         ]
       },
@@ -457,22 +533,30 @@
           {
             "name": "Apache Airflow",
             "tool": "Airflow",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Orchestrates scheduled data pipelines as Python-defined DAGs.",
+            "url": "https://airflow.apache.org/docs/"
           },
           {
             "name": "Apache Spark",
             "tool": "Spark",
-            "language": "Scala/Java/Python"
+            "language": "Scala/Java/Python",
+            "blurb": "Distributed engine for large-scale batch processing, SQL, streaming, and ML workloads.",
+            "url": "https://spark.apache.org/docs/latest/"
           },
           {
             "name": "Pandas",
             "tool": "pandas",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "In-memory data analysis and transformation library for tabular data.",
+            "url": "https://pandas.pydata.org/docs/"
           },
           {
             "name": "dbt",
             "tool": "dbt",
-            "language": "SQL"
+            "language": "SQL",
+            "blurb": "Builds versioned, tested analytics transformations inside the data warehouse.",
+            "url": "https://docs.getdbt.com/docs/introduction"
           }
         ]
       }
@@ -531,18 +615,24 @@
         "solutions": [
           {
             "name": "Kafka",
-            "tool": "Apache",
-            "language": "Java"
+            "tool": "Event streaming platform",
+            "language": "Java",
+            "blurb": "Distributed append-only log for event streaming, messaging, and stream processing.",
+            "url": "https://kafka.apache.org/documentation/"
           },
           {
             "name": "Kinesis",
-            "tool": "AWS",
-            "language": "Python/Java"
+            "tool": "Managed stream service",
+            "language": "Python/Java",
+            "blurb": "AWS managed service for collecting, processing, and analyzing streaming data.",
+            "url": "https://docs.aws.amazon.com/streams/latest/dev/introduction.html"
           },
           {
             "name": "NATS",
             "tool": "NATS.io",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "High-performance messaging system for pub/sub, request-reply, and streaming workloads.",
+            "url": "https://docs.nats.io/"
           }
         ]
       },
@@ -552,22 +642,30 @@
           {
             "name": "Kafka",
             "tool": "Apache Kafka",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed append-only log for event streaming, messaging, and stream processing.",
+            "url": "https://kafka.apache.org/documentation/"
           },
           {
             "name": "RabbitMQ",
             "tool": "RabbitMQ",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "AMQP message broker for queues, routing, pub/sub, and asynchronous integration.",
+            "url": "https://www.rabbitmq.com/docs"
           },
           {
             "name": "Kinesis",
             "tool": "AWS Kinesis",
-            "language": "Python/Java"
+            "language": "Python/Java",
+            "blurb": "AWS managed service for collecting, processing, and analyzing streaming data.",
+            "url": "https://docs.aws.amazon.com/streams/latest/dev/introduction.html"
           },
           {
             "name": "NATS",
             "tool": "NATS",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "High-performance messaging system for pub/sub, request-reply, and streaming workloads.",
+            "url": "https://docs.nats.io/"
           }
         ]
       },
@@ -576,13 +674,17 @@
         "solutions": [
           {
             "name": "Kafka consumers",
-            "tool": "Example",
-            "language": ""
+            "tool": "Stream processing component",
+            "language": "Java/Any",
+            "blurb": "Consumers subscribe to Kafka topics and process records from assigned partitions.",
+            "url": "https://kafka.apache.org/documentation/#consumerapi"
           },
           {
             "name": "log processing",
-            "tool": "Example",
-            "language": ""
+            "tool": "Stream processing technique",
+            "language": "Any",
+            "blurb": "Consumes logs as event streams for indexing, monitoring, alerting, or analytics.",
+            "url": "https://opentelemetry.io/docs/concepts/signals/logs/"
           }
         ]
       }
@@ -621,17 +723,23 @@
           {
             "name": "Redis",
             "tool": "Redis",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Low-latency in-memory data store commonly used for caching, queues, and counters.",
+            "url": "https://redis.io/docs/latest/"
           },
           {
             "name": "Memcached",
             "tool": "Memcached",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Simple distributed memory cache for reducing database and service load.",
+            "url": "https://docs.memcached.org/"
           },
           {
             "name": "CDN",
             "tool": "Cloudflare/Akamai",
-            "language": "HTTP/Edge"
+            "language": "HTTP/Edge",
+            "blurb": "Caches static and dynamic content close to users to reduce latency and origin load.",
+            "url": "https://developer.mozilla.org/en-US/docs/Glossary/CDN"
           }
         ]
       }
@@ -679,17 +787,23 @@
           {
             "name": "OAuth2",
             "tool": "Auth Standard",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Delegated authorization framework for scoped access to protected resources.",
+            "url": "https://oauth.net/2/"
           },
           {
             "name": "JWT",
             "tool": "JWT.io",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Compact signed token format for transmitting claims between parties.",
+            "url": "https://www.rfc-editor.org/rfc/rfc7519"
           },
           {
             "name": "SAML",
             "tool": "SAML Protocol",
-            "language": "XML"
+            "language": "XML",
+            "blurb": "XML-based protocol for exchanging authentication and authorization assertions.",
+            "url": "https://www.oasis-open.org/standard/saml/"
           }
         ]
       },
@@ -699,12 +813,16 @@
           {
             "name": "bcrypt",
             "tool": "bcrypt-lib",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Adaptive password hashing function designed to slow offline brute-force attacks.",
+            "url": "https://en.wikipedia.org/wiki/Bcrypt"
           },
           {
             "name": "OpenSSL",
             "tool": "OpenSSL",
-            "language": "C/CLI"
+            "language": "C/CLI",
+            "blurb": "Widely used TLS and cryptography toolkit with libraries and command-line tools.",
+            "url": "https://docs.openssl.org/"
           }
         ]
       },
@@ -714,12 +832,16 @@
           {
             "name": "JWT",
             "tool": "JWT",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Compact signed token format for transmitting claims between parties.",
+            "url": "https://www.rfc-editor.org/rfc/rfc7519"
           },
           {
             "name": "OAuth2",
             "tool": "OAuth2",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Delegated authorization framework for scoped access to protected resources.",
+            "url": "https://oauth.net/2/"
           }
         ]
       },
@@ -729,12 +851,16 @@
           {
             "name": "bcrypt",
             "tool": "bcrypt",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Adaptive password hashing function designed to slow offline brute-force attacks.",
+            "url": "https://en.wikipedia.org/wiki/Bcrypt"
           },
           {
             "name": "OpenSSL",
             "tool": "OpenSSL",
-            "language": "C/CLI"
+            "language": "C/CLI",
+            "blurb": "Widely used TLS and cryptography toolkit with libraries and command-line tools.",
+            "url": "https://docs.openssl.org/"
           }
         ]
       },
@@ -743,23 +869,31 @@
         "solutions": [
           {
             "name": "RSA",
-            "tool": "Example",
-            "language": ""
+            "tool": "Public-key algorithm",
+            "language": "Any",
+            "blurb": "Asymmetric cryptosystem used for encryption and digital signatures.",
+            "url": "https://en.wikipedia.org/wiki/RSA_(cryptosystem)"
           },
           {
             "name": "AES",
-            "tool": "Example",
-            "language": ""
+            "tool": "Symmetric cipher",
+            "language": "Any",
+            "blurb": "Standard symmetric block cipher for efficient encryption of data at rest or in transit.",
+            "url": "https://csrc.nist.gov/pubs/fips/197/final"
           },
           {
             "name": "SHA-256",
-            "tool": "Example",
-            "language": ""
+            "tool": "Cryptographic hash",
+            "language": "Any",
+            "blurb": "SHA-2 hash function producing a 256-bit digest for integrity checks and signatures.",
+            "url": "https://csrc.nist.gov/projects/hash-functions"
           },
           {
             "name": "digital signatures",
-            "tool": "Example",
-            "language": ""
+            "tool": "Cryptographic technique",
+            "language": "Any",
+            "blurb": "Uses public-key cryptography to prove message authenticity and integrity.",
+            "url": "https://en.wikipedia.org/wiki/Digital_signature"
           }
         ]
       }
@@ -820,17 +954,23 @@
           {
             "name": "scikit-learn",
             "tool": "Python ML",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Python library for classical machine learning, preprocessing, model selection, and metrics.",
+            "url": "https://scikit-learn.org/stable/user_guide.html"
           },
           {
             "name": "TensorFlow",
-            "tool": "Google",
-            "language": "Python"
+            "tool": "Machine learning framework",
+            "language": "Python",
+            "blurb": "Framework for training and deploying machine learning and neural network models.",
+            "url": "https://www.tensorflow.org/guide"
           },
           {
             "name": "PyTorch",
-            "tool": "Meta",
-            "language": "Python"
+            "tool": "Machine learning framework",
+            "language": "Python",
+            "blurb": "Tensor and neural network framework popular for research and production ML.",
+            "url": "https://pytorch.org/docs/stable/index.html"
           }
         ]
       },
@@ -840,22 +980,30 @@
           {
             "name": "TensorFlow",
             "tool": "TensorFlow",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Framework for training and deploying machine learning and neural network models.",
+            "url": "https://www.tensorflow.org/guide"
           },
           {
             "name": "PyTorch",
             "tool": "PyTorch",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Tensor and neural network framework popular for research and production ML.",
+            "url": "https://pytorch.org/docs/stable/index.html"
           },
           {
             "name": "scikit-learn",
             "tool": "scikit-learn",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Python library for classical machine learning, preprocessing, model selection, and metrics.",
+            "url": "https://scikit-learn.org/stable/user_guide.html"
           },
           {
             "name": "HuggingFace",
             "tool": "Transformers",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Model hub and library for transformer-based NLP, vision, audio, and multimodal models.",
+            "url": "https://huggingface.co/docs/transformers/index"
           }
         ]
       },
@@ -864,13 +1012,17 @@
         "solutions": [
           {
             "name": "Spam detection",
-            "tool": "Example",
-            "language": ""
+            "tool": "Classification use case",
+            "language": "Python/Any",
+            "blurb": "Classifies messages as spam or legitimate using supervised learning features or embeddings.",
+            "url": "https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html"
           },
           {
             "name": "customer churn",
-            "tool": "Example",
-            "language": ""
+            "tool": "Prediction use case",
+            "language": "Python/Any",
+            "blurb": "Predicts which customers are likely to leave using behavioral and account features.",
+            "url": "https://en.wikipedia.org/wiki/Predictive_analytics"
           }
         ]
       }
@@ -921,27 +1073,37 @@
           {
             "name": "PostgreSQL",
             "tool": "PostgreSQL",
-            "language": "SQL"
+            "language": "SQL",
+            "blurb": "Open-source relational database with strong SQL, indexing, transactions, and extensibility.",
+            "url": "https://www.postgresql.org/docs/current/"
           },
           {
             "name": "MySQL",
             "tool": "MySQL",
-            "language": "SQL"
+            "language": "SQL",
+            "blurb": "Popular relational database for transactional applications and web workloads.",
+            "url": "https://dev.mysql.com/doc/"
           },
           {
             "name": "MS SQL",
             "tool": "Microsoft SQL Server",
-            "language": "SQL"
+            "language": "SQL",
+            "blurb": "Microsoft relational database platform for transactional and analytical workloads.",
+            "url": "https://learn.microsoft.com/en-us/sql/sql-server/"
           },
           {
             "name": "Hibernate",
             "tool": "Hibernate ORM",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Java ORM for mapping object models to relational database tables and queries.",
+            "url": "https://hibernate.org/orm/documentation/"
           },
           {
             "name": "Sequelize",
             "tool": "Sequelize ORM",
-            "language": "JavaScript/TypeScript"
+            "language": "JavaScript/TypeScript",
+            "blurb": "Node.js ORM for SQL databases with models, migrations, associations, and queries.",
+            "url": "https://sequelize.org/docs/v6/"
           }
         ]
       },
@@ -950,13 +1112,17 @@
         "solutions": [
           {
             "name": "Databases",
-            "tool": "Example",
-            "language": ""
+            "tool": "Data storage concept",
+            "language": "SQL/Any",
+            "blurb": "Structured systems for persisting, querying, and transacting over application data.",
+            "url": "https://en.wikipedia.org/wiki/Database"
           },
           {
             "name": "record management",
-            "tool": "Example",
-            "language": ""
+            "tool": "CRUD use case",
+            "language": "Any",
+            "blurb": "Tracks lifecycle, validation, history, and retrieval for structured business records.",
+            "url": "https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"
           }
         ]
       }
@@ -994,17 +1160,23 @@
           {
             "name": "Google OR-Tools",
             "tool": "OR-Tools",
-            "language": "C++/Python/Java"
+            "language": "C++/Python/Java",
+            "blurb": "Google solver suite for routing, scheduling, linear programming, and CP-SAT optimization.",
+            "url": "https://developers.google.com/optimization"
           },
           {
             "name": "OptaPlanner",
-            "tool": "OptaPlanner",
-            "language": "Java"
+            "tool": "Planning optimizer",
+            "language": "Java",
+            "blurb": "Constraint-solving engine for planning and scheduling problems in Java applications.",
+            "url": "https://www.optaplanner.org/docs/optaplanner/latest/quickstart/quickstart.html"
           },
           {
             "name": "Custom heuristics",
             "tool": "Heuristics",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Problem-specific search rules that trade optimality guarantees for speed and simplicity.",
+            "url": "https://en.wikipedia.org/wiki/Heuristic_(computer_science)"
           }
         ]
       }
@@ -1049,17 +1221,23 @@
           {
             "name": "Neo4j",
             "tool": "Neo4j",
-            "language": "Cypher"
+            "language": "Cypher",
+            "blurb": "Native graph database for storing and querying connected data with Cypher.",
+            "url": "https://neo4j.com/docs/"
           },
           {
             "name": "Gremlin",
             "tool": "TinkerPop Gremlin",
-            "language": "Gremlin"
+            "language": "Gremlin",
+            "blurb": "Apache TinkerPop traversal language for querying and mutating property graphs.",
+            "url": "https://tinkerpop.apache.org/docs/current/reference/"
           },
           {
             "name": "NetworkX",
             "tool": "NetworkX",
-            "language": "Python"
+            "language": "Python",
+            "blurb": "Python package for creating, analyzing, and visualizing graphs and networks.",
+            "url": "https://networkx.org/documentation/stable/"
           }
         ]
       },
@@ -1068,18 +1246,24 @@
         "solutions": [
           {
             "name": "BFS",
-            "tool": "Example",
-            "language": ""
+            "tool": "Graph traversal algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Breadth-first search explores a graph level by level and finds shortest paths in unweighted graphs.",
+            "url": "https://en.wikipedia.org/wiki/Breadth-first_search"
           },
           {
             "name": "DFS",
-            "tool": "Example",
-            "language": ""
+            "tool": "Graph traversal algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Depth-first search explores as far as possible along each branch before backtracking.",
+            "url": "https://en.wikipedia.org/wiki/Depth-first_search"
           },
           {
             "name": "Dijkstra",
-            "tool": "Example",
-            "language": ""
+            "tool": "Shortest-path algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Finds shortest paths from one source in graphs with nonnegative edge weights.",
+            "url": "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm"
           }
         ]
       }
@@ -1138,22 +1322,30 @@
           {
             "name": "Z3",
             "tool": "Z3 Theorem Prover",
-            "language": "C#/Python"
+            "language": "C#/Python",
+            "blurb": "SMT solver for logical formulas over arithmetic, bit-vectors, arrays, and more.",
+            "url": "https://microsoft.github.io/z3guide/"
           },
           {
             "name": "Gurobi",
             "tool": "Gurobi",
-            "language": "Python/Java/C++"
+            "language": "Python/Java/C++",
+            "blurb": "Commercial solver for linear, integer, quadratic, and constrained optimization models.",
+            "url": "https://docs.gurobi.com/"
           },
           {
             "name": "OR-Tools CP-SAT",
             "tool": "OR-Tools",
-            "language": "C++/Python/Java"
+            "language": "C++/Python/Java",
+            "blurb": "CP-SAT solver for combinatorial optimization, scheduling, and assignment problems.",
+            "url": "https://developers.google.com/optimization/cp/cp_solver"
           },
           {
             "name": "MiniZinc",
             "tool": "MiniZinc",
-            "language": "Modeling language"
+            "language": "Modeling language",
+            "blurb": "High-level modeling language for constraint satisfaction and optimization problems.",
+            "url": "https://docs.minizinc.dev/"
           }
         ]
       },
@@ -1162,18 +1354,24 @@
         "solutions": [
           {
             "name": "Sudoku",
-            "tool": "Example",
-            "language": ""
+            "tool": "CSP benchmark",
+            "language": "Any",
+            "blurb": "Classic constraint satisfaction puzzle involving all-different row, column, and box constraints.",
+            "url": "https://en.wikipedia.org/wiki/Sudoku_solving_algorithms"
           },
           {
             "name": "scheduling",
-            "tool": "Example",
-            "language": ""
+            "tool": "Optimization use case",
+            "language": "Any",
+            "blurb": "Assigns work, time, or resources while respecting constraints and preferences.",
+            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)"
           },
           {
             "name": "Prolog-style reasoning",
-            "tool": "Example",
-            "language": ""
+            "tool": "Logic programming technique",
+            "language": "Prolog/Any",
+            "blurb": "Represents facts and rules, then searches for variable bindings that satisfy queries.",
+            "url": "https://en.wikipedia.org/wiki/Logic_programming"
           }
         ]
       }
@@ -1208,17 +1406,23 @@
           {
             "name": "TLA+",
             "tool": "TLA+",
-            "language": "Spec language"
+            "language": "Spec language",
+            "blurb": "Formal specification language for modeling and checking concurrent and distributed systems.",
+            "url": "https://lamport.azurewebsites.net/tla/tla.html"
           },
           {
             "name": "Coq",
             "tool": "Coq",
-            "language": "Gallina"
+            "language": "Gallina",
+            "blurb": "Interactive theorem prover for machine-checked mathematical and program proofs.",
+            "url": "https://coq.inria.fr/documentation"
           },
           {
             "name": "Alloy",
             "tool": "Alloy",
-            "language": "Alloy"
+            "language": "Alloy",
+            "blurb": "Lightweight formal modeling language and analyzer for relational structures.",
+            "url": "https://alloytools.org/documentation.html"
           }
         ]
       }
@@ -1244,22 +1448,30 @@
           {
             "name": "Prometheus",
             "tool": "Prometheus",
-            "language": "PromQL"
+            "language": "PromQL",
+            "blurb": "Pull-based metrics and alerting system optimized for time-series monitoring.",
+            "url": "https://prometheus.io/docs/introduction/overview/"
           },
           {
             "name": "Grafana",
             "tool": "Grafana",
-            "language": "Dashboards"
+            "language": "Dashboards",
+            "blurb": "Dashboard and visualization platform for metrics, logs, traces, and alerts.",
+            "url": "https://grafana.com/docs/"
           },
           {
             "name": "ELK",
             "tool": "Elastic Stack",
-            "language": "Elasticsearch/Logstash/Kibana"
+            "language": "Elasticsearch/Logstash/Kibana",
+            "blurb": "Elastic Stack for collecting, indexing, searching, and visualizing logs.",
+            "url": "https://www.elastic.co/elastic-stack"
           },
           {
             "name": "OpenTelemetry",
             "tool": "OpenTelemetry",
-            "language": "Any"
+            "language": "Any",
+            "blurb": "Open standard and SDKs for collecting traces, metrics, and logs from applications.",
+            "url": "https://opentelemetry.io/docs/"
           }
         ]
       }
@@ -1285,17 +1497,23 @@
           {
             "name": "Zookeeper",
             "tool": "Apache Zookeeper",
-            "language": "Java"
+            "language": "Java",
+            "blurb": "Distributed coordination service for configuration, naming, leader election, and locks.",
+            "url": "https://zookeeper.apache.org/doc/current/"
           },
           {
             "name": "etcd",
             "tool": "etcd",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "Consistent distributed key-value store used for configuration and coordination.",
+            "url": "https://etcd.io/docs/"
           },
           {
             "name": "Consul",
             "tool": "HashiCorp Consul",
-            "language": "Go"
+            "language": "Go",
+            "blurb": "Service discovery, health checking, and configuration platform for distributed systems.",
+            "url": "https://developer.hashicorp.com/consul/docs"
           }
         ]
       }
@@ -1320,18 +1538,24 @@
         "solutions": [
           {
             "name": "Pathfinding",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search use case",
+            "language": "Any",
+            "blurb": "Finds a path through a state space or graph from a start state to a goal.",
+            "url": "https://en.wikipedia.org/wiki/Pathfinding"
           },
           {
             "name": "game AI",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search use case",
+            "language": "Any",
+            "blurb": "Applies search, planning, and decision algorithms to game agents and strategy.",
+            "url": "https://en.wikipedia.org/wiki/Game_artificial_intelligence"
           },
           {
             "name": "puzzle solvers",
-            "tool": "Example",
-            "language": ""
+            "tool": "Search use case",
+            "language": "Any",
+            "blurb": "Explores legal moves or states to find a valid or optimal puzzle solution.",
+            "url": "https://en.wikipedia.org/wiki/State_space_search"
           }
         ]
       }
@@ -1356,18 +1580,24 @@
         "solutions": [
           {
             "name": "A*",
-            "tool": "Example",
-            "language": ""
+            "tool": "Heuristic search algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Best-first graph search that combines path cost and heuristic estimate.",
+            "url": "https://en.wikipedia.org/wiki/A*_search_algorithm"
           },
           {
             "name": "IDA*",
-            "tool": "Example",
-            "language": ""
+            "tool": "Heuristic search algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Iterative-deepening A* reduces memory use while using a heuristic cost bound.",
+            "url": "https://en.wikipedia.org/wiki/Iterative_deepening_A*"
           },
           {
             "name": "beam search",
-            "tool": "Example",
-            "language": ""
+            "tool": "Heuristic search algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Keeps only the best candidate states at each depth to control search width.",
+            "url": "https://en.wikipedia.org/wiki/Beam_search"
           }
         ]
       }
@@ -1394,13 +1624,17 @@
         "solutions": [
           {
             "name": "Supply chain optimization",
-            "tool": "Example",
-            "language": ""
+            "tool": "Optimization use case",
+            "language": "Any",
+            "blurb": "Optimizes sourcing, production, inventory, routing, or allocation under constraints.",
+            "url": "https://en.wikipedia.org/wiki/Supply_chain_optimization"
           },
           {
             "name": "scheduling",
-            "tool": "Example",
-            "language": ""
+            "tool": "Optimization use case",
+            "language": "Any",
+            "blurb": "Assigns work, time, or resources while respecting constraints and preferences.",
+            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)"
           }
         ]
       }
@@ -1425,18 +1659,24 @@
         "solutions": [
           {
             "name": "Huffman coding",
-            "tool": "Example",
-            "language": ""
+            "tool": "Greedy algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Builds an optimal prefix code by repeatedly combining the least frequent symbols.",
+            "url": "https://en.wikipedia.org/wiki/Huffman_coding"
           },
           {
             "name": "MST",
-            "tool": "Example",
-            "language": ""
+            "tool": "Greedy graph algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Finds a minimum spanning tree connecting all graph vertices at minimum total edge weight.",
+            "url": "https://en.wikipedia.org/wiki/Minimum_spanning_tree"
           },
           {
             "name": "activity selection",
-            "tool": "Example",
-            "language": ""
+            "tool": "Greedy algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Selects a maximum set of non-overlapping intervals by choosing earliest finishing activities.",
+            "url": "https://en.wikipedia.org/wiki/Activity_selection_problem"
           }
         ]
       }
@@ -1462,13 +1702,17 @@
         "solutions": [
           {
             "name": "DP for knapsack",
-            "tool": "Example",
-            "language": ""
+            "tool": "Dynamic programming algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Uses subproblem tables to maximize value under a capacity constraint.",
+            "url": "https://en.wikipedia.org/wiki/Knapsack_problem"
           },
           {
             "name": "sequence alignment",
-            "tool": "Example",
-            "language": ""
+            "tool": "Dynamic programming algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Aligns sequences by optimizing match, mismatch, and gap costs.",
+            "url": "https://en.wikipedia.org/wiki/Sequence_alignment"
           }
         ]
       }
@@ -1496,19 +1740,21 @@
             "tool": "Algorithm",
             "language": "Python",
             "blurb": "BFS-based augmenting paths (Ford–Fulkerson with BFS); O(V·E²).",
-            "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n"
+            "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n",
+            "url": "https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm"
           },
           {
             "name": "Dinic (max flow)",
             "tool": "Algorithm",
             "language": "Python",
             "blurb": "Level graph + blocking flow; O(E·V²) general, faster in practice.",
-            "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n"
+            "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n",
+            "url": "https://en.wikipedia.org/wiki/Dinic%27s_algorithm"
           },
           {
             "name": "Push–relabel (max flow)",
             "tool": "Algorithm",
-            "language": "",
+            "language": "Pseudocode/Any",
             "blurb": "Preflow with local pushes and relabels; near-linear on many sparse graphs.",
             "url": "https://cp-algorithms.com/graph/push-relabel.html"
           }
@@ -1519,21 +1765,23 @@
         "solutions": [
           {
             "name": "NetworkX maximum_flow",
-            "tool": "Library",
+            "tool": "Graph algorithms library",
             "language": "Python",
             "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html",
-            "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n"
+            "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n",
+            "blurb": "NetworkX helper for computing maximum flow value and flow assignment in directed graphs."
           },
           {
             "name": "OR-Tools SimpleMaxFlow",
-            "tool": "Library",
+            "tool": "Optimization library",
             "language": "Python",
             "url": "https://developers.google.com/optimization/flow/maxflow",
-            "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n"
+            "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n",
+            "blurb": "OR-Tools max-flow API for solving directed capacitated network flow problems."
           },
           {
             "name": "Boost Graph (C++)",
-            "tool": "Library",
+            "tool": "Graph algorithms library",
             "language": "C++",
             "url": "https://www.boost.org/doc/libs/release/libs/graph/doc/maximum_flow.html",
             "blurb": "Use push_relabel_max_flow or edmonds_karp_max_flow for high-performance C++."
@@ -1563,13 +1811,17 @@
         "solutions": [
           {
             "name": "Prolog",
-            "tool": "Example",
-            "language": ""
+            "tool": "Logic programming language",
+            "language": "Prolog",
+            "blurb": "Declarative language based on facts, rules, unification, and backtracking search.",
+            "url": "https://www.swi-prolog.org/pldoc/doc_for?object=manual"
           },
           {
             "name": "SQL",
-            "tool": "Example",
-            "language": ""
+            "tool": "Declarative query language",
+            "language": "SQL",
+            "blurb": "Declarative language for querying and transforming relational data.",
+            "url": "https://en.wikipedia.org/wiki/SQL"
           }
         ]
       }
@@ -1595,13 +1847,17 @@
         "solutions": [
           {
             "name": "Map/filter/reduce",
-            "tool": "Example",
-            "language": ""
+            "tool": "Functional transformation pattern",
+            "language": "Any",
+            "blurb": "Composes collection transformations with mapping, filtering, and reduction steps.",
+            "url": "https://en.wikipedia.org/wiki/MapReduce"
           },
           {
             "name": "stream transformations",
-            "tool": "Example",
-            "language": ""
+            "tool": "Functional pipeline technique",
+            "language": "Any",
+            "blurb": "Processes data as chained transformations over streams or iterables.",
+            "url": "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html"
           }
         ]
       }
@@ -1628,18 +1884,24 @@
         "solutions": [
           {
             "name": "Paxos",
-            "tool": "Example",
-            "language": ""
+            "tool": "Consensus algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Family of consensus protocols for agreeing on values despite failures.",
+            "url": "https://en.wikipedia.org/wiki/Paxos_(computer_science)"
           },
           {
             "name": "Raft",
-            "tool": "Example",
-            "language": ""
+            "tool": "Consensus algorithm",
+            "language": "Pseudocode/Any",
+            "blurb": "Leader-based consensus algorithm designed to be easier to understand than Paxos.",
+            "url": "https://raft.github.io/"
           },
           {
             "name": "Zookeeper",
-            "tool": "Example",
-            "language": ""
+            "tool": "Coordination service",
+            "language": "Java",
+            "blurb": "Distributed coordination service for configuration, naming, leader election, and locks.",
+            "url": "https://zookeeper.apache.org/doc/current/"
           }
         ]
       }
@@ -1668,13 +1930,17 @@
         "solutions": [
           {
             "name": "SAT solving",
-            "tool": "Example",
-            "language": ""
+            "tool": "Boolean satisfiability technique",
+            "language": "Any",
+            "blurb": "Determines whether a Boolean formula has an assignment that makes it true.",
+            "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
           },
           {
             "name": "formal specs (Z, TLA+)",
-            "tool": "Example",
-            "language": ""
+            "tool": "Formal specification technique",
+            "language": "Z/TLA+",
+            "blurb": "Mathematical specifications used to model and verify system behavior before implementation.",
+            "url": "https://en.wikipedia.org/wiki/Formal_specification"
           }
         ]
       }
@@ -1700,13 +1966,17 @@
         "solutions": [
           {
             "name": "Monte Carlo",
-            "tool": "Example",
-            "language": ""
+            "tool": "Simulation technique",
+            "language": "Any",
+            "blurb": "Uses repeated random sampling to estimate outcomes, distributions, or expectations.",
+            "url": "https://en.wikipedia.org/wiki/Monte_Carlo_method"
           },
           {
             "name": "queue simulation",
-            "tool": "Example",
-            "language": ""
+            "tool": "Discrete-event simulation technique",
+            "language": "Any",
+            "blurb": "Models arrivals, service times, and waiting behavior in queueing systems.",
+            "url": "https://en.wikipedia.org/wiki/Queueing_theory"
           }
         ]
       }

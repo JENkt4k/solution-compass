@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "validate:data": "node scripts/validate-data.mjs",
     "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },
