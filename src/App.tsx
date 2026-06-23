@@ -16,6 +16,13 @@ function App() {
 
     const matches = (text?: string) => (text || '').toLowerCase().includes(q);
     const matchesArr = (arr?: string[]) => (arr || []).some((t) => matches(t));
+    const solutionMatches = (s: ProblemNode['patterns'][number]['solutions'][number]) =>
+      matches(s.name) ||
+      matches(s.tool) ||
+      matches(s.language) ||
+      matches(s.blurb) ||
+      matches(s.code) ||
+      matches(s.url);
 
     return data.map((p) => {
       const problemMatches =
@@ -25,16 +32,13 @@ function App() {
         matchesArr(p.tags) ||
         matchesArr(p.examples);
 
+      if (problemMatches) {
+        return p;
+      }
+
       const patterns = (p.patterns || []).map((pt) => {
         const patternMatches = matches(pt.name);
-        const solutions = (pt.solutions || []).filter((s) =>
-          matches(s.name) ||
-          matches(s.tool) ||
-          matches(s.language) ||
-          matches(s.blurb) ||
-          matches(s.code) ||
-          matches(s.url)
-        );
+        const solutions = patternMatches ? pt.solutions : (pt.solutions || []).filter(solutionMatches);
         return { ...pt, solutions, __visible: patternMatches || solutions.length > 0 };
       }).filter((pt) => pt.__visible);
 
