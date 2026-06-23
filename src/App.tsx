@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import TreeCanvas from './components/TreeCanvas';
 import SearchBar from './components/SearchBar';
 import { InstallPrompt } from './components/InstallPrompt';
+import Wizard from './components/Wizard';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 
 function App() {
@@ -29,8 +30,15 @@ function App() {
         matches(p.problem) ||
         matches(p.subcategory) ||
         matches(p.description) ||
+        matches(p.complexity) ||
+        matches(p.maturity) ||
+        matches(p.scale) ||
+        matches(p.setupCost) ||
         matchesArr(p.tags) ||
-        matchesArr(p.examples);
+        matchesArr(p.examples) ||
+        matchesArr(p.bestFor) ||
+        matchesArr(p.avoidWhen) ||
+        matchesArr(p.tradeoffs);
 
       if (problemMatches) {
         return p;
@@ -46,6 +54,11 @@ function App() {
       return visible ? { ...p, patterns } : null;
     }).filter(Boolean) as ProblemNode[];
   }, [data, query]);
+
+  const focusRecommendation = (value: string) => {
+    setQuery(value);
+    setExpandedAllVersion((v) => v + 1);
+  };
 
   return (
     <div className="app-shell">
@@ -68,12 +81,15 @@ function App() {
         {loading && <div className="card">Loading...</div>}
         {error && <div className="card error">Error: {error}</div>}
         {!loading && !error && (
-          <TreeCanvas
-            data={filtered}
-            expandAllVersion={expandedAllVersion}
-            collapseAllVersion={collapsedAllVersion}
-            query={query}
-          />
+          <>
+            <Wizard data={data} onFocus={focusRecommendation} />
+            <TreeCanvas
+              data={filtered}
+              expandAllVersion={expandedAllVersion}
+              collapseAllVersion={collapsedAllVersion}
+              query={query}
+            />
+          </>
         )}
       </main>
       <footer className="footer">

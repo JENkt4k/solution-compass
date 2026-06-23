@@ -16,6 +16,12 @@ function requireString(value, field, context) {
   }
 }
 
+function requireStringArray(value, field, context) {
+  if (!Array.isArray(value) || value.length === 0 || value.some((item) => typeof item !== 'string' || !item.trim())) {
+    errors.push(`${context}: ${field} must contain one or more strings`);
+  }
+}
+
 function checkUrl(value, context) {
   try {
     const url = new URL(value);
@@ -44,6 +50,14 @@ if (!Array.isArray(data)) {
     if (!Array.isArray(problem.tags) || problem.tags.length === 0) {
       warnings.push(`${problemContext}: no tags`);
     }
+
+    requireStringArray(problem.bestFor, 'bestFor', problemContext);
+    requireStringArray(problem.avoidWhen, 'avoidWhen', problemContext);
+    requireStringArray(problem.tradeoffs, 'tradeoffs', problemContext);
+    requireString(problem.complexity, 'complexity', problemContext);
+    requireString(problem.maturity, 'maturity', problemContext);
+    requireString(problem.scale, 'scale', problemContext);
+    requireString(problem.setupCost, 'setupCost', problemContext);
 
     if (!Array.isArray(problem.patterns) || problem.patterns.length === 0) {
       errors.push(`${problemContext}: no patterns`);

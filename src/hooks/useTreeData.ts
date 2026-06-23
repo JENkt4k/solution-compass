@@ -20,6 +20,13 @@ export interface ProblemNode {
   subcategory?: string;
   description?: string;
   examples?: string[];
+  bestFor?: string[];
+  avoidWhen?: string[];
+  tradeoffs?: string[];
+  complexity?: string;
+  maturity?: string;
+  scale?: string;
+  setupCost?: string;
   patterns: Pattern[];
 }
 

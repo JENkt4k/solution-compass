@@ -142,6 +142,153 @@ input {
   gap: 12px;
 }
 
+.wizard {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.wizard-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.wizard-header .btn {
+  flex: none;
+}
+
+.wizard-header h2,
+.recommendation h3 {
+  margin: 0;
+}
+
+.wizard-header p,
+.recommendation p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.wizard-questions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.wizard-question {
+  min-width: 0;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.wizard-question legend {
+  padding: 0 4px;
+  font-weight: 700;
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.segment {
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--btn-border);
+  border-radius: 8px;
+  background: var(--btn);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.segment.active {
+  background: rgba(85, 194, 166, 0.18);
+  border-color: var(--accent);
+  color: #dffbf4;
+}
+
+.recommendations {
+  display: grid;
+  gap: 10px;
+}
+
+.recommendation,
+.recommendation-empty {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.recommendation-topline {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.rank {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(85, 194, 166, 0.16);
+  color: #dffbf4;
+  font-weight: 800;
+}
+
+.decision-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.decision-meta span {
+  padding: 3px 8px;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  background: #182128;
+  color: #d5dde5;
+  font-size: 12px;
+}
+
+.card-meta {
+  margin-top: 0;
+}
+
+.recommendation-detail,
+.decision-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+  color: #d5dde5;
+}
+
+.recommendation-detail ul,
+.decision-details ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+.decision-details {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #151b21;
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -408,5 +555,18 @@ mark {
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .wizard-header,
+  .recommendation-topline {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-header {
+    flex-direction: column;
+  }
+
+  .wizard-header .btn {
+    align-self: flex-start;
   }
 }

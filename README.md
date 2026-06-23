@@ -1,206 +1,148 @@
 # SolutionCompass
 
-*A lightweight, offline-capable decision support system that helps you navigate from **Problem → Pattern → Tool/Algorithm**, with examples and code snippets. Built as a static PWA and ready to deploy on GitHub Pages.*
+SolutionCompass is a lightweight, offline-capable decision support app for navigating from **Problem -> Pattern -> Tool/Algorithm**. It combines a searchable reference catalog with a guided wizard that recommends likely solution areas and explains why they matched.
 
----
+## Status
 
-## Demo / Status
+MVP+ is functional and deployable on GitHub Pages.
 
-- **Status:** MVP complete ✅
-  - Static PWA (installable, offline)
-  - Card/grid view of problems → patterns → solutions
-  - Global **search** (problems, subcategories, tags, descriptions, patterns, solutions)
-  - **Expand/Collapse** all + per-card collapsibles
-  - **Code snippets** for common algorithms (e.g., A*, BFS, Dijkstra, Huffman, Knapsack, Network Flow)
-  - Dataset stored at `public/complete-tree-data.json`
-- **Planned:** interactive Q&A wizard for guided decisions; dataset editor in-browser
+- Static React/Vite PWA with install support and offline caching.
+- Decision Wizard with answer-based scoring and recommendation explanations.
+- Searchable catalog of problems, patterns, tools, algorithms, examples, snippets, and references.
+- Normalized dataset with `26` problem areas, `49` patterns, and `139` solutions.
+- Every solution has a short blurb and reference URL.
+- Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
+- Dataset validation is available with `npm run validate:data`.
 
-> When hosted on GitHub Pages, your site will be available at: `https://<YOUR_GH_USERNAME>.github.io/<REPO_NAME>/`
+## Screenshots
 
----
+![Desktop screenshot](docs/screenshots/desktop.png)
+
+![Mobile screenshot](docs/screenshots/mobile.png)
 
 ## Features
 
 | Area | Details |
 |---|---|
-| **Decision Map** | Problem → Pattern → Solution hierarchy, with tags, subcategory, description, and examples |
-| **Search** | Full-text filtering across titles, tags, examples, pattern names, solution names, tools, languages, descriptions |
-| **UI/UX** | Dark, modern card layout; expand/collapse; highlight matches; responsive grid |
-| **PWA** | Installable, offline caching with auto-update (via `vite-plugin-pwa`) |
-| **Data** | Human-editable JSON in `public/complete-tree-data.json` |
-| **Algorithms** | Built-in snippets: A*, BFS, Dijkstra, Huffman, 0/1 Knapsack, Edmonds–Karp, Dinic, plus library samples (NetworkX, OR-Tools) |
-| **Deploy** | 1-click GitHub Pages (`gh-pages` script) or GitHub Actions workflow |
-
----
-
-## Screenshots
-
-> _Add screenshots to `docs/` and link here once deployed._
-
----
+| Decision Wizard | 6 guided prompts score the catalog and recommend 3-5 matching problem areas. |
+| Result explanations | Recommendations show matched answers, fit metadata, and tradeoffs. |
+| Decision map | Problem -> Pattern -> Solution hierarchy with tags, examples, references, and snippets. |
+| Search | Full-text filtering across titles, tags, examples, decision metadata, patterns, solutions, tools, languages, blurbs, snippets, and URLs. |
+| PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
+| Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
+| Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
 
 ## Data Model
 
-TypeScript types (found in `src/hooks/useTreeData.ts`):
+Dataset location: `public/complete-tree-data.json`
 
 ```ts
 export interface Solution {
   name: string;
-  tool: string;       // "Algorithm" | "Library" | Framework name, etc.
-  language: string;   // e.g., "Python", "C++", "Any"
-  blurb?: string;     // optional one-liner
-  code?: string;      // optional code snippet for the solution
-  url?: string;       // optional reference link
+  tool: string;
+  language: string;
+  blurb?: string;
+  code?: string;
+  url?: string;
 }
 
 export interface Pattern {
-  name: string;       // e.g., "Overview", "Event Streaming", "Classic DP problems"
+  name: string;
   solutions: Solution[];
 }
 
 export interface ProblemNode {
-  problem: string;    // primary key used for dedupe/merge
+  problem: string;
   tags: string[];
   subcategory?: string;
   description?: string;
   examples?: string[];
+  bestFor?: string[];
+  avoidWhen?: string[];
+  tradeoffs?: string[];
+  complexity?: string;
+  maturity?: string;
+  scale?: string;
+  setupCost?: string;
   patterns: Pattern[];
 }
 ```
 
-**Dataset Location:** `public/complete-tree-data.json`  
-_Edit this file to add new problems, patterns, or solutions. The app hot-reloads in dev._
-
----
-
-## Getting Started
+## Development
 
 ```bash
-# 1) Install
 npm install
-
-# 2) Local development
 npm run dev
-# open http://localhost:5173
+```
 
-# 3) Preview production build
+Open the local Vite URL printed by the command.
+
+## Validation
+
+```bash
+npm run validate:data
+```
+
+The validator fails on:
+
+- Missing problem, pattern, or solution fields.
+- Missing solution `blurb`, `url`, or `language`.
+- Missing problem decision metadata.
+- Invalid URLs.
+- Generic `tool: "Example"` placeholders.
+- Duplicate problem names.
+- Empty pattern or solution lists.
+
+## Build
+
+```bash
 npm run build
 npm run serve
 ```
 
-> **Vite base path:** The project auto-switches base path for GH Pages.  
-> - **Dev**: `/`  
-> - **Build/Deploy**: `/${REPO_NAME}/` (set in `vite.config.ts`: `const REPO_NAME = 'solution-compass'`)
-
-**PWA manifest** is configured with `start_url: "."` and `scope: "."` to work at the repo subpath.
-
----
+The Vite base path is `/` in dev and `/solution-compass/` in production for GitHub Pages.
 
 ## Deploying to GitHub Pages
 
-**Option A: Use `gh-pages` npm script**
-
 ```bash
 npm run build
-npm run deploy  # pushes dist/ to gh-pages branch
+npm run deploy
 ```
 
-Then in GitHub:
-- **Settings → Pages → Source**: `Deploy from a branch`
-- **Branch**: `gh-pages` / root
+Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 
-**Option B: GitHub Actions**  
-Create `.github/workflows/pages.yml`:
+## Current Gaps
 
-```yaml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: ./dist }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: { name: github-pages, url: ${{ steps.deployment.outputs.page_url }} }
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
-
----
-
-## Current Status & Known Issues
-
-- ✅ **Data deduping/merge**: duplicate problem names are merged; patterns and solutions are unioned.
-- ✅ **Gradient artifact**: fixed by moving/fading the right radial gradient off-canvas.
-- ⚠️ **Partial examples**: some taxonomy items still show placeholder rows without `code` or `url`. This is being filled in incrementally.
-- ⚠️ **No routing/deeplinks yet**: direct links to specific nodes aren’t implemented (planned).
-
----
+- Wizard scoring is transparent and useful, but still simple keyword/tag scoring rather than a full rules engine.
+- Snippet coverage is selective: graph search, A*, knapsack, LCS, MST, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
+- No deep links to individual nodes yet.
+- No compact table view yet.
+- No editable dataset UI yet.
 
 ## Roadmap
 
-**Short-term**
-- [ ] Q&A **Wizard Mode** (guided prompts → problem type scoring → recommended solution sets)
-- [ ] **Tag chips** (clickable category filters; AND/OR modes)
-- [ ] **Deep links** to nodes (`/#/node/<slug>`) + expand state in URL
-- [ ] **Compact table view** toggle (grid ↔ table)
-- [ ] More code snippets: Greedy MST (Kruskal/Prim), Activity Selection; DP LCS/Edit Distance; LP/IP modeling examples
-- [ ] **Reference links** on every algorithm/tool entry
-- [ ] In-app **copy link** / **copy code** buttons
+Short term:
 
-**Medium-term**
-- [ ] **Editable dataset** UI (local-only, IndexedDB; export/import JSON)
-- [ ] **Contributions via PR** (schema validation + GitHub workflow)
-- [ ] **Graph view** (D3/force or tree) with pan/zoom
-- [ ] **Keyboard nav** + a11y improvements (ARIA, focus order)
-- [ ] **Theme** switch (dark/light) + custom accent color
-- [ ] **Search index** (Fuse.js/Lunr) for faster large datasets
+- Deep links to problem nodes and expanded state.
+- Clickable tag chips with AND/OR filter modes.
+- Compact table view for scanning all solutions.
+- Copy-link buttons for problem nodes.
+- More snippets for high-value algorithms and integration examples.
 
-**Long-term**
-- [ ] **Reasoning/rules engine** for recommendations (weights, constraints, trade-offs)
-- [ ] **Integration examples** (OR-Tools models, NetworkX demos, SQL/ORM patterns)
-- [ ] **Pluggable sources** (load datasets from URL/Gist)
-- [ ] **Multi-user** editorial mode with moderation
+Medium term:
 
----
+- Stronger wizard scoring with weighted rules and explicit constraints.
+- Local editable dataset UI with JSON import/export.
+- Contribution workflow that runs `npm run validate:data`.
+- Graph/tree visualization mode.
+- Accessibility pass for keyboard navigation and focus management.
 
-## Contributing
+Long term:
 
-1. Fork and create a feature branch: `git checkout -b feat/my-change`
-2. Edit `public/complete-tree-data.json` (or UI files in `src/`)
-3. Commit and push: `git commit -m "feat: add XYZ"` then `git push`
-4. Open a PR
-
-> Please keep code snippets short, idiomatic, and language-tagged. Add a `url` reference when possible.
-
----
+- Pluggable datasets from URL or Gist.
+- Multi-user editorial workflow.
+- Rules engine for recommendations with weights, constraints, and explainable tradeoffs.
 
 ## License
 
-MIT © You and contributors
-
----
-
-## Acknowledgments
-
-- Built with **React + Vite**, PWA via **vite-plugin-pwa**
-- Algorithms inspired by classic texts (CLRS, Dasgupta–Papadimitriou–Vazirani) and community resources
+MIT

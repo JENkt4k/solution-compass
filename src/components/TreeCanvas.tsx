@@ -111,6 +111,11 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
                 <span className="card-title">{highlight(problem.problem, query)}</span>
                 {problem.subcategory && <span className="muted"><em>{highlight(problem.subcategory, query)}</em></span>}
                 {problem.description && <span className="description">{highlight(problem.description, query)}</span>}
+                <span className="decision-meta card-meta">
+                  {problem.complexity && <span>Complexity: {highlight(problem.complexity, query)}</span>}
+                  {problem.setupCost && <span>Setup: {highlight(problem.setupCost, query)}</span>}
+                  {problem.maturity && <span>{highlight(problem.maturity, query)}</span>}
+                </span>
                 <span className="tags">
                   {(problem.tags || []).map((t) => <span className="tag" key={t}>{highlight(t, query)}</span>)}
                 </span>
@@ -124,6 +129,28 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
 
             {pOpen && (
               <div className="patterns">
+                {(problem.bestFor || problem.avoidWhen || problem.tradeoffs) && (
+                  <div className="decision-details">
+                    {problem.bestFor && (
+                      <div>
+                        <strong>Best for</strong>
+                        <ul>{problem.bestFor.slice(0, 4).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                    {problem.avoidWhen && (
+                      <div>
+                        <strong>Avoid when</strong>
+                        <ul>{problem.avoidWhen.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                    {problem.tradeoffs && (
+                      <div>
+                        <strong>Tradeoffs</strong>
+                        <ul>{problem.tradeoffs.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                  </div>
+                )}
                 {(problem.patterns || []).map((pattern) => {
                   const ptKey = `${pKey}::${pattern.name}`;
                   const ptOpen = !!openPatterns[ptKey];
