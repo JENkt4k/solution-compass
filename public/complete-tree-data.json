@@ -533,7 +533,14 @@
       "Batch/ETL Processing",
       "Scheduled jobs, transforms",
       "processing",
-      "scheduling"
+      "scheduling",
+      "ELT",
+      "warehouse",
+      "lakehouse",
+      "reverse ETL",
+      "data integration",
+      "load then transform",
+      "transform then load"
     ],
     "patterns": [
       {
@@ -613,6 +620,32 @@
             "url": "https://docs.getdbt.com/docs/introduction"
           }
         ]
+      },
+      {
+        "name": "ETL vs ELT",
+        "solutions": [
+          {
+            "name": "ETL",
+            "tool": "Data integration pattern",
+            "language": "Any",
+            "blurb": "Extracts data, transforms it before loading, then writes curated data into the target system.",
+            "url": "https://en.wikipedia.org/wiki/Extract,_transform,_load"
+          },
+          {
+            "name": "ELT",
+            "tool": "Warehouse/lakehouse transformation pattern",
+            "language": "SQL/Any",
+            "blurb": "Extracts and loads raw data first, then transforms it inside the warehouse or lakehouse.",
+            "url": "https://www.ibm.com/think/topics/elt"
+          },
+          {
+            "name": "Reverse ETL",
+            "tool": "Operational analytics pattern",
+            "language": "SQL/API",
+            "blurb": "Moves modeled warehouse data back into operational tools such as CRMs, support systems, or ad platforms.",
+            "url": "https://www.getcensus.com/blog/what-is-reverse-etl"
+          }
+        ]
       }
     ],
     "examples": [
@@ -633,13 +666,17 @@
       "Spark",
       "dbt",
       "reporting",
-      "data-centric"
+      "data-centric",
+      "ELT in a cloud warehouse",
+      "ETL before regulated loading",
+      "Reverse ETL to CRM"
     ],
     "bestFor": [
       "Scheduled transformations",
       "Large offline datasets",
       "Reporting pipelines",
-      "Warehouse preparation"
+      "Warehouse preparation",
+      "ETL/ELT data integration decisions"
     ],
     "avoidWhen": [
       "Users need low-latency streaming updates",
@@ -647,7 +684,8 @@
     ],
     "tradeoffs": [
       "Batch processing is reliable and simple but adds freshness delay",
-      "Orchestration reduces manual work but adds scheduling failure modes"
+      "Orchestration reduces manual work but adds scheduling failure modes",
+      "ETL centralizes transformation before loading; ELT favors raw landing plus warehouse-native transformation"
     ],
     "complexity": "Medium",
     "maturity": "Mature",
@@ -2525,6 +2563,695 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Small models to operational simulations",
+    "setupCost": "Medium"
+  },
+  {
+    "problem": "AI / LLM Systems",
+    "subcategory": "Language models, agents, RAG, structured outputs, and evaluation",
+    "description": "Build language-model applications that reason over prompts, tools, context, retrieved data, and evaluation feedback.",
+    "tags": [
+      "AI",
+      "LLM",
+      "language model",
+      "RAG",
+      "agents",
+      "tools",
+      "skills",
+      "structured outputs",
+      "evaluation",
+      "prompt routing"
+    ],
+    "patterns": [
+      {
+        "name": "LLM Application Patterns",
+        "solutions": [
+          {
+            "name": "RAG",
+            "tool": "Retrieval-augmented generation pattern",
+            "language": "Any",
+            "blurb": "Retrieves relevant external context before generation so answers can use private or changing data.",
+            "url": "https://platform.openai.com/docs/guides/retrieval"
+          },
+          {
+            "name": "Agent tools / skills",
+            "tool": "Tool-use pattern",
+            "language": "Any",
+            "blurb": "Exposes bounded external actions or workflows that a model can call when plain text generation is not enough.",
+            "url": "https://platform.openai.com/docs/guides/function-calling"
+          },
+          {
+            "name": "Structured outputs",
+            "tool": "Schema-constrained generation",
+            "language": "JSON Schema",
+            "blurb": "Constrains model responses to a predictable schema for reliable downstream automation.",
+            "url": "https://platform.openai.com/docs/guides/structured-outputs"
+          },
+          {
+            "name": "Prompt routing",
+            "tool": "Routing pattern",
+            "language": "Any",
+            "blurb": "Routes requests to specialized prompts, models, tools, or retrieval sources based on task shape.",
+            "url": "https://www.promptingguide.ai/techniques/routing"
+          },
+          {
+            "name": "Evaluation harnesses",
+            "tool": "LLM evaluation practice",
+            "language": "Any",
+            "blurb": "Uses test sets, graders, traces, and regression checks to keep model behavior measurable.",
+            "url": "https://platform.openai.com/docs/guides/evals"
+          }
+        ]
+      },
+      {
+        "name": "Local LLM Runtime",
+        "solutions": [
+          {
+            "name": "Ollama",
+            "tool": "Local model runner",
+            "language": "CLI/API",
+            "blurb": "Runs open-weight language models locally with a simple model library and HTTP API.",
+            "url": "https://github.com/ollama/ollama"
+          },
+          {
+            "name": "llama.cpp",
+            "tool": "Local inference engine",
+            "language": "C/C++",
+            "blurb": "Efficient CPU/GPU inference runtime for GGUF-format transformer models.",
+            "url": "https://github.com/ggml-org/llama.cpp"
+          },
+          {
+            "name": "vLLM",
+            "tool": "LLM serving engine",
+            "language": "Python",
+            "blurb": "High-throughput serving engine for transformer inference with paged attention and OpenAI-compatible APIs.",
+            "url": "https://docs.vllm.ai/"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Chat over private docs",
+      "Tool-using assistant",
+      "Schema-safe extraction",
+      "Local coding assistant"
+    ],
+    "bestFor": [
+      "Natural-language interfaces",
+      "Document Q&A",
+      "Tool-using assistants",
+      "Structured extraction"
+    ],
+    "avoidWhen": [
+      "A deterministic parser or query is enough",
+      "No evaluation set exists for risky automation"
+    ],
+    "tradeoffs": [
+      "LLMs are flexible but nondeterministic",
+      "RAG improves freshness but depends on retrieval quality",
+      "Agents add capability and failure modes"
+    ],
+    "complexity": "High",
+    "maturity": "Rapidly evolving",
+    "scale": "Local prototype to production AI service",
+    "setupCost": "Medium"
+  },
+  {
+    "problem": "LLM Memory / Context Systems",
+    "subcategory": "Short-term context, retrieval memory, summaries, knowledge graphs, and agent state",
+    "description": "Choose how an LLM application preserves useful context across turns, sessions, documents, and tools.",
+    "tags": [
+      "LLM memory",
+      "context",
+      "retrieval memory",
+      "summary memory",
+      "vector memory",
+      "knowledge graph",
+      "episodic memory",
+      "local LLM"
+    ],
+    "patterns": [
+      {
+        "name": "Memory Strategies",
+        "solutions": [
+          {
+            "name": "Context-window memory",
+            "tool": "Prompt/context technique",
+            "language": "Any",
+            "blurb": "Keeps recent conversation or state directly in the model context for maximum fidelity and minimum infrastructure.",
+            "url": "https://platform.openai.com/docs/guides/text-generation"
+          },
+          {
+            "name": "Summary memory",
+            "tool": "Compression technique",
+            "language": "Any",
+            "blurb": "Condenses older context into summaries to reduce token use while retaining broad state.",
+            "url": "https://www.pinecone.io/learn/series/langchain/langchain-conversational-memory/"
+          },
+          {
+            "name": "Vector retrieval memory",
+            "tool": "Embedding retrieval technique",
+            "language": "Any",
+            "blurb": "Stores chunks or memories as embeddings and retrieves semantically similar context when needed.",
+            "url": "https://qdrant.tech/documentation/concepts/"
+          },
+          {
+            "name": "Knowledge graph memory",
+            "tool": "Graph memory technique",
+            "language": "Graph/Any",
+            "blurb": "Stores entities and relationships explicitly so context can be queried by structure rather than similarity alone.",
+            "url": "https://neo4j.com/developer-blog/knowledge-graphs-llms-multi-hop-question-answering/"
+          },
+          {
+            "name": "Episodic agent memory",
+            "tool": "Agent memory pattern",
+            "language": "Any",
+            "blurb": "Stores task episodes, outcomes, and preferences for future planning and personalization.",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/memory/"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Local LLM assistant memory",
+      "Long-running agent state",
+      "Personal knowledge assistant",
+      "Conversation continuity"
+    ],
+    "bestFor": [
+      "Local LLM context management",
+      "Multi-session assistants",
+      "Personal knowledge systems",
+      "Agent state"
+    ],
+    "avoidWhen": [
+      "Single-turn tasks",
+      "Strict privacy rules forbid persistence",
+      "The context fits directly in the prompt"
+    ],
+    "tradeoffs": [
+      "Longer memory improves continuity but can add stale or irrelevant context",
+      "Vector memory is flexible but can miss exact facts",
+      "Graph memory is precise but requires extraction and curation"
+    ],
+    "complexity": "Medium",
+    "maturity": "Emerging",
+    "scale": "Single-user local apps to agent platforms",
+    "setupCost": "Medium"
+  },
+  {
+    "problem": "Vector Search / Embeddings",
+    "subcategory": "Embedding indexes, semantic retrieval, and vector databases",
+    "description": "Represent text, images, or records as vectors, then retrieve semantically similar items for search, RAG, recommendations, or memory.",
+    "tags": [
+      "vector database",
+      "embeddings",
+      "semantic search",
+      "RAG",
+      "ANN",
+      "HNSW",
+      "FAISS",
+      "pgvector",
+      "Qdrant",
+      "Chroma",
+      "Weaviate",
+      "Milvus"
+    ],
+    "patterns": [
+      {
+        "name": "Vector Stores",
+        "solutions": [
+          {
+            "name": "FAISS",
+            "tool": "Vector search library",
+            "language": "C++/Python",
+            "blurb": "In-process similarity search library useful for local indexes and high-performance ANN experiments.",
+            "url": "https://faiss.ai/"
+          },
+          {
+            "name": "pgvector",
+            "tool": "PostgreSQL vector extension",
+            "language": "SQL",
+            "blurb": "Adds vector similarity search to PostgreSQL so embeddings live near relational data.",
+            "url": "https://github.com/pgvector/pgvector"
+          },
+          {
+            "name": "Qdrant",
+            "tool": "Vector database",
+            "language": "Rust/API",
+            "blurb": "Vector database with filtering, payloads, HNSW indexing, and production-oriented APIs.",
+            "url": "https://qdrant.tech/documentation/"
+          },
+          {
+            "name": "Chroma",
+            "tool": "Embedding database",
+            "language": "Python/JS",
+            "blurb": "Developer-friendly embedding database often used for local RAG prototypes.",
+            "url": "https://docs.trychroma.com/"
+          },
+          {
+            "name": "Weaviate",
+            "tool": "Vector database",
+            "language": "GraphQL/REST",
+            "blurb": "Vector database with hybrid search, schema, modules, and managed deployment options.",
+            "url": "https://weaviate.io/developers/weaviate"
+          },
+          {
+            "name": "Milvus",
+            "tool": "Vector database",
+            "language": "Go/C++/API",
+            "blurb": "Distributed vector database designed for large-scale similarity search workloads.",
+            "url": "https://milvus.io/docs"
+          }
+        ]
+      },
+      {
+        "name": "Embedding Workflows",
+        "solutions": [
+          {
+            "name": "Chunking strategy",
+            "tool": "Retrieval design technique",
+            "language": "Any",
+            "blurb": "Splits documents into retrievable units; chunk size and overlap strongly affect recall and precision.",
+            "url": "https://platform.openai.com/docs/guides/embeddings"
+          },
+          {
+            "name": "Hybrid search",
+            "tool": "Lexical + vector retrieval",
+            "language": "Any",
+            "blurb": "Combines keyword and vector retrieval to improve exact-term matching and semantic recall.",
+            "url": "https://www.elastic.co/what-is/hybrid-search"
+          },
+          {
+            "name": "Reranking",
+            "tool": "Retrieval quality technique",
+            "language": "Any",
+            "blurb": "Reorders retrieved candidates with a stronger model to improve final context quality.",
+            "url": "https://www.pinecone.io/learn/series/rag/rerankers/"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Semantic search",
+      "RAG retrieval",
+      "Recommendation recall",
+      "Local LLM memory"
+    ],
+    "bestFor": [
+      "Semantic retrieval",
+      "RAG",
+      "Similarity search",
+      "Embedding-based memory"
+    ],
+    "avoidWhen": [
+      "Exact SQL predicates solve the problem",
+      "The corpus is tiny enough for direct scanning",
+      "Embedding privacy/cost constraints are unresolved"
+    ],
+    "tradeoffs": [
+      "Vector search improves semantic recall but can miss exact terms",
+      "Filtering and chunking matter as much as database choice",
+      "Operational complexity rises with corpus size and freshness needs"
+    ],
+    "complexity": "Medium",
+    "maturity": "Mature but evolving",
+    "scale": "Local indexes to billion-vector services",
+    "setupCost": "Medium"
+  },
+  {
+    "problem": "Model Adaptation",
+    "subcategory": "Fine-tuning, LoRA, QLoRA, adapters, and prompt/RAG alternatives",
+    "description": "Choose how to adapt model behavior, knowledge, or style without confusing model classes with training techniques.",
+    "tags": [
+      "fine-tuning",
+      "LoRA",
+      "QLoRA",
+      "adapters",
+      "PEFT",
+      "prompt tuning",
+      "RAG vs fine-tuning",
+      "model adaptation"
+    ],
+    "patterns": [
+      {
+        "name": "Adaptation Techniques",
+        "solutions": [
+          {
+            "name": "Full fine-tuning",
+            "tool": "Training technique",
+            "language": "Python",
+            "blurb": "Updates model weights for a target task or domain when data and evaluation justify the cost.",
+            "url": "https://huggingface.co/docs/transformers/training"
+          },
+          {
+            "name": "LoRA",
+            "tool": "Parameter-efficient fine-tuning",
+            "language": "Python",
+            "blurb": "Trains low-rank adapter matrices instead of all model weights, reducing storage and training cost.",
+            "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora"
+          },
+          {
+            "name": "QLoRA",
+            "tool": "Quantized PEFT technique",
+            "language": "Python",
+            "blurb": "Fine-tunes low-rank adapters on quantized base models to reduce memory requirements.",
+            "url": "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+          },
+          {
+            "name": "Adapters",
+            "tool": "Parameter-efficient tuning",
+            "language": "Python",
+            "blurb": "Adds small trainable modules while keeping the base model mostly frozen.",
+            "url": "https://docs.adapterhub.ml/"
+          },
+          {
+            "name": "Prompt tuning",
+            "tool": "Soft-prompt adaptation",
+            "language": "Python",
+            "blurb": "Learns task-specific prompt embeddings rather than changing the full model.",
+            "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/prompting"
+          },
+          {
+            "name": "RAG instead of fine-tuning",
+            "tool": "Architecture choice",
+            "language": "Any",
+            "blurb": "Keeps knowledge outside the model and retrieves it at runtime when freshness or attribution matters.",
+            "url": "https://platform.openai.com/docs/guides/retrieval"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Domain style adaptation",
+      "Task specialization",
+      "Private knowledge",
+      "Small GPU fine-tuning"
+    ],
+    "bestFor": [
+      "Changing model behavior",
+      "Domain adaptation",
+      "Style transfer",
+      "Specialized extraction or classification"
+    ],
+    "avoidWhen": [
+      "The need is fresh factual knowledge better handled by RAG",
+      "No evaluation set exists",
+      "Inference-only prompting solves the problem"
+    ],
+    "tradeoffs": [
+      "Fine-tuning can improve behavior but adds data and evaluation burden",
+      "LoRA saves memory but still requires training discipline",
+      "RAG is easier to update but depends on retrieval quality"
+    ],
+    "complexity": "High",
+    "maturity": "Rapidly evolving",
+    "scale": "Single adapter to model operations pipeline",
+    "setupCost": "High"
+  },
+  {
+    "problem": "Generative Media",
+    "subcategory": "Diffusion models, image generation, LoRA style adapters, and control techniques",
+    "description": "Generate or edit images and media with diffusion-style models and adaptation/control layers.",
+    "tags": [
+      "diffusion",
+      "Stable Diffusion",
+      "image generation",
+      "LoRA",
+      "ControlNet",
+      "inpainting",
+      "image-to-image",
+      "generative media"
+    ],
+    "patterns": [
+      {
+        "name": "Image Generation Patterns",
+        "solutions": [
+          {
+            "name": "Stable Diffusion",
+            "tool": "Diffusion model family",
+            "language": "Python",
+            "blurb": "Latent diffusion model family for text-to-image, image-to-image, inpainting, and related workflows.",
+            "url": "https://huggingface.co/docs/diffusers/index"
+          },
+          {
+            "name": "Diffusers",
+            "tool": "Generative model library",
+            "language": "Python",
+            "blurb": "Hugging Face library for running and composing diffusion model pipelines.",
+            "url": "https://huggingface.co/docs/diffusers/index"
+          },
+          {
+            "name": "Image LoRA",
+            "tool": "Model adaptation technique",
+            "language": "Python",
+            "blurb": "Small adapter weights that steer image generation style, subject, or concept without replacing the base model.",
+            "url": "https://huggingface.co/docs/diffusers/training/lora"
+          },
+          {
+            "name": "ControlNet",
+            "tool": "Conditioning technique",
+            "language": "Python",
+            "blurb": "Adds spatial control signals such as edges, poses, or depth maps to diffusion generation.",
+            "url": "https://huggingface.co/docs/diffusers/api/pipelines/controlnet"
+          },
+          {
+            "name": "Inpainting",
+            "tool": "Image editing technique",
+            "language": "Python",
+            "blurb": "Regenerates masked regions while preserving the surrounding image context.",
+            "url": "https://huggingface.co/docs/diffusers/using-diffusers/inpaint"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Text-to-image",
+      "Style adaptation",
+      "Controlled image generation",
+      "Image repair"
+    ],
+    "bestFor": [
+      "Image generation",
+      "Visual style exploration",
+      "Controlled media editing",
+      "Synthetic assets"
+    ],
+    "avoidWhen": [
+      "The task is language reasoning or retrieval",
+      "Licensing/provenance constraints are unresolved",
+      "Pixel-perfect deterministic output is required"
+    ],
+    "tradeoffs": [
+      "Diffusion models are powerful but stochastic",
+      "Control techniques improve composition but add workflow complexity",
+      "LoRA is adaptation, not a base model family"
+    ],
+    "complexity": "High",
+    "maturity": "Rapidly evolving",
+    "scale": "Local GPU workflows to hosted generation services",
+    "setupCost": "Medium"
+  },
+  {
+    "problem": "Vision / World Representation Models",
+    "subcategory": "V-JEPA, VL-JEPA, vision-language representations, and world-model style planning",
+    "description": "Use self-supervised vision or vision-language representations when perception, temporal understanding, or planning matters more than text generation.",
+    "tags": [
+      "V-JEPA",
+      "V-JEPA 2",
+      "VL-JEPA",
+      "world model",
+      "vision-language",
+      "self-supervised learning",
+      "video understanding",
+      "representation learning"
+    ],
+    "patterns": [
+      {
+        "name": "Representation Families",
+        "solutions": [
+          {
+            "name": "V-JEPA",
+            "tool": "Self-supervised video representation model",
+            "language": "Research/Python",
+            "blurb": "Learns visual representations by predicting missing video features in embedding space rather than generating pixels.",
+            "url": "https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/"
+          },
+          {
+            "name": "V-JEPA 2",
+            "tool": "Vision world-model research family",
+            "language": "Research/Python",
+            "blurb": "Extends JEPA-style video representations toward understanding, prediction, and planning in physical environments.",
+            "url": "https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/"
+          },
+          {
+            "name": "VL-JEPA",
+            "tool": "Vision-language representation approach",
+            "language": "Research/Python",
+            "blurb": "Applies JEPA-style embedding prediction to vision-language tasks without treating every task as token generation.",
+            "url": "https://arxiv.org/abs/2512.10942"
+          },
+          {
+            "name": "Vision-language models",
+            "tool": "Multimodal model family",
+            "language": "Any",
+            "blurb": "Models that connect images or video with text for captioning, VQA, retrieval, and multimodal reasoning.",
+            "url": "https://huggingface.co/docs/transformers/tasks/visual_question_answering"
+          },
+          {
+            "name": "World models",
+            "tool": "Predictive representation model",
+            "language": "Research/Any",
+            "blurb": "Learn latent dynamics of environments for prediction, planning, simulation, or robotics.",
+            "url": "https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "Video understanding",
+      "Robotics planning",
+      "Vision-language retrieval",
+      "Physical-world representation"
+    ],
+    "bestFor": [
+      "Video representation",
+      "Physical-world prediction",
+      "Vision-language retrieval",
+      "Robotics perception"
+    ],
+    "avoidWhen": [
+      "You need text generation or document Q&A",
+      "A standard classifier or detector solves the task",
+      "Research maturity risk is unacceptable"
+    ],
+    "tradeoffs": [
+      "JEPA-style models are representation learners, not LLMs or diffusion generators",
+      "They can support planning/perception but require task-specific integration",
+      "Research progress is fast and APIs are less standardized"
+    ],
+    "complexity": "High",
+    "maturity": "Research / emerging",
+    "scale": "Research prototypes to specialized perception systems",
+    "setupCost": "High"
+  },
+  {
+    "problem": "AI / App Deployment & Serving",
+    "subcategory": "Model APIs, self-hosted inference, static apps, containers, serverless, and edge",
+    "description": "Choose how AI systems, model endpoints, and supporting applications run, scale, observe, and ship.",
+    "tags": [
+      "deployment",
+      "serving",
+      "static web",
+      "containers",
+      "serverless",
+      "edge",
+      "model serving",
+      "CI/CD",
+      "observability",
+      "Kubernetes",
+      "AI deployment",
+      "model locality",
+      "managed model API",
+      "self-hosted inference",
+      "local LLM serving"
+    ],
+    "patterns": [
+      {
+        "name": "Application Deployment",
+        "solutions": [
+          {
+            "name": "Static hosting",
+            "tool": "Web deployment pattern",
+            "language": "HTML/CSS/JS",
+            "blurb": "Serves prebuilt assets from a CDN or static host with low operational overhead.",
+            "url": "https://docs.github.com/en/pages"
+          },
+          {
+            "name": "Containers",
+            "tool": "Packaging/deployment unit",
+            "language": "Dockerfile/OCI",
+            "blurb": "Packages app code and dependencies into portable images for consistent runtime environments.",
+            "url": "https://docs.docker.com/get-started/"
+          },
+          {
+            "name": "Kubernetes",
+            "tool": "Container orchestration platform",
+            "language": "YAML/API",
+            "blurb": "Schedules and manages containerized services across clusters with rollout and scaling controls.",
+            "url": "https://kubernetes.io/docs/home/"
+          },
+          {
+            "name": "Serverless functions",
+            "tool": "Event-driven compute",
+            "language": "Any",
+            "blurb": "Runs small request or event handlers without managing servers directly.",
+            "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+          },
+          {
+            "name": "Edge functions",
+            "tool": "Edge compute pattern",
+            "language": "JavaScript/Any",
+            "blurb": "Runs latency-sensitive logic near users at CDN edge locations.",
+            "url": "https://developers.cloudflare.com/workers/"
+          }
+        ]
+      },
+      {
+        "name": "Model Serving",
+        "solutions": [
+          {
+            "name": "Managed model API",
+            "tool": "Hosted AI deployment",
+            "language": "API",
+            "blurb": "Uses a provider-hosted model endpoint to avoid model infrastructure and focus on application behavior.",
+            "url": "https://platform.openai.com/docs/overview"
+          },
+          {
+            "name": "Self-hosted inference",
+            "tool": "Model deployment pattern",
+            "language": "Python/C++/GPU",
+            "blurb": "Runs model weights on controlled infrastructure for cost, privacy, latency, or customization reasons.",
+            "url": "https://docs.vllm.ai/"
+          },
+          {
+            "name": "Batch inference",
+            "tool": "Offline model serving pattern",
+            "language": "Any",
+            "blurb": "Runs model predictions over scheduled datasets when latency is less important than throughput and cost.",
+            "url": "https://cloud.google.com/architecture/batch-inference-reference-architecture"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "GitHub Pages deploy",
+      "API service rollout",
+      "Model endpoint serving",
+      "Batch inference jobs"
+    ],
+    "bestFor": [
+      "Shipping applications",
+      "Serving models",
+      "Scaling runtime infrastructure",
+      "Reducing operational burden",
+      "AI model locality decisions",
+      "Managed vs self-hosted inference"
+    ],
+    "avoidWhen": [
+      "The project is still exploratory and local-only",
+      "Deployment requirements are unknown",
+      "Security/observability is not ready",
+      "The model/tooling choice is still unknown"
+    ],
+    "tradeoffs": [
+      "Managed platforms reduce ops but add vendor constraints",
+      "Self-hosting gives control but increases operational load",
+      "Static hosting is simple but only fits frontend/static workloads",
+      "Managed model APIs reduce infrastructure burden; local or self-hosted inference improves control but adds operations work"
+    ],
+    "complexity": "Medium",
+    "maturity": "Mature",
+    "scale": "Static sites to distributed model-serving platforms",
     "setupCost": "Medium"
   }
 ]

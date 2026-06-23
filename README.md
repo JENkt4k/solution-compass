@@ -9,7 +9,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Static React/Vite PWA with install support and offline caching.
 - Decision Wizard with answer-based scoring and recommendation explanations.
 - Searchable catalog of problems, patterns, tools, algorithms, examples, snippets, and references.
-- Normalized dataset with `26` problem areas, `49` patterns, and `139` solutions.
+- Normalized dataset with `33` problem areas, `60` patterns, and `189` solutions.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
@@ -42,6 +42,8 @@ export interface Solution {
   tool: string;
   language: string;
   blurb?: string;
+  timeComplexity?: string;
+  spaceComplexity?: string;
   code?: string;
   url?: string;
 }
@@ -87,6 +89,7 @@ The validator fails on:
 
 - Missing problem, pattern, or solution fields.
 - Missing solution `blurb`, `url`, or `language`.
+- Missing time/space complexity for snippet-bearing solutions.
 - Missing problem decision metadata.
 - Invalid URLs.
 - Generic `tool: "Example"` placeholders.
@@ -114,10 +117,23 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 ## Current Gaps
 
 - Wizard scoring is transparent and useful, but still simple keyword/tag scoring rather than a full rules engine.
-- Snippet coverage is selective: graph search, A*, knapsack, LCS, MST, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
+- Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - No deep links to individual nodes yet.
 - No compact table view yet.
 - No editable dataset UI yet.
+
+## Shipping Requirements
+
+The project is already shippable. Stop expanding the scope for this phase when these are true:
+
+- `npm run validate:data` passes.
+- `npm run build` passes.
+- Live GitHub Pages smoke test passes on desktop and mobile.
+- Install icon and PWA install flow look correct after reinstall.
+- Wizard returns sensible recommendations for at least these scenarios: AI/RAG, vector memory, optimization, search, ETL/ELT, deployment, and security.
+- README counts match the dataset.
+
+After that, ship and collect real use feedback before adding more topic families.
 
 ## Roadmap
 
@@ -127,7 +143,8 @@ Short term:
 - Clickable tag chips with AND/OR filter modes.
 - Compact table view for scanning all solutions.
 - Copy-link buttons for problem nodes.
-- More snippets for high-value algorithms and integration examples.
+- Weighted wizard scoring for AI, deployment, and optimization scenarios.
+- Source-audit pass for rapidly changing AI/model claims and references.
 
 Medium term:
 

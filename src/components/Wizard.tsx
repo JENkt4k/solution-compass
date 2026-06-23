@@ -29,6 +29,9 @@ const questions: WizardQuestion[] = [
       { label: 'Coordination or workflow', tags: ['concurrency', 'coordination', 'workflow', 'state machine', 'consensus', 'messaging'] },
       { label: 'Security or identity', tags: ['security', 'auth', 'crypto', 'hashing', 'encryption'] },
       { label: 'Prediction or recognition', tags: ['machine learning', 'classification', 'prediction', 'clustering', 'NLP'] },
+      { label: 'LLM, agents, or RAG', tags: ['AI', 'LLM', 'language model', 'RAG', 'agents', 'tools', 'structured outputs'] },
+      { label: 'Generative media', tags: ['diffusion', 'Stable Diffusion', 'image generation', 'generative media', 'ControlNet'] },
+      { label: 'AI deployment or locality', tags: ['model serving', 'managed model API', 'self-hosted inference', 'local LLM', 'edge', 'deployment', 'serving'] },
     ],
   },
   {
@@ -39,6 +42,7 @@ const questions: WizardQuestion[] = [
       { label: 'Scheduled or batch', tags: ['batch', 'ETL', 'scheduled jobs', 'reporting'] },
       { label: 'Interactive request/response', tags: ['latency', 'cache', 'crud', 'search', 'database'] },
       { label: 'Long-running process', tags: ['workflow', 'approval', 'state transitions', 'durable'] },
+      { label: 'Model inference or generation', tags: ['LLM', 'inference', 'generation', 'model serving', 'diffusion', 'local model', 'managed model API'] },
     ],
   },
   {
@@ -50,6 +54,7 @@ const questions: WizardQuestion[] = [
       { label: 'Ranked or relevant results', tags: ['ranking', 'relevance', 'search', 'retrieval'] },
       { label: 'Valid configuration', tags: ['constraints', 'CSP', 'SAT', 'valid configurations'] },
       { label: 'Proof or high confidence', tags: ['formal', 'verification', 'model checking', 'correctness'] },
+      { label: 'Generated text, image, or action', tags: ['LLM', 'agent', 'structured outputs', 'diffusion', 'image generation', 'tool-use'] },
     ],
   },
   {
@@ -60,6 +65,7 @@ const questions: WizardQuestion[] = [
       { label: 'Rules and constraints', tags: ['rules', 'logic', 'constraints', 'declarative'] },
       { label: 'States and transitions', tags: ['state', 'state machine', 'workflow', 'FSM', 'Petri'] },
       { label: 'Text, documents, or records', tags: ['text', 'documents', 'records', 'search', 'database'] },
+      { label: 'Embeddings or memory', tags: ['embeddings', 'vector', 'LLM memory', 'semantic search', 'RAG', 'context'] },
       { label: 'Uncertainty or simulation', tags: ['simulation', 'stochastic', 'Monte Carlo', 'queueing'] },
     ],
   },
@@ -71,6 +77,7 @@ const questions: WizardQuestion[] = [
       { label: 'Production service', tags: ['mature', 'service', 'database', 'monitoring', 'workflow'] },
       { label: 'Distributed system', tags: ['distributed', 'consensus', 'stream', 'coordination', 'cluster'] },
       { label: 'Large dataset', tags: ['large', 'warehouse', 'index', 'documents', 'data lake'] },
+      { label: 'Local model or edge', tags: ['local', 'local LLM', 'edge', 'self-hosted inference', 'self-hosted', 'model serving'] },
     ],
   },
   {
@@ -81,6 +88,7 @@ const questions: WizardQuestion[] = [
       { label: 'Correctness', tags: ['correctness', 'formal', 'exact', 'transactions', 'constraints'] },
       { label: 'Operational maturity', tags: ['mature', 'observability', 'monitoring', 'managed', 'standard'] },
       { label: 'Speed or latency', tags: ['latency', 'cache', 'real-time', 'search', 'heuristic'] },
+      { label: 'Privacy or control', tags: ['local', 'self-hosted inference', 'self-hosted', 'privacy', 'local LLM', 'controlled infrastructure'] },
     ],
   },
 ];
