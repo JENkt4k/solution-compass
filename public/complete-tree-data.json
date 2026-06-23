@@ -816,7 +816,9 @@
             "language": "Any",
             "blurb": "Low-latency in-memory data store commonly used for caching, queues, and counters.",
             "url": "https://redis.io/docs/latest/",
-            "code": "import redis\n\nclient = redis.Redis(host='localhost', port=6379, decode_responses=True)\nkey = 'profile:42'\nprofile = client.get(key)\nif profile is None:\n    profile = load_profile_from_database(42)\n    client.setex(key, 300, profile)\nreturn profile"
+            "code": "import redis\n\nclient = redis.Redis(host='localhost', port=6379, decode_responses=True)\nkey = 'profile:42'\nprofile = client.get(key)\nif profile is None:\n    profile = load_profile_from_database(42)\n    client.setex(key, 300, profile)\nreturn profile",
+            "timeComplexity": "GET/SET are O(1) average for string keys",
+            "spaceComplexity": "O(number of cached keys and values)"
           },
           {
             "name": "Memcached",
@@ -1221,7 +1223,9 @@
             "language": "SQL",
             "blurb": "Open-source relational database with strong SQL, indexing, transactions, and extensibility.",
             "url": "https://www.postgresql.org/docs/current/",
-            "code": "CREATE TABLE tasks (\n  id bigserial PRIMARY KEY,\n  title text NOT NULL,\n  done boolean NOT NULL DEFAULT false\n);\n\nINSERT INTO tasks (title) VALUES ('Ship SolutionCompass');\nSELECT id, title, done FROM tasks WHERE done = false;\nUPDATE tasks SET done = true WHERE id = 1;\nDELETE FROM tasks WHERE done = true;"
+            "code": "CREATE TABLE tasks (\n  id bigserial PRIMARY KEY,\n  title text NOT NULL,\n  done boolean NOT NULL DEFAULT false\n);\n\nINSERT INTO tasks (title) VALUES ('Ship SolutionCompass');\nSELECT id, title, done FROM tasks WHERE done = false;\nUPDATE tasks SET done = true WHERE id = 1;\nDELETE FROM tasks WHERE done = true;",
+            "timeComplexity": "CRUD cost depends on indexes: point lookup/update often O(log n)",
+            "spaceComplexity": "Index and row storage dependent"
           },
           {
             "name": "MySQL",
@@ -1424,7 +1428,7 @@
         ]
       },
       {
-        "name": "Graph traversal/search Overview",
+        "name": "Traversal & Shortest Path Algorithms",
         "solutions": [
           {
             "name": "BFS",
@@ -1432,7 +1436,9 @@
             "language": "Pseudocode/Any",
             "blurb": "Breadth-first search explores a graph level by level and finds shortest paths in unweighted graphs.",
             "url": "https://en.wikipedia.org/wiki/Breadth-first_search",
-            "code": "from collections import deque\n\ndef bfs(graph, start):\n    seen = {start}\n    order = []\n    q = deque([start])\n    while q:\n        node = q.popleft()\n        order.append(node)\n        for nxt in graph[node]:\n            if nxt not in seen:\n                seen.add(nxt)\n                q.append(nxt)\n    return order"
+            "code": "from collections import deque\n\ndef bfs(graph, start):\n    seen = {start}\n    order = []\n    q = deque([start])\n    while q:\n        node = q.popleft()\n        order.append(node)\n        for nxt in graph[node]:\n            if nxt not in seen:\n                seen.add(nxt)\n                q.append(nxt)\n    return order",
+            "timeComplexity": "O(V + E)",
+            "spaceComplexity": "O(V)"
           },
           {
             "name": "DFS",
@@ -1440,7 +1446,9 @@
             "language": "Pseudocode/Any",
             "blurb": "Depth-first search explores as far as possible along each branch before backtracking.",
             "url": "https://en.wikipedia.org/wiki/Depth-first_search",
-            "code": "def dfs(graph, start):\n    seen = set()\n    order = []\n\n    def visit(node):\n        if node in seen:\n            return\n        seen.add(node)\n        order.append(node)\n        for nxt in graph[node]:\n            visit(nxt)\n\n    visit(start)\n    return order"
+            "code": "def dfs(graph, start):\n    seen = set()\n    order = []\n\n    def visit(node):\n        if node in seen:\n            return\n        seen.add(node)\n        order.append(node)\n        for nxt in graph[node]:\n            visit(nxt)\n\n    visit(start)\n    return order",
+            "timeComplexity": "O(V + E)",
+            "spaceComplexity": "O(V) recursion/stack"
           },
           {
             "name": "Dijkstra",
@@ -1448,7 +1456,9 @@
             "language": "Pseudocode/Any",
             "blurb": "Finds shortest paths from one source in graphs with nonnegative edge weights.",
             "url": "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm",
-            "code": "import heapq\n\ndef dijkstra(graph, source):\n    dist = {source: 0}\n    pq = [(0, source)]\n    while pq:\n        cost, node = heapq.heappop(pq)\n        if cost != dist[node]:\n            continue\n        for nxt, weight in graph[node]:\n            new_cost = cost + weight\n            if new_cost < dist.get(nxt, float('inf')):\n                dist[nxt] = new_cost\n                heapq.heappush(pq, (new_cost, nxt))\n    return dist"
+            "code": "import heapq\n\ndef dijkstra(graph, source):\n    dist = {source: 0}\n    pq = [(0, source)]\n    while pq:\n        cost, node = heapq.heappop(pq)\n        if cost != dist[node]:\n            continue\n        for nxt, weight in graph[node]:\n            new_cost = cost + weight\n            if new_cost < dist.get(nxt, float('inf')):\n                dist[nxt] = new_cost\n                heapq.heappush(pq, (new_cost, nxt))\n    return dist",
+            "timeComplexity": "O((V + E) log V) with a binary heap",
+            "spaceComplexity": "O(V + E)"
           }
         ]
       }
@@ -1542,7 +1552,9 @@
             "language": "C++/Python/Java",
             "blurb": "CP-SAT solver for combinatorial optimization, scheduling, and assignment problems.",
             "url": "https://developers.google.com/optimization/cp/cp_solver",
-            "code": "from ortools.sat.python import cp_model\n\nmodel = cp_model.CpModel()\nx = model.new_int_var(0, 10, 'x')\ny = model.new_int_var(0, 10, 'y')\nmodel.add(x + 2 * y <= 14)\nmodel.maximize(3 * x + 4 * y)\nsolver = cp_model.CpSolver()\nstatus = solver.solve(model)\nif status in (cp_model.OPTIMAL, cp_model.FEASIBLE):\n    print(solver.value(x), solver.value(y))"
+            "code": "from ortools.sat.python import cp_model\n\nmodel = cp_model.CpModel()\nx = model.new_int_var(0, 10, 'x')\ny = model.new_int_var(0, 10, 'y')\nmodel.add(x + 2 * y <= 14)\nmodel.maximize(3 * x + 4 * y)\nsolver = cp_model.CpSolver()\nstatus = solver.solve(model)\nif status in (cp_model.OPTIMAL, cp_model.FEASIBLE):\n    print(solver.value(x), solver.value(y))",
+            "timeComplexity": "NP-hard search; solver time depends on constraints and pruning",
+            "spaceComplexity": "Model/search dependent"
           },
           {
             "name": "MiniZinc",
@@ -1554,21 +1566,26 @@
         ]
       },
       {
-        "name": "Constraint Satisfaction Problems (CSP) Overview",
+        "name": "CSP Examples",
         "solutions": [
           {
             "name": "Sudoku",
             "tool": "CSP benchmark",
             "language": "Any",
             "blurb": "Classic constraint satisfaction puzzle involving all-different row, column, and box constraints.",
-            "url": "https://en.wikipedia.org/wiki/Sudoku_solving_algorithms"
+            "url": "https://en.wikipedia.org/wiki/Sudoku_solving_algorithms",
+            "code": "def solve_sudoku(board):\n    digits = set('123456789')\n\n    def choices(row, col):\n        used = set(board[row])\n        used |= {board[r][col] for r in range(9)}\n        box_r, box_c = 3 * (row // 3), 3 * (col // 3)\n        used |= {board[r][c] for r in range(box_r, box_r + 3) for c in range(box_c, box_c + 3)}\n        return digits - used\n\n    empty = [(r, c) for r in range(9) for c in range(9) if board[r][c] == '.']\n    if not empty:\n        return True\n    row, col = min(empty, key=lambda cell: len(choices(*cell)))\n    for value in choices(row, col):\n        board[row][col] = value\n        if solve_sudoku(board):\n            return True\n        board[row][col] = '.'\n    return False",
+            "timeComplexity": "Exponential backtracking in worst case; MRV pruning reduces practical search",
+            "spaceComplexity": "O(empty cells) recursion depth"
           },
           {
             "name": "scheduling",
             "tool": "Optimization use case",
             "language": "Any",
             "blurb": "Assigns work, time, or resources while respecting constraints and preferences.",
-            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)"
+            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)",
+            "timeComplexity": "NP-hard for general scheduling; CP-SAT search is model dependent",
+            "spaceComplexity": "Model/search dependent"
           },
           {
             "name": "Prolog-style reasoning",
@@ -1810,14 +1827,17 @@
     ],
     "patterns": [
       {
-        "name": "Overview",
+        "name": "State-Space Search Examples",
         "solutions": [
           {
             "name": "Pathfinding",
             "tool": "Search use case",
             "language": "Any",
             "blurb": "Finds a path through a state space or graph from a start state to a goal.",
-            "url": "https://en.wikipedia.org/wiki/Pathfinding"
+            "url": "https://en.wikipedia.org/wiki/Pathfinding",
+            "code": "from collections import deque\n\ndef shortest_path(start, goal, neighbors):\n    parent = {start: None}\n    q = deque([start])\n    while q:\n        node = q.popleft()\n        if node == goal:\n            path = []\n            while node is not None:\n                path.append(node)\n                node = parent[node]\n            return path[::-1]\n        for nxt in neighbors(node):\n            if nxt not in parent:\n                parent[nxt] = node\n                q.append(nxt)\n    return None",
+            "timeComplexity": "O(V + E) for unweighted BFS shortest path",
+            "spaceComplexity": "O(V)"
           },
           {
             "name": "game AI",
@@ -1870,7 +1890,7 @@
     ],
     "patterns": [
       {
-        "name": "Overview",
+        "name": "Heuristic Search Algorithms",
         "solutions": [
           {
             "name": "A*",
@@ -1878,21 +1898,29 @@
             "language": "Pseudocode/Any",
             "blurb": "Best-first graph search that combines path cost and heuristic estimate.",
             "url": "https://en.wikipedia.org/wiki/A*_search_algorithm",
-            "code": "import heapq\n\ndef astar(start, goal, neighbors, heuristic):\n    open_set = [(heuristic(start), 0, start, None)]\n    parent = {}\n    best = {start: 0}\n    while open_set:\n        _, cost, node, prev = heapq.heappop(open_set)\n        if node in parent:\n            continue\n        parent[node] = prev\n        if node == goal:\n            path = []\n            while node is not None:\n                path.append(node)\n                node = parent[node]\n            return path[::-1]\n        for nxt, step_cost in neighbors(node):\n            new_cost = cost + step_cost\n            if new_cost < best.get(nxt, float('inf')):\n                best[nxt] = new_cost\n                heapq.heappush(open_set, (new_cost + heuristic(nxt), new_cost, nxt, node))\n    return None"
+            "code": "import heapq\n\ndef astar(start, goal, neighbors, heuristic):\n    open_set = [(heuristic(start), 0, start, None)]\n    parent = {}\n    best = {start: 0}\n    while open_set:\n        _, cost, node, prev = heapq.heappop(open_set)\n        if node in parent:\n            continue\n        parent[node] = prev\n        if node == goal:\n            path = []\n            while node is not None:\n                path.append(node)\n                node = parent[node]\n            return path[::-1]\n        for nxt, step_cost in neighbors(node):\n            new_cost = cost + step_cost\n            if new_cost < best.get(nxt, float('inf')):\n                best[nxt] = new_cost\n                heapq.heappush(open_set, (new_cost + heuristic(nxt), new_cost, nxt, node))\n    return None",
+            "timeComplexity": "Worst-case O(E); often much faster with an admissible heuristic",
+            "spaceComplexity": "O(V)"
           },
           {
             "name": "IDA*",
             "tool": "Heuristic search algorithm",
             "language": "Pseudocode/Any",
             "blurb": "Iterative-deepening A* reduces memory use while using a heuristic cost bound.",
-            "url": "https://en.wikipedia.org/wiki/Iterative_deepening_A*"
+            "url": "https://en.wikipedia.org/wiki/Iterative_deepening_A*",
+            "code": "def ida_star(start, is_goal, neighbors, heuristic):\n    def search(path, g, bound):\n        node = path[-1]\n        f = g + heuristic(node)\n        if f > bound:\n            return f\n        if is_goal(node):\n            return path[:]\n        minimum = float('inf')\n        for nxt, cost in neighbors(node):\n            if nxt in path:\n                continue\n            path.append(nxt)\n            result = search(path, g + cost, bound)\n            if isinstance(result, list):\n                return result\n            minimum = min(minimum, result)\n            path.pop()\n        return minimum\n\n    bound = heuristic(start)\n    path = [start]\n    while True:\n        result = search(path, 0, bound)\n        if isinstance(result, list):\n            return result\n        if result == float('inf'):\n            return None\n        bound = result",
+            "timeComplexity": "O(b^d) worst case; heuristic quality dominates",
+            "spaceComplexity": "O(d)"
           },
           {
             "name": "beam search",
             "tool": "Heuristic search algorithm",
             "language": "Pseudocode/Any",
             "blurb": "Keeps only the best candidate states at each depth to control search width.",
-            "url": "https://en.wikipedia.org/wiki/Beam_search"
+            "url": "https://en.wikipedia.org/wiki/Beam_search",
+            "code": "def beam_search(start, expand, score, width=3, depth_limit=20):\n    # expand(node) returns candidate next states.\n    # score(node) should be larger for better states.\n    beam = [start]\n    for _ in range(depth_limit):\n        candidates = []\n        for node in beam:\n            candidates.extend(expand(node))\n        if not candidates:\n            break\n        beam = sorted(candidates, key=score, reverse=True)[:width]\n    return beam",
+            "timeComplexity": "O(depth * width * branching factor)",
+            "spaceComplexity": "O(width) per layer"
           }
         ]
       }
@@ -1933,7 +1961,7 @@
     ],
     "patterns": [
       {
-        "name": "Overview",
+        "name": "Optimization Modeling Examples",
         "solutions": [
           {
             "name": "Supply chain optimization",
@@ -1947,7 +1975,10 @@
             "tool": "Optimization use case",
             "language": "Any",
             "blurb": "Assigns work, time, or resources while respecting constraints and preferences.",
-            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)"
+            "url": "https://en.wikipedia.org/wiki/Scheduling_(production_processes)",
+            "code": "from ortools.sat.python import cp_model\n\nmodel = cp_model.CpModel()\nstarts = [model.new_int_var(0, 20, f'start_{i}') for i in range(3)]\ndurations = [3, 4, 2]\nintervals = [model.new_interval_var(starts[i], durations[i], starts[i] + durations[i], f'task_{i}') for i in range(3)]\nmodel.add_no_overlap(intervals)\nmodel.minimize(max(starts[i] + durations[i] for i in range(3)))\nsolver = cp_model.CpSolver()\nsolver.solve(model)\nprint([solver.value(start) for start in starts])",
+            "timeComplexity": "NP-hard for general scheduling; CP-SAT search is model dependent",
+            "spaceComplexity": "Model/search dependent"
           }
         ]
       }
@@ -1986,14 +2017,17 @@
     ],
     "patterns": [
       {
-        "name": "Overview",
+        "name": "Greedy Algorithm Examples",
         "solutions": [
           {
             "name": "Huffman coding",
             "tool": "Greedy algorithm",
             "language": "Pseudocode/Any",
             "blurb": "Builds an optimal prefix code by repeatedly combining the least frequent symbols.",
-            "url": "https://en.wikipedia.org/wiki/Huffman_coding"
+            "url": "https://en.wikipedia.org/wiki/Huffman_coding",
+            "code": "import heapq\nfrom collections import Counter\n\ndef huffman_codes(text):\n    heap = [[freq, [char, '']] for char, freq in Counter(text).items()]\n    heapq.heapify(heap)\n    while len(heap) > 1:\n        lo = heapq.heappop(heap)\n        hi = heapq.heappop(heap)\n        for pair in lo[1:]:\n            pair[1] = '0' + pair[1]\n        for pair in hi[1:]:\n            pair[1] = '1' + pair[1]\n        heapq.heappush(heap, [lo[0] + hi[0], *lo[1:], *hi[1:]])\n    return dict(heap[0][1:]) if heap else {}",
+            "timeComplexity": "O(n log n) for n distinct symbols",
+            "spaceComplexity": "O(n)"
           },
           {
             "name": "MST",
@@ -2001,14 +2035,19 @@
             "language": "Pseudocode/Any",
             "blurb": "Finds a minimum spanning tree connecting all graph vertices at minimum total edge weight.",
             "url": "https://en.wikipedia.org/wiki/Minimum_spanning_tree",
-            "code": "class DSU:\n    def __init__(self, n):\n        self.parent = list(range(n))\n    def find(self, x):\n        while self.parent[x] != x:\n            self.parent[x] = self.parent[self.parent[x]]\n            x = self.parent[x]\n        return x\n    def union(self, a, b):\n        ra, rb = self.find(a), self.find(b)\n        if ra == rb:\n            return False\n        self.parent[rb] = ra\n        return True\n\ndef kruskal(n, edges):\n    dsu = DSU(n)\n    tree = []\n    for weight, u, v in sorted(edges):\n        if dsu.union(u, v):\n            tree.append((u, v, weight))\n    return tree"
+            "code": "class DSU:\n    def __init__(self, n):\n        self.parent = list(range(n))\n    def find(self, x):\n        while self.parent[x] != x:\n            self.parent[x] = self.parent[self.parent[x]]\n            x = self.parent[x]\n        return x\n    def union(self, a, b):\n        ra, rb = self.find(a), self.find(b)\n        if ra == rb:\n            return False\n        self.parent[rb] = ra\n        return True\n\ndef kruskal(n, edges):\n    dsu = DSU(n)\n    tree = []\n    for weight, u, v in sorted(edges):\n        if dsu.union(u, v):\n            tree.append((u, v, weight))\n    return tree",
+            "timeComplexity": "O(E log E) for Kruskal sorting",
+            "spaceComplexity": "O(V) plus output"
           },
           {
             "name": "activity selection",
             "tool": "Greedy algorithm",
             "language": "Pseudocode/Any",
             "blurb": "Selects a maximum set of non-overlapping intervals by choosing earliest finishing activities.",
-            "url": "https://en.wikipedia.org/wiki/Activity_selection_problem"
+            "url": "https://en.wikipedia.org/wiki/Activity_selection_problem",
+            "code": "def activity_selection(intervals):\n    # intervals are (start, finish) pairs\n    chosen = []\n    current_finish = float('-inf')\n    for start, finish in sorted(intervals, key=lambda item: item[1]):\n        if start >= current_finish:\n            chosen.append((start, finish))\n            current_finish = finish\n    return chosen",
+            "timeComplexity": "O(n log n) including sort; O(n) if already sorted by finish time",
+            "spaceComplexity": "O(n) output; O(1) auxiliary"
           }
         ]
       }
@@ -2048,7 +2087,7 @@
     ],
     "patterns": [
       {
-        "name": "Overview",
+        "name": "Dynamic Programming Algorithms",
         "solutions": [
           {
             "name": "DP for knapsack",
@@ -2056,7 +2095,9 @@
             "language": "Pseudocode/Any",
             "blurb": "Uses subproblem tables to maximize value under a capacity constraint.",
             "url": "https://en.wikipedia.org/wiki/Knapsack_problem",
-            "code": "def knapsack(values, weights, capacity):\n    dp = [0] * (capacity + 1)\n    for value, weight in zip(values, weights):\n        for cap in range(capacity, weight - 1, -1):\n            dp[cap] = max(dp[cap], dp[cap - weight] + value)\n    return dp[capacity]"
+            "code": "def knapsack(values, weights, capacity):\n    dp = [0] * (capacity + 1)\n    for value, weight in zip(values, weights):\n        for cap in range(capacity, weight - 1, -1):\n            dp[cap] = max(dp[cap], dp[cap - weight] + value)\n    return dp[capacity]",
+            "timeComplexity": "O(n * capacity)",
+            "spaceComplexity": "O(capacity) with 1D DP"
           },
           {
             "name": "sequence alignment",
@@ -2064,7 +2105,19 @@
             "language": "Pseudocode/Any",
             "blurb": "Aligns sequences by optimizing match, mismatch, and gap costs.",
             "url": "https://en.wikipedia.org/wiki/Sequence_alignment",
-            "code": "def lcs(a, b):\n    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]\n    for i, ca in enumerate(a, 1):\n        for j, cb in enumerate(b, 1):\n            if ca == cb:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n    return dp[-1][-1]"
+            "code": "def lcs(a, b):\n    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]\n    for i, ca in enumerate(a, 1):\n        for j, cb in enumerate(b, 1):\n            if ca == cb:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n    return dp[-1][-1]",
+            "timeComplexity": "O(n * m)",
+            "spaceComplexity": "O(n * m); can be O(min(n, m)) for score only"
+          },
+          {
+            "name": "Edit distance",
+            "tool": "Dynamic programming algorithm",
+            "language": "Python",
+            "blurb": "Computes the minimum insertions, deletions, and substitutions needed to transform one string into another.",
+            "url": "https://en.wikipedia.org/wiki/Edit_distance",
+            "code": "def edit_distance(a, b):\n    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]\n    for i in range(len(a) + 1):\n        dp[i][0] = i\n    for j in range(len(b) + 1):\n        dp[0][j] = j\n    for i, ca in enumerate(a, 1):\n        for j, cb in enumerate(b, 1):\n            cost = 0 if ca == cb else 1\n            dp[i][j] = min(\n                dp[i - 1][j] + 1,\n                dp[i][j - 1] + 1,\n                dp[i - 1][j - 1] + cost,\n            )\n    return dp[-1][-1]",
+            "timeComplexity": "O(n * m)",
+            "spaceComplexity": "O(n * m); can be O(min(n, m)) for distance only"
           }
         ]
       }
@@ -2111,7 +2164,9 @@
             "language": "Python",
             "blurb": "BFS-based augmenting paths (Ford–Fulkerson with BFS); O(V·E²).",
             "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n",
-            "url": "https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm"
+            "url": "https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm",
+            "timeComplexity": "O(V * E^2)",
+            "spaceComplexity": "O(V + E) residual graph"
           },
           {
             "name": "Dinic (max flow)",
@@ -2119,14 +2174,18 @@
             "language": "Python",
             "blurb": "Level graph + blocking flow; O(E·V²) general, faster in practice.",
             "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n",
-            "url": "https://en.wikipedia.org/wiki/Dinic%27s_algorithm"
+            "url": "https://en.wikipedia.org/wiki/Dinic%27s_algorithm",
+            "timeComplexity": "O(V^2 * E) general; faster on many unit-capacity graphs",
+            "spaceComplexity": "O(V + E)"
           },
           {
             "name": "Push–relabel (max flow)",
             "tool": "Algorithm",
             "language": "Pseudocode/Any",
             "blurb": "Preflow with local pushes and relabels; near-linear on many sparse graphs.",
-            "url": "https://cp-algorithms.com/graph/push-relabel.html"
+            "url": "https://cp-algorithms.com/graph/push-relabel.html",
+            "timeComplexity": "O(V^3) generic bound; often strong on sparse graphs",
+            "spaceComplexity": "O(V + E)"
           }
         ]
       },
@@ -2139,7 +2198,9 @@
             "language": "Python",
             "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html",
             "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n",
-            "blurb": "NetworkX helper for computing maximum flow value and flow assignment in directed graphs."
+            "blurb": "NetworkX helper for computing maximum flow value and flow assignment in directed graphs.",
+            "timeComplexity": "Depends on selected flow algorithm; default uses preflow-push style methods",
+            "spaceComplexity": "O(V + E) graph/residual structures"
           },
           {
             "name": "OR-Tools SimpleMaxFlow",
@@ -2147,7 +2208,9 @@
             "language": "Python",
             "url": "https://developers.google.com/optimization/flow/maxflow",
             "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n",
-            "blurb": "OR-Tools max-flow API for solving directed capacitated network flow problems."
+            "blurb": "OR-Tools max-flow API for solving directed capacitated network flow problems.",
+            "timeComplexity": "Strongly polynomial max-flow implementation; practical cost depends on graph size",
+            "spaceComplexity": "O(V + E)"
           },
           {
             "name": "Boost Graph (C++)",

@@ -92,6 +92,11 @@ if (!Array.isArray(data)) {
           errors.push(`${solutionContext}: generic tool "Example"`);
         }
 
+        if (solution.code) {
+          requireString(solution.timeComplexity, 'solution.timeComplexity', solutionContext);
+          requireString(solution.spaceComplexity, 'solution.spaceComplexity', solutionContext);
+        }
+
         if (solution.url) {
           checkUrl(solution.url, solutionContext);
         }

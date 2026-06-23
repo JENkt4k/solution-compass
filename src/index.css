@@ -445,6 +445,21 @@ input {
   margin: 0;
 }
 
+.complexity-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.complexity-row span {
+  padding: 3px 8px;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  background: #151d24;
+  color: #d5dde5;
+  font-size: 12px;
+}
+
 .code-block {
   min-width: 0;
   border: 1px solid #44515d;

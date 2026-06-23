@@ -42,6 +42,12 @@ function SolutionItem({ solution, query }: { solution: Solution; query: string }
         )}
       </div>
       {solution.blurb && <p className="solution-blurb">{highlight(solution.blurb, query)}</p>}
+      {(solution.timeComplexity || solution.spaceComplexity) && (
+        <div className="complexity-row">
+          {solution.timeComplexity && <span>Time: {highlight(solution.timeComplexity, query)}</span>}
+          {solution.spaceComplexity && <span>Space: {highlight(solution.spaceComplexity, query)}</span>}
+        </div>
+      )}
       {solution.code && (
         <div className="code-block">
           <div className="code-toolbar">

@@ -5,6 +5,8 @@ export interface Solution {
   tool: string;
   language: string;
   blurb?: string;
+  timeComplexity?: string;
+  spaceComplexity?: string;
   code?: string;
   url?: string;
 }

@@ -22,6 +22,8 @@ function App() {
       matches(s.tool) ||
       matches(s.language) ||
       matches(s.blurb) ||
+      matches(s.timeComplexity) ||
+      matches(s.spaceComplexity) ||
       matches(s.code) ||
       matches(s.url);
 
