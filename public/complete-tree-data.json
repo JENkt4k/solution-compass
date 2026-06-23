@@ -1,10 +1,32 @@
 [
   {
-    "problem": "Concurrency",
+    "problem": "Concurrency / Parallelism",
+    "subcategory": "Threads, async, synchronization, coordination",
+    "description": "Coordinate concurrent work safely across local threads, async runtimes, and distributed systems.",
     "tags": [
-      "race conditions",
+      "Concurrency / Parallelism",
+      "Threads, async, synchronization, coordination",
+      "Coordinate concurrent work safely across local threads, async runtimes, and distributed systems",
+      "concurrency",
+      "parallelism",
+      "parallel",
+      "threading",
+      "threads",
       "multithreading",
-      "async"
+      "async",
+      "race conditions",
+      "synchronization",
+      "coordination",
+      "distributed coordination",
+      "locks",
+      "mutex",
+      "actor model",
+      "Race conditions & synchronization",
+      "Threads, async, locking",
+      "Concurrency & Coordination",
+      "&",
+      "race",
+      "conditions"
     ],
     "patterns": [
       {
@@ -46,15 +68,96 @@
             "language": "Any"
           }
         ]
+      },
+      {
+        "name": "Synchronization & Async",
+        "solutions": [
+          {
+            "name": "Java Concurrency",
+            "tool": "java.util.concurrent",
+            "language": "Java"
+          },
+          {
+            "name": "Go routines",
+            "tool": "goroutines/channels",
+            "language": "Go"
+          },
+          {
+            "name": "Node async",
+            "tool": "async/await",
+            "language": "JavaScript/TypeScript"
+          }
+        ]
+      },
+      {
+        "name": "Race conditions & synchronization Overview",
+        "solutions": [
+          {
+            "name": "Threading",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "mutex",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "actor model",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
+    ],
+    "examples": [
+      "Web servers",
+      "Schedulers",
+      "Job queues",
+      "Threading",
+      "mutex",
+      "actor model",
+      "concurrency",
+      "parallelism",
+      "parallel",
+      "threads",
+      "multithreading",
+      "async",
+      "race conditions",
+      "synchronization",
+      "coordination",
+      "distributed coordination",
+      "locks"
     ]
   },
   {
-    "problem": "Information Retrieval",
+    "problem": "Search / Retrieval",
+    "subcategory": "Full-text, faceted, ranked retrieval",
+    "description": "Find, filter, rank, and retrieve relevant records or documents from indexed data.",
     "tags": [
+      "Search / Retrieval",
+      "Full-text, faceted, ranked retrieval",
+      "Find, filter, rank, and retrieve relevant records or documents from indexed data",
       "search",
+      "retrieval",
+      "filter",
+      "filtering",
+      "query",
+      "ranking",
+      "relevance",
+      "information retrieval",
+      "inverted index",
+      "inverted-index",
+      "facets",
+      "faceted search",
+      "autocomplete",
+      "text search",
+      "indexes",
+      "Search & Filtering",
+      "Search indexes, relevance ranking",
+      "Full-text, faceted, ranked",
       "text",
-      "filter"
+      "information"
     ],
     "patterns": [
       {
@@ -76,15 +179,119 @@
             "language": "Java"
           }
         ]
+      },
+      {
+        "name": "Faceted Search",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Elastic Stack",
+            "language": "Java"
+          },
+          {
+            "name": "Algolia",
+            "tool": "Algolia",
+            "language": "JS/TS SDK"
+          }
+        ]
+      },
+      {
+        "name": "Search Indexing",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Elastic Stack",
+            "language": "Java"
+          },
+          {
+            "name": "Solr",
+            "tool": "Apache Solr",
+            "language": "Java"
+          },
+          {
+            "name": "Meilisearch",
+            "tool": "Meilisearch",
+            "language": "Rust"
+          }
+        ]
+      },
+      {
+        "name": "Search indexes, relevance ranking Overview",
+        "solutions": [
+          {
+            "name": "Elasticsearch",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Lucene",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Meilisearch",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
+    ],
+    "examples": [
+      "Site search",
+      "Filtering",
+      "Autocomplete",
+      "Elasticsearch",
+      "Lucene",
+      "Meilisearch",
+      "search",
+      "retrieval",
+      "filter",
+      "query",
+      "ranking",
+      "relevance",
+      "information retrieval",
+      "inverted index",
+      "inverted-index",
+      "facets",
+      "faceted search",
+      "text search",
+      "indexes"
     ]
   },
   {
-    "problem": "Workflow Management",
+    "problem": "Workflow / State Modeling",
+    "subcategory": "State machines, BPMN, approvals, and process models",
+    "description": "Model processes that move through explicit states, transitions, approvals, and concurrent workflow behavior.",
     "tags": [
+      "Workflow / State Modeling",
+      "State machines, BPMN, approvals, and process models",
+      "Model processes that move through explicit states, transitions, approvals, and concurrent workflow behavior",
+      "workflow",
       "state machine",
+      "state-machine",
+      "FSM",
+      "finite state machine",
+      "BPMN",
       "process",
-      "approval"
+      "approval",
+      "approvals",
+      "state transitions",
+      "Temporal",
+      "Camunda",
+      "Petri nets",
+      "modeling",
+      "UI logic",
+      "protocol design",
+      "Workflow Management",
+      "Workflow / FSM",
+      "Finite State Machines (FSM)",
+      "State transitions, approvals",
+      "machines",
+      "state",
+      "finite",
+      "(fsm)",
+      "petri",
+      "nets"
     ],
     "patterns": [
       {
@@ -106,40 +313,107 @@
             "language": "JSON DSL"
           }
         ]
-      }
-    ]
-  },
-  {
-    "problem": "Search & Filtering",
-    "tags": [
-      "query",
-      "filter",
-      "ranking"
-    ],
-    "patterns": [
+      },
       {
-        "name": "Faceted Search",
+        "name": "Workflow Automation / FSM",
         "solutions": [
           {
-            "name": "Elasticsearch",
-            "tool": "Elastic Stack",
+            "name": "Camunda",
+            "tool": "Camunda BPM",
             "language": "Java"
           },
           {
-            "name": "Algolia",
-            "tool": "Algolia",
-            "language": "JS/TS SDK"
+            "name": "Zeebe",
+            "tool": "Zeebe Workflow",
+            "language": "Java"
+          },
+          {
+            "name": "AWS Step Functions",
+            "tool": "AWS",
+            "language": "JSON DSL"
+          },
+          {
+            "name": "Temporal",
+            "tool": "Temporal.io",
+            "language": "Go/Java/TypeScript"
+          }
+        ]
+      },
+      {
+        "name": "Finite State Machines (FSM) Overview",
+        "solutions": [
+          {
+            "name": "UI logic",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "protocol design",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      },
+      {
+        "name": "Petri nets Overview",
+        "solutions": [
+          {
+            "name": "Workflow engines",
+            "tool": "Example",
+            "language": ""
           }
         ]
       }
+    ],
+    "examples": [
+      "Order lifecycle",
+      "Insurance claim approval",
+      "UI logic",
+      "protocol design",
+      "Workflow engines",
+      "workflow",
+      "state machine",
+      "state-machine",
+      "FSM",
+      "finite state machine",
+      "BPMN",
+      "process",
+      "approval",
+      "approvals",
+      "state transitions",
+      "Temporal",
+      "Camunda",
+      "Petri nets",
+      "modeling"
     ]
   },
   {
-    "problem": "Data Transformation",
+    "problem": "Batch / ETL Processing",
+    "subcategory": "Scheduled jobs, transforms, and offline data pipelines",
+    "description": "Transform, aggregate, and move data in scheduled or batch-oriented pipelines.",
     "tags": [
-      "ETL",
+      "Batch / ETL Processing",
+      "Scheduled jobs, transforms, and offline data pipelines",
+      "Transform, aggregate, and move data in scheduled or batch-oriented pipelines",
       "batch",
-      "pipeline"
+      "ETL",
+      "data transformation",
+      "transform",
+      "transforms",
+      "pipeline",
+      "pipelines",
+      "scheduled jobs",
+      "MapReduce",
+      "Airflow",
+      "Spark",
+      "dbt",
+      "reporting",
+      "data-centric",
+      "Batch processing",
+      "Batch/ETL Processing",
+      "Scheduled jobs, transforms",
+      "processing",
+      "scheduling"
     ],
     "patterns": [
       {
@@ -161,15 +435,95 @@
             "language": "SQL"
           }
         ]
+      },
+      {
+        "name": "Batch processing Overview",
+        "solutions": [
+          {
+            "name": "MapReduce",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "ETL jobs",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
+      },
+      {
+        "name": "Batch Orchestration",
+        "solutions": [
+          {
+            "name": "Apache Airflow",
+            "tool": "Airflow",
+            "language": "Python"
+          },
+          {
+            "name": "Apache Spark",
+            "tool": "Spark",
+            "language": "Scala/Java/Python"
+          },
+          {
+            "name": "Pandas",
+            "tool": "pandas",
+            "language": "Python"
+          },
+          {
+            "name": "dbt",
+            "tool": "dbt",
+            "language": "SQL"
+          }
+        ]
       }
+    ],
+    "examples": [
+      "MapReduce",
+      "ETL jobs",
+      "Daily reports",
+      "Nightly imports",
+      "Billing",
+      "batch",
+      "ETL",
+      "data transformation",
+      "transform",
+      "transforms",
+      "pipeline",
+      "pipelines",
+      "scheduled jobs",
+      "Airflow",
+      "Spark",
+      "dbt",
+      "reporting",
+      "data-centric"
     ]
   },
   {
-    "problem": "Stream Processing",
+    "problem": "Stream / Event Processing",
+    "subcategory": "Real-time, event-driven data processing",
+    "description": "Process events and data streams in real time or near real time with brokers, consumers, and pipelines.",
     "tags": [
-      "event",
+      "Stream / Event Processing",
+      "Real-time, event-driven data processing",
+      "Process events and data streams in real time or near real time with brokers, consumers, and pipelines",
+      "stream",
+      "streaming",
+      "stream processing",
+      "events",
+      "event-driven",
       "real-time",
-      "stream"
+      "EDA",
+      "data-centric",
+      "pipeline",
+      "pipelines",
+      "log processing",
+      "Kafka consumers",
+      "notifications",
+      "metrics pipelines",
+      "Stream/Event Processing",
+      "Real-time, event-driven",
+      "event",
+      "processing"
     ],
     "patterns": [
       {
@@ -191,7 +545,64 @@
             "language": "Go"
           }
         ]
+      },
+      {
+        "name": "Event Streaming",
+        "solutions": [
+          {
+            "name": "Kafka",
+            "tool": "Apache Kafka",
+            "language": "Java"
+          },
+          {
+            "name": "RabbitMQ",
+            "tool": "RabbitMQ",
+            "language": "Any"
+          },
+          {
+            "name": "Kinesis",
+            "tool": "AWS Kinesis",
+            "language": "Python/Java"
+          },
+          {
+            "name": "NATS",
+            "tool": "NATS",
+            "language": "Go"
+          }
+        ]
+      },
+      {
+        "name": "Stream processing Overview",
+        "solutions": [
+          {
+            "name": "Kafka consumers",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "log processing",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
+    ],
+    "examples": [
+      "Audit logs",
+      "Notifications",
+      "Metrics pipelines",
+      "Kafka consumers",
+      "log processing",
+      "stream",
+      "streaming",
+      "stream processing",
+      "events",
+      "event-driven",
+      "real-time",
+      "EDA",
+      "data-centric",
+      "pipeline",
+      "pipelines"
     ]
   },
   {
@@ -231,11 +642,35 @@
     ]
   },
   {
-    "problem": "Authentication & Security",
+    "problem": "Security & Cryptography",
+    "subcategory": "Auth, hashing, encryption, and secure communication",
+    "description": "Protect identity, credentials, data integrity, and communication channels with authentication and cryptographic techniques.",
     "tags": [
-      "auth",
+      "Security & Cryptography",
+      "Auth, hashing, encryption, and secure communication",
+      "Protect identity, credentials, data integrity, and communication channels with authentication and cryptographic techniques",
       "security",
-      "crypto"
+      "crypto",
+      "cryptography",
+      "auth",
+      "authentication",
+      "authorization",
+      "JWT",
+      "OAuth2",
+      "SAML",
+      "hashing",
+      "bcrypt",
+      "encoding",
+      "encryption",
+      "OpenSSL",
+      "RSA",
+      "AES",
+      "SHA-256",
+      "digital signatures",
+      "Authentication & Security",
+      "Security & Crypto",
+      "Encoding, hashing, encryption",
+      "Auth, hashing, encryption"
     ],
     "patterns": [
       {
@@ -272,15 +707,111 @@
             "language": "C/CLI"
           }
         ]
+      },
+      {
+        "name": "Authentication",
+        "solutions": [
+          {
+            "name": "JWT",
+            "tool": "JWT",
+            "language": "Any"
+          },
+          {
+            "name": "OAuth2",
+            "tool": "OAuth2",
+            "language": "Any"
+          }
+        ]
+      },
+      {
+        "name": "Cryptography",
+        "solutions": [
+          {
+            "name": "bcrypt",
+            "tool": "bcrypt",
+            "language": "Any"
+          },
+          {
+            "name": "OpenSSL",
+            "tool": "OpenSSL",
+            "language": "C/CLI"
+          }
+        ]
+      },
+      {
+        "name": "Encoding, hashing, encryption Overview",
+        "solutions": [
+          {
+            "name": "RSA",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "AES",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "SHA-256",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "digital signatures",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
+    ],
+    "examples": [
+      "Login systems",
+      "Encrypted storage",
+      "Secure APIs",
+      "RSA",
+      "AES",
+      "SHA-256",
+      "digital signatures",
+      "security",
+      "crypto",
+      "cryptography",
+      "auth",
+      "authentication",
+      "authorization",
+      "JWT",
+      "OAuth2",
+      "SAML",
+      "hashing",
+      "bcrypt",
+      "encoding",
+      "encryption",
+      "OpenSSL"
     ]
   },
   {
-    "problem": "Machine Learning",
+    "problem": "Machine Learning / AI",
+    "subcategory": "Classification, prediction, clustering, NLP, and modeling frameworks",
+    "description": "Train and apply statistical or neural models for prediction, classification, clustering, recommendations, and language tasks.",
     "tags": [
+      "Machine Learning / AI",
+      "Classification, prediction, clustering, NLP, and modeling frameworks",
+      "Train and apply statistical or neural models for prediction, classification, clustering, recommendations, and language tasks",
+      "machine learning",
+      "ML",
+      "AI",
       "classification",
+      "regression",
       "prediction",
-      "clustering"
+      "clustering",
+      "NLP",
+      "pattern recognition",
+      "recommendations",
+      "fraud detection",
+      "churn prediction",
+      "Classification / Regression",
+      "Classification, clustering",
+      "recognition",
+      "pattern"
     ],
     "patterns": [
       {
@@ -302,17 +833,86 @@
             "language": "Python"
           }
         ]
+      },
+      {
+        "name": "Modeling Frameworks",
+        "solutions": [
+          {
+            "name": "TensorFlow",
+            "tool": "TensorFlow",
+            "language": "Python"
+          },
+          {
+            "name": "PyTorch",
+            "tool": "PyTorch",
+            "language": "Python"
+          },
+          {
+            "name": "scikit-learn",
+            "tool": "scikit-learn",
+            "language": "Python"
+          },
+          {
+            "name": "HuggingFace",
+            "tool": "Transformers",
+            "language": "Python"
+          }
+        ]
+      },
+      {
+        "name": "Classification / Regression Overview",
+        "solutions": [
+          {
+            "name": "Spam detection",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "customer churn",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
+    ],
+    "examples": [
+      "Fraud detection",
+      "Recommendations",
+      "Churn prediction",
+      "Spam detection",
+      "customer churn",
+      "machine learning",
+      "ML",
+      "AI",
+      "classification",
+      "regression",
+      "prediction",
+      "clustering",
+      "NLP",
+      "pattern recognition"
     ]
   },
   {
     "problem": "CRUD & Data Modeling",
-    "subcategory": "Relational DB, ORM",
+    "subcategory": "Structured data, transactions, relational databases, and ORMs",
+    "description": "Create, read, update, delete, model, and transact over structured application data.",
     "tags": [
+      "CRUD & Data Modeling",
+      "Structured data, transactions, relational databases, and ORMs",
+      "Create, read, update, delete, model, and transact over structured application data",
+      "CRUD",
+      "transactional",
+      "transactions",
       "database",
+      "databases",
+      "data modeling",
+      "relational DB",
       "ORM",
       "SQL",
-      "CRUD"
+      "record management",
+      "data-centric",
+      "CRUD / Transactional",
+      "Relational DB, ORM"
     ],
     "patterns": [
       {
@@ -344,258 +944,37 @@
             "language": "JavaScript/TypeScript"
           }
         ]
+      },
+      {
+        "name": "CRUD / Transactional Overview",
+        "solutions": [
+          {
+            "name": "Databases",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "record management",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
     ],
     "examples": [
       "E-commerce product databases",
-      "User profiles"
-    ]
-  },
-  {
-    "problem": "Workflow / FSM",
-    "subcategory": "State transitions, approvals",
-    "tags": [
-      "workflow",
-      "state-machine",
-      "BPMN",
-      "approvals"
-    ],
-    "patterns": [
-      {
-        "name": "Workflow Automation / FSM",
-        "solutions": [
-          {
-            "name": "Camunda",
-            "tool": "Camunda BPM",
-            "language": "Java"
-          },
-          {
-            "name": "Zeebe",
-            "tool": "Zeebe Workflow",
-            "language": "Java"
-          },
-          {
-            "name": "AWS Step Functions",
-            "tool": "AWS",
-            "language": "JSON DSL"
-          },
-          {
-            "name": "Temporal",
-            "tool": "Temporal.io",
-            "language": "Go/Java/TypeScript"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Order lifecycle",
-      "Insurance claim approval"
-    ]
-  },
-  {
-    "problem": "Stream/Event Processing",
-    "subcategory": "Real-time, event-driven",
-    "tags": [
-      "stream",
-      "events",
-      "real-time",
-      "EDA"
-    ],
-    "patterns": [
-      {
-        "name": "Event Streaming",
-        "solutions": [
-          {
-            "name": "Kafka",
-            "tool": "Apache Kafka",
-            "language": "Java"
-          },
-          {
-            "name": "RabbitMQ",
-            "tool": "RabbitMQ",
-            "language": "Any"
-          },
-          {
-            "name": "Kinesis",
-            "tool": "AWS Kinesis",
-            "language": "Python/Java"
-          },
-          {
-            "name": "NATS",
-            "tool": "NATS",
-            "language": "Go"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Audit logs",
-      "Notifications",
-      "Metrics pipelines"
-    ]
-  },
-  {
-    "problem": "Batch/ETL Processing",
-    "subcategory": "Scheduled jobs, transforms",
-    "tags": [
-      "batch",
-      "ETL",
-      "scheduling",
-      "transform"
-    ],
-    "patterns": [
-      {
-        "name": "Batch Orchestration",
-        "solutions": [
-          {
-            "name": "Apache Airflow",
-            "tool": "Airflow",
-            "language": "Python"
-          },
-          {
-            "name": "Apache Spark",
-            "tool": "Spark",
-            "language": "Scala/Java/Python"
-          },
-          {
-            "name": "Pandas",
-            "tool": "pandas",
-            "language": "Python"
-          },
-          {
-            "name": "dbt",
-            "tool": "dbt",
-            "language": "SQL"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Daily reports",
-      "Nightly imports",
-      "Billing"
-    ]
-  },
-  {
-    "problem": "Search / Retrieval",
-    "subcategory": "Full-text, faceted, ranked",
-    "tags": [
-      "search",
-      "retrieval",
-      "inverted-index",
-      "facets"
-    ],
-    "patterns": [
-      {
-        "name": "Search Indexing",
-        "solutions": [
-          {
-            "name": "Elasticsearch",
-            "tool": "Elastic Stack",
-            "language": "Java"
-          },
-          {
-            "name": "Solr",
-            "tool": "Apache Solr",
-            "language": "Java"
-          },
-          {
-            "name": "Meilisearch",
-            "tool": "Meilisearch",
-            "language": "Rust"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Site search",
-      "Filtering",
-      "Autocomplete"
-    ]
-  },
-  {
-    "problem": "Concurrency / Parallelism",
-    "subcategory": "Threads, async, locking",
-    "tags": [
-      "concurrency",
-      "parallel",
-      "threading",
-      "async"
-    ],
-    "patterns": [
-      {
-        "name": "Synchronization & Async",
-        "solutions": [
-          {
-            "name": "Java Concurrency",
-            "tool": "java.util.concurrent",
-            "language": "Java"
-          },
-          {
-            "name": "Go routines",
-            "tool": "goroutines/channels",
-            "language": "Go"
-          },
-          {
-            "name": "Node async",
-            "tool": "async/await",
-            "language": "JavaScript/TypeScript"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Web servers",
-      "Schedulers",
-      "Job queues"
-    ]
-  },
-  {
-    "problem": "Security & Crypto",
-    "subcategory": "Auth, hashing, encryption",
-    "tags": [
-      "auth",
-      "JWT",
-      "OAuth2",
-      "encryption",
-      "hashing"
-    ],
-    "patterns": [
-      {
-        "name": "Authentication",
-        "solutions": [
-          {
-            "name": "JWT",
-            "tool": "JWT",
-            "language": "Any"
-          },
-          {
-            "name": "OAuth2",
-            "tool": "OAuth2",
-            "language": "Any"
-          }
-        ]
-      },
-      {
-        "name": "Cryptography",
-        "solutions": [
-          {
-            "name": "bcrypt",
-            "tool": "bcrypt",
-            "language": "Any"
-          },
-          {
-            "name": "OpenSSL",
-            "tool": "OpenSSL",
-            "language": "C/CLI"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Login systems",
-      "Encrypted storage",
-      "Secure APIs"
+      "User profiles",
+      "Databases",
+      "record management",
+      "CRUD",
+      "transactional",
+      "transactions",
+      "database",
+      "data modeling",
+      "relational DB",
+      "ORM",
+      "SQL",
+      "data-centric"
     ]
   },
   {
@@ -636,55 +1015,32 @@
     ]
   },
   {
-    "problem": "Machine Learning / AI",
-    "subcategory": "Classification, clustering",
+    "problem": "Graph Algorithms & Graph Data",
+    "subcategory": "Traversal, shortest paths, graph databases, and network relationships",
+    "description": "Model relationships as nodes and edges, then traverse, query, or optimize over graph structures.",
     "tags": [
-      "ML",
-      "AI",
-      "classification",
-      "clustering",
-      "NLP"
-    ],
-    "patterns": [
-      {
-        "name": "Modeling Frameworks",
-        "solutions": [
-          {
-            "name": "TensorFlow",
-            "tool": "TensorFlow",
-            "language": "Python"
-          },
-          {
-            "name": "PyTorch",
-            "tool": "PyTorch",
-            "language": "Python"
-          },
-          {
-            "name": "scikit-learn",
-            "tool": "scikit-learn",
-            "language": "Python"
-          },
-          {
-            "name": "HuggingFace",
-            "tool": "Transformers",
-            "language": "Python"
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Fraud detection",
-      "Recommendations",
-      "Churn prediction"
-    ]
-  },
-  {
-    "problem": "Graph Algorithms",
-    "subcategory": "Traversal, shortest path",
-    "tags": [
+      "Graph Algorithms & Graph Data",
+      "Traversal, shortest paths, graph databases, and network relationships",
+      "Model relationships as nodes and edges, then traverse, query, or optimize over graph structures",
       "graph",
+      "graphs",
+      "graph algorithms",
+      "graph traversal",
       "traversal",
-      "shortest-path"
+      "search",
+      "graph-based",
+      "shortest path",
+      "shortest-path",
+      "BFS",
+      "DFS",
+      "Dijkstra",
+      "Neo4j",
+      "Gremlin",
+      "NetworkX",
+      "social networks",
+      "logistics",
+      "Graph traversal/search",
+      "Traversal, shortest path"
     ],
     "patterns": [
       {
@@ -706,22 +1062,74 @@
             "language": "Python"
           }
         ]
+      },
+      {
+        "name": "Graph traversal/search Overview",
+        "solutions": [
+          {
+            "name": "BFS",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "DFS",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Dijkstra",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
     ],
     "examples": [
       "Social networks",
       "Logistics",
-      "Org hierarchies"
+      "Org hierarchies",
+      "BFS",
+      "DFS",
+      "Dijkstra",
+      "graph",
+      "graphs",
+      "graph algorithms",
+      "graph traversal",
+      "traversal",
+      "search",
+      "graph-based",
+      "shortest path",
+      "shortest-path",
+      "Neo4j",
+      "Gremlin",
+      "NetworkX"
     ]
   },
   {
     "problem": "Constraint Solving",
-    "subcategory": "Valid configurations",
+    "subcategory": "CSP, SAT, and declarative optimization",
+    "description": "Find valid assignments that satisfy logical, combinatorial, or optimization constraints.",
     "tags": [
+      "Constraint Solving",
+      "CSP, SAT, and declarative optimization",
+      "Find valid assignments that satisfy logical, combinatorial, or optimization constraints",
       "constraints",
       "CSP",
       "SAT",
-      "optimization"
+      "CP-SAT",
+      "optimization",
+      "valid configurations",
+      "Sudoku",
+      "scheduling",
+      "Prolog-style reasoning",
+      "test scheduling",
+      "CPQ",
+      "Constraint Satisfaction Problems (CSP)",
+      "(csp)",
+      "problems",
+      "solving",
+      "constraint",
+      "satisfaction"
     ],
     "patterns": [
       {
@@ -748,11 +1156,41 @@
             "language": "Modeling language"
           }
         ]
+      },
+      {
+        "name": "Constraint Satisfaction Problems (CSP) Overview",
+        "solutions": [
+          {
+            "name": "Sudoku",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "scheduling",
+            "tool": "Example",
+            "language": ""
+          },
+          {
+            "name": "Prolog-style reasoning",
+            "tool": "Example",
+            "language": ""
+          }
+        ]
       }
     ],
     "examples": [
       "CPQ",
-      "Test scheduling"
+      "Test scheduling",
+      "Sudoku",
+      "scheduling",
+      "Prolog-style reasoning",
+      "constraints",
+      "constraint solving",
+      "CSP",
+      "SAT",
+      "CP-SAT",
+      "optimization",
+      "valid configurations"
     ]
   },
   {
@@ -1041,83 +1479,6 @@
     ]
   },
   {
-    "problem": "Constraint Satisfaction Problems (CSP)",
-    "subcategory": "Constraint Solving",
-    "description": "Satisfy logical constraints over variables",
-    "tags": [
-      "(csp)",
-      "problems",
-      "solving",
-      "constraint",
-      "satisfaction"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Sudoku",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "scheduling",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "Prolog-style reasoning",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Sudoku",
-      "scheduling",
-      "Prolog-style reasoning"
-    ]
-  },
-  {
-    "problem": "Graph traversal/search",
-    "subcategory": "Graph-Based",
-    "description": "Nodes/edges modeling relationships",
-    "tags": [
-      "search",
-      "traversal",
-      "graph-based",
-      "graph"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "BFS",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "DFS",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "Dijkstra",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "BFS",
-      "DFS",
-      "Dijkstra"
-    ]
-  },
-  {
     "problem": "Network flow",
     "subcategory": "Graph-Based",
     "description": "Optimizing flow in a network",
@@ -1127,156 +1488,62 @@
       "graph-based"
     ],
     "patterns": [
-  {
-    "name": "Algorithms",
-    "solutions": [
       {
-        "name": "Edmonds–Karp (max flow)",
-        "tool": "Algorithm",
-        "language": "Python",
-        "blurb": "BFS-based augmenting paths (Ford–Fulkerson with BFS); O(V·E²).",
-        "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n"
+        "name": "Algorithms",
+        "solutions": [
+          {
+            "name": "Edmonds–Karp (max flow)",
+            "tool": "Algorithm",
+            "language": "Python",
+            "blurb": "BFS-based augmenting paths (Ford–Fulkerson with BFS); O(V·E²).",
+            "code": "from collections import deque\n\ndef edmonds_karp(cap, s, t):\n    # cap[u][v] = capacity; build residual graph on the fly\n    n = len(cap)\n    flow = 0\n    parent = [-1]*n\n    def bfs():\n        for i in range(n): parent[i] = -1\n        parent[s] = s\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in range(n):\n                if parent[v] == -1 and cap[u][v] > 0:\n                    parent[v] = u\n                    if v == t: return True\n                    q.append(v)\n        return False\n    while bfs():\n        # find bottleneck\n        v = t; bottleneck = float('inf')\n        while v != s:\n            u = parent[v]\n            bottleneck = min(bottleneck, cap[u][v])\n            v = u\n        # augment\n        v = t\n        while v != s:\n            u = parent[v]\n            cap[u][v] -= bottleneck\n            cap[v][u] += bottleneck\n            v = u\n        flow += bottleneck\n    return flow\n\n# Example usage:\n# cap is an NxN matrix; s=0, t=N-1\n# cap[u][v] = capacity from u to v; missing edges are 0\n"
+          },
+          {
+            "name": "Dinic (max flow)",
+            "tool": "Algorithm",
+            "language": "Python",
+            "blurb": "Level graph + blocking flow; O(E·V²) general, faster in practice.",
+            "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n"
+          },
+          {
+            "name": "Push–relabel (max flow)",
+            "tool": "Algorithm",
+            "language": "",
+            "blurb": "Preflow with local pushes and relabels; near-linear on many sparse graphs.",
+            "url": "https://cp-algorithms.com/graph/push-relabel.html"
+          }
+        ]
       },
       {
-        "name": "Dinic (max flow)",
-        "tool": "Algorithm",
-        "language": "Python",
-        "blurb": "Level graph + blocking flow; O(E·V²) general, faster in practice.",
-        "code": "from collections import deque\n\nclass Dinic:\n    def __init__(self, n):\n        self.n = n\n        self.adj = [[] for _ in range(n)]\n    def add_edge(self, u, v, c):\n        self.adj[u].append([v, c, len(self.adj[v])])\n        self.adj[v].append([u, 0, len(self.adj[u])-1])\n    def maxflow(self, s, t):\n        flow = 0\n        INF = 10**18\n        while True:\n            level = [-1]*self.n\n            q = deque([s]); level[s] = 0\n            while q:\n                u = q.popleft()\n                for v, cap, rev in self.adj[u]:\n                    if cap > 0 and level[v] < 0:\n                        level[v] = level[u]+1; q.append(v)\n            if level[t] < 0: break\n            it = [0]*self.n\n            def dfs(u, f):\n                if u == t: return f\n                for i in range(it[u], len(self.adj[u])):\n                    it[u] = i\n                    v, cap, rev = self.adj[u][i]\n                    if cap > 0 and level[u] < level[v]:\n                        d = dfs(v, min(f, cap))\n                        if d:  # augment\n                            self.adj[u][i][1] -= d\n                            self.adj[v][rev][1] += d\n                            return d\n                return 0\n            while True:\n                pushed = dfs(s, INF)\n                if not pushed: break\n                flow += pushed\n        return flow\n\n# Example: build graph with add_edge(u,v,c), then run maxflow(s,t)\n"
-      },
-      {
-        "name": "Push–relabel (max flow)",
-        "tool": "Algorithm",
-        "language": "",
-        "blurb": "Preflow with local pushes and relabels; near-linear on many sparse graphs.",
-        "url": "https://cp-algorithms.com/graph/push-relabel.html"
+        "name": "Libraries",
+        "solutions": [
+          {
+            "name": "NetworkX maximum_flow",
+            "tool": "Library",
+            "language": "Python",
+            "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html",
+            "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n"
+          },
+          {
+            "name": "OR-Tools SimpleMaxFlow",
+            "tool": "Library",
+            "language": "Python",
+            "url": "https://developers.google.com/optimization/flow/maxflow",
+            "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n"
+          },
+          {
+            "name": "Boost Graph (C++)",
+            "tool": "Library",
+            "language": "C++",
+            "url": "https://www.boost.org/doc/libs/release/libs/graph/doc/maximum_flow.html",
+            "blurb": "Use push_relabel_max_flow or edmonds_karp_max_flow for high-performance C++."
+          }
+        ]
       }
-    ]
-  },
-  {
-    "name": "Libraries",
-    "solutions": [
-      {
-        "name": "NetworkX maximum_flow",
-        "tool": "Library",
-        "language": "Python",
-        "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html",
-        "code": "import networkx as nx\nG = nx.DiGraph()\nG.add_edge('s','a', capacity=3)\nG.add_edge('s','b', capacity=2)\nG.add_edge('a','b', capacity=1)\nG.add_edge('a','t', capacity=2)\nG.add_edge('b','t', capacity=3)\nflow_val, flow_dict = nx.maximum_flow(G, 's', 't')\nprint(flow_val)\n"
-      },
-      {
-        "name": "OR-Tools SimpleMaxFlow",
-        "tool": "Library",
-        "language": "Python",
-        "url": "https://developers.google.com/optimization/flow/maxflow",
-        "code": "from ortools.graph.python import max_flow\nmf = max_flow.SimpleMaxFlow()\n# add arcs: (tail, head, capacity)\nmf.add_arc_with_capacity(0, 1, 3)\nmf.add_arc_with_capacity(0, 2, 2)\nmf.add_arc_with_capacity(1, 2, 1)\nmf.add_arc_with_capacity(1, 3, 2)\nmf.add_arc_with_capacity(2, 3, 3)\nstatus = mf.solve(0, 3)\nprint('max flow =', mf.optimal_flow())\n"
-      },
-      {
-        "name": "Boost Graph (C++)",
-        "tool": "Library",
-        "language": "C++",
-        "url": "https://www.boost.org/doc/libs/release/libs/graph/doc/maximum_flow.html",
-        "blurb": "Use push_relabel_max_flow or edmonds_karp_max_flow for high-performance C++."
-      }
-    ]
-  }
-],
-
+    ],
     "examples": [
       "Max flow / min cut",
       "bipartite matching"
-    ]
-  },
-  {
-    "problem": "CRUD / Transactional",
-    "subcategory": "Data-Centric",
-    "description": "Create/Read/Update/Delete of structured data",
-    "tags": [
-      "transactional",
-      "data-centric",
-      "crud"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Databases",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "record management",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Databases",
-      "record management"
-    ]
-  },
-  {
-    "problem": "Stream processing",
-    "subcategory": "Data-Centric",
-    "description": "Process data in real-time or pipelines",
-    "tags": [
-      "processing",
-      "data-centric",
-      "stream"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Kafka consumers",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "log processing",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Kafka consumers",
-      "log processing"
-    ]
-  },
-  {
-    "problem": "Batch processing",
-    "subcategory": "Data-Centric",
-    "description": "Operate on large static datasets",
-    "tags": [
-      "batch",
-      "processing",
-      "data-centric"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "MapReduce",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "ETL jobs",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "MapReduce",
-      "ETL jobs"
     ]
   },
   {
@@ -1345,78 +1612,6 @@
     ]
   },
   {
-    "problem": "Classification / Regression",
-    "subcategory": "Pattern Recognition",
-    "description": "Fit models to data, ML/AI approaches",
-    "tags": [
-      "recognition",
-      "pattern",
-      "classification",
-      "regression"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Spam detection",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "customer churn",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Spam detection",
-      "customer churn"
-    ]
-  },
-  {
-    "problem": "Race conditions & synchronization",
-    "subcategory": "Concurrency & Coordination",
-    "description": "Managing parallelism & shared resources",
-    "tags": [
-      "coordination",
-      "synchronization",
-      "&",
-      "concurrency",
-      "race",
-      "conditions"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Threading",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "mutex",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "actor model",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Threading",
-      "mutex",
-      "actor model"
-    ]
-  },
-  {
     "problem": "Distributed consensus",
     "subcategory": "Concurrency & Coordination",
     "description": "Agreement across distributed systems",
@@ -1456,64 +1651,6 @@
     ]
   },
   {
-    "problem": "Finite State Machines (FSM)",
-    "subcategory": "Modeling",
-    "description": "Systems with discrete states & transitions",
-    "tags": [
-      "modeling",
-      "machines",
-      "state",
-      "finite",
-      "(fsm)"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "UI logic",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "protocol design",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "UI logic",
-      "protocol design"
-    ]
-  },
-  {
-    "problem": "Petri nets",
-    "subcategory": "Modeling",
-    "description": "More complex state modeling including concurrency",
-    "tags": [
-      "modeling",
-      "petri",
-      "nets"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Workflow engines",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Workflow engines"
-    ]
-  },
-  {
     "problem": "Formal methods & model checking",
     "subcategory": "Verification",
     "description": "Prove program correctness",
@@ -1545,90 +1682,6 @@
     "examples": [
       "SAT solving",
       "formal specs (Z, TLA+)"
-    ]
-  },
-  {
-    "problem": "Encoding, hashing, encryption",
-    "subcategory": "Cryptography",
-    "description": "Secure communications and integrity",
-    "tags": [
-      "encoding,",
-      "hashing,",
-      "cryptography",
-      "encryption"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "RSA",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "AES",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "SHA-256",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "digital signatures",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "RSA",
-      "AES",
-      "SHA-256",
-      "digital signatures"
-    ]
-  },
-  {
-    "problem": "Search indexes, relevance ranking",
-    "subcategory": "Information Retrieval",
-    "description": "Retrieve most relevant documents",
-    "tags": [
-      "indexes,",
-      "ranking",
-      "relevance",
-      "search",
-      "information",
-      "retrieval"
-    ],
-    "patterns": [
-      {
-        "name": "Overview",
-        "solutions": [
-          {
-            "name": "Elasticsearch",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "Lucene",
-            "tool": "Example",
-            "language": ""
-          },
-          {
-            "name": "Meilisearch",
-            "tool": "Example",
-            "language": ""
-          }
-        ]
-      }
-    ],
-    "examples": [
-      "Elasticsearch",
-      "Lucene",
-      "Meilisearch"
     ]
   },
   {
