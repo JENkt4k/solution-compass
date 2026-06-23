@@ -13,7 +13,8 @@ export default function SearchBar({ value, onChange, placeholder }: SearchBarPro
       type="search"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder || 'Search…'}
+      placeholder={placeholder || 'Search...'}
+      aria-label="Search solution compass"
     />
   );
 }

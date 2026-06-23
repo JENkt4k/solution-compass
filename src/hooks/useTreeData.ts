@@ -4,6 +4,9 @@ export interface Solution {
   name: string;
   tool: string;
   language: string;
+  blurb?: string;
+  code?: string;
+  url?: string;
 }
 
 export interface Pattern {
@@ -28,7 +31,7 @@ export const useTreeData = (): { data: ProblemNode[]; loading: boolean; error: s
   useEffect(() => {
     const isDev = import.meta.env.DEV;
     const base = import.meta.env.BASE_URL || '/';
-    const dataUrl = `${isDev ? '' : base}complete-tree-data.json`;
+    const dataUrl = `${isDev ? '/' : base}complete-tree-data.json`;
 
     fetch(dataUrl)
       .then((res) => {

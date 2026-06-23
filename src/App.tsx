@@ -7,8 +7,8 @@ import { useTreeData, ProblemNode } from './hooks/useTreeData';
 function App() {
   const { data, loading, error } = useTreeData();
   const [query, setQuery] = useState('');
-  const [expandedAllVersion, setExpandedAllVersion] = useState(0); // changes to trigger expand all
-  const [collapsedAllVersion, setCollapsedAllVersion] = useState(0); // changes to trigger collapse all
+  const [expandedAllVersion, setExpandedAllVersion] = useState(0);
+  const [collapsedAllVersion, setCollapsedAllVersion] = useState(0);
 
   const filtered: ProblemNode[] = useMemo(() => {
     if (!query.trim()) return data;
@@ -17,12 +17,24 @@ function App() {
     const matches = (text?: string) => (text || '').toLowerCase().includes(q);
     const matchesArr = (arr?: string[]) => (arr || []).some((t) => matches(t));
 
-    // filter problems, and within them filter patterns/solutions
     return data.map((p) => {
-      const problemMatches = matches(p.problem) || matches(p.subcategory) || matchesArr(p.tags) || matchesArr(p.examples);
+      const problemMatches =
+        matches(p.problem) ||
+        matches(p.subcategory) ||
+        matches(p.description) ||
+        matchesArr(p.tags) ||
+        matchesArr(p.examples);
+
       const patterns = (p.patterns || []).map((pt) => {
         const patternMatches = matches(pt.name);
-        const solutions = (pt.solutions || []).filter((s) => matches(s.name) || matches(s.tool) || matches(s.language));
+        const solutions = (pt.solutions || []).filter((s) =>
+          matches(s.name) ||
+          matches(s.tool) ||
+          matches(s.language) ||
+          matches(s.blurb) ||
+          matches(s.code) ||
+          matches(s.url)
+        );
         return { ...pt, solutions, __visible: patternMatches || solutions.length > 0 };
       }).filter((pt) => pt.__visible);
 
@@ -35,21 +47,21 @@ function App() {
     <div className="app-shell">
       <header className="topbar card">
         <div className="brand">
-          <div className="logo">∴</div>
+          <div className="logo">SC</div>
           <div className="titles">
             <h1>SolutionCompass</h1>
-            <p className="subtitle">Problem → Pattern → Tool</p>
+            <p className="subtitle">Problem {'->'} Pattern {'->'} Tool</p>
           </div>
         </div>
         <div className="actions">
-          <SearchBar value={query} onChange={setQuery} placeholder="Search problems, patterns, tools, tags…" />
-          <button className="btn" onClick={() => setExpandedAllVersion(v => v + 1)} title="Expand all">Expand all</button>
-          <button className="btn secondary" onClick={() => setCollapsedAllVersion(v => v + 1)} title="Collapse all">Collapse all</button>
+          <SearchBar value={query} onChange={setQuery} placeholder="Search problems, patterns, tools, tags..." />
+          <button className="btn" onClick={() => setExpandedAllVersion((v) => v + 1)} title="Expand all">Expand all</button>
+          <button className="btn secondary" onClick={() => setCollapsedAllVersion((v) => v + 1)} title="Collapse all">Collapse all</button>
         </div>
       </header>
       <main className="content">
         <InstallPrompt />
-        {loading && <div className="card">Loading…</div>}
+        {loading && <div className="card">Loading...</div>}
         {error && <div className="card error">Error: {error}</div>}
         {!loading && !error && (
           <TreeCanvas
@@ -61,7 +73,7 @@ function App() {
         )}
       </main>
       <footer className="footer">
-        <span>Static PWA • Offline-ready</span>
+        <span>Static PWA - Offline-ready</span>
       </footer>
     </div>
   );
