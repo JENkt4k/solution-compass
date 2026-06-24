@@ -3811,38 +3811,50 @@
           {
             "name": "Two pointers / sliding window",
             "tool": "Algorithmic pattern",
-            "language": "Any",
+            "language": "Python",
             "blurb": "Useful for contiguous sequence scans, streaming windows, deduplication, and bounded-memory filters; many puzzle variants are archival.",
             "url": "https://cp-algorithms.com/others/maximum_average_segment.html",
             "timeComplexity": "Usually O(n)",
-            "spaceComplexity": "Usually O(1) to O(window)"
+            "spaceComplexity": "Usually O(1) to O(window)",
+            "reuseLevel": "hand-roll",
+            "implementationNote": "Hand-roll when the window invariant is domain-specific; prefer streaming/window libraries for production analytics pipelines.",
+            "code": "def longest_subarray_at_most_k(nums, k):\n    left = 0\n    total = 0\n    best = 0\n\n    for right, value in enumerate(nums):\n        total += value\n        while total > k and left <= right:\n            total -= nums[left]\n            left += 1\n        best = max(best, right - left + 1)\n\n    return best"
           },
           {
             "name": "Prefix sums / difference arrays",
             "tool": "Algorithmic pattern",
-            "language": "Any",
+            "language": "Python",
             "blurb": "Useful for range queries, cumulative metrics, histograms, and batch interval updates.",
             "url": "https://cp-algorithms.com/data_structures/fenwick.html",
             "timeComplexity": "O(n) preprocessing; O(1) simple range sums or O(log n) with Fenwick tree",
-            "spaceComplexity": "O(n)"
+            "spaceComplexity": "O(n)",
+            "reuseLevel": "hand-roll",
+            "implementationNote": "Hand-roll for simple range math; use database/window functions, pandas, NumPy, or OLAP engines when the data already lives there.",
+            "code": "class FenwickTree:\n    def __init__(self, size):\n        self.tree = [0] * (size + 1)\n\n    def add(self, index, delta):\n        index += 1\n        while index < len(self.tree):\n            self.tree[index] += delta\n            index += index & -index\n\n    def prefix_sum(self, index):\n        index += 1\n        total = 0\n        while index > 0:\n            total += self.tree[index]\n            index -= index & -index\n        return total\n\n    def range_sum(self, left, right):\n        return self.prefix_sum(right) - (self.prefix_sum(left - 1) if left else 0)"
           },
           {
             "name": "Heap / priority queue",
             "tool": "Data structure",
-            "language": "Any",
+            "language": "Python",
             "blurb": "Useful for scheduling, top-k, merge streams, shortest paths, retries, and priority work queues.",
             "url": "https://docs.python.org/3/library/heapq.html",
             "timeComplexity": "O(log n) push/pop; O(1) peek",
-            "spaceComplexity": "O(n)"
+            "spaceComplexity": "O(n)",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Use standard-library heaps or managed priority queues; hand-roll only for custom decrease-key, indexed heap, or domain-specific scheduling semantics.",
+            "code": "import heapq\n\ndef top_k_largest(values, k):\n    heap = []\n    for value in values:\n        if len(heap) < k:\n            heapq.heappush(heap, value)\n        elif value > heap[0]:\n            heapq.heapreplace(heap, value)\n    return sorted(heap, reverse=True)"
           },
           {
             "name": "Union-find",
             "tool": "Data structure",
-            "language": "Any",
+            "language": "Python",
             "blurb": "Useful for connectivity, grouping, Kruskal MST, image/component labeling, and equivalence classes.",
             "url": "https://cp-algorithms.com/data_structures/disjoint_set_union.html",
             "timeComplexity": "Near O(1) amortized with path compression and union by rank",
-            "spaceComplexity": "O(n)"
+            "spaceComplexity": "O(n)",
+            "reuseLevel": "hand-roll",
+            "implementationNote": "Hand-roll for lightweight connectivity logic; use graph/image libraries when connectivity is part of a larger analytics or vision workflow.",
+            "code": "class UnionFind:\n    def __init__(self, n):\n        self.parent = list(range(n))\n        self.rank = [0] * n\n\n    def find(self, x):\n        while self.parent[x] != x:\n            self.parent[x] = self.parent[self.parent[x]]\n            x = self.parent[x]\n        return x\n\n    def union(self, a, b):\n        root_a = self.find(a)\n        root_b = self.find(b)\n        if root_a == root_b:\n            return False\n        if self.rank[root_a] < self.rank[root_b]:\n            root_a, root_b = root_b, root_a\n        self.parent[root_b] = root_a\n        if self.rank[root_a] == self.rank[root_b]:\n            self.rank[root_a] += 1\n        return True"
           }
         ]
       },
@@ -3854,14 +3866,18 @@
             "tool": "Archival guidance",
             "language": "Any",
             "blurb": "Keep as archival when the pattern is mainly an interview trick and production code would use a database, library, solver, or clearer custom implementation.",
-            "url": "https://en.wikipedia.org/wiki/Programming_interview"
+            "url": "https://en.wikipedia.org/wiki/Programming_interview",
+            "reuseLevel": "archival",
+            "implementationNote": "Use for recognition and interview prep; do not promote to production design unless the trick maps directly to real constraints."
           },
           {
             "name": "Library-replaced algorithms",
             "tool": "Pragmatic implementation guidance",
             "language": "Any",
             "blurb": "Prefer maintained libraries for search, optimization, parsing, crypto, ML, and graph analytics unless custom constraints justify hand-rolling.",
-            "url": "https://opensource.guide/best-practices/"
+            "url": "https://opensource.guide/best-practices/",
+            "reuseLevel": "design-replaced",
+            "implementationNote": "Prefer maintained libraries or platform primitives for search, solvers, parsers, crypto, ML, and graph analytics unless custom constraints dominate."
           }
         ]
       }

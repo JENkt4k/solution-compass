@@ -241,6 +241,8 @@ function searchableText(node) {
       solution.tool,
       solution.language,
       solution.blurb || '',
+      solution.reuseLevel || '',
+      solution.implementationNote || '',
       solution.timeComplexity || '',
       solution.spaceComplexity || '',
     ]),

@@ -13,6 +13,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Clickable tag chips for quick taxonomy filtering.
 - Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
 - Impact lens for Core, Common, Specialized, and Archival material; core work-impacting classes sort first by default.
+- Catalog Signals panel summarizes scope, impact, snippet coverage, and implementation guidance counts.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
 - Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
 - Every solution has a short blurb and reference URL.
@@ -40,6 +41,7 @@ MVP+ is functional and deployable on GitHub Pages.
 | Tag filters | Problem tags are clickable chips for quick exact-tag filtering. |
 | Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
 | Impact lens | Prioritizes common production work while keeping trick/interview patterns mostly archival. |
+| Catalog signals | Summary metrics show useful/core vs specialized/archival coverage and snippet/reuse guidance counts. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -56,6 +58,8 @@ export interface Solution {
   blurb?: string;
   timeComplexity?: string;
   spaceComplexity?: string;
+  reuseLevel?: 'hand-roll' | 'library-preferred' | 'design-replaced' | 'archival';
+  implementationNote?: string;
   code?: string;
   url?: string;
 }
@@ -109,6 +113,7 @@ The validator fails on:
 - Missing problem decision metadata.
 - Missing or invalid problem `scopeLevel`.
 - Missing or invalid problem `impactLevel`.
+- Invalid solution `reuseLevel`.
 - Invalid URLs.
 - Generic `tool: "Example"` placeholders.
 - Duplicate problem names.

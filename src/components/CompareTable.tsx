@@ -57,6 +57,7 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
               <th>Scope</th>
               <th>Impact</th>
               <th>Solution</th>
+              <th>Use</th>
               <th>Tool</th>
               <th>Language</th>
               <th>Fit</th>
@@ -91,7 +92,9 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
                 <td>
                   <strong>{row.solution.name}</strong>
                   {row.solution.blurb && <span className="table-subtext">{row.solution.blurb}</span>}
+                  {row.solution.implementationNote && <span className="table-subtext">{row.solution.implementationNote}</span>}
                 </td>
+                <td>{short(row.solution.reuseLevel)}</td>
                 <td>{row.solution.tool}</td>
                 <td>{row.solution.language}</td>
                 <td>{short(row.problem.scale)}</td>

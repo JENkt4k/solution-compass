@@ -6,6 +6,7 @@ const errors = [];
 const warnings = [];
 const scopeLevels = new Set(['architecture', 'stack', 'runtime', 'library', 'language', 'algorithm', 'hardware']);
 const impactLevels = new Set(['core', 'common', 'specialized', 'archival']);
+const reuseLevels = new Set(['hand-roll', 'library-preferred', 'design-replaced', 'archival']);
 
 function label(problem, pattern, solution) {
   const parts = [problem?.problem, pattern?.name, solution?.name].filter(Boolean);
@@ -102,6 +103,10 @@ if (!Array.isArray(data)) {
 
         if (solution.tool === 'Example') {
           errors.push(`${solutionContext}: generic tool "Example"`);
+        }
+
+        if (solution.reuseLevel && !reuseLevels.has(solution.reuseLevel)) {
+          errors.push(`${solutionContext}: invalid reuseLevel "${solution.reuseLevel}"`);
         }
 
         if (solution.code) {

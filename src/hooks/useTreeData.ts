@@ -7,6 +7,8 @@ export interface Solution {
   blurb?: string;
   timeComplexity?: string;
   spaceComplexity?: string;
+  reuseLevel?: 'hand-roll' | 'library-preferred' | 'design-replaced' | 'archival';
+  implementationNote?: string;
   code?: string;
   url?: string;
 }

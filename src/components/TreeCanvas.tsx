@@ -47,6 +47,12 @@ function SolutionItem({ solution, query }: { solution: Solution; query: string }
         )}
       </div>
       {solution.blurb && <p className="solution-blurb">{highlight(solution.blurb, query)}</p>}
+      {(solution.reuseLevel || solution.implementationNote) && (
+        <div className="implementation-row">
+          {solution.reuseLevel && <span>Use: {highlight(solution.reuseLevel, query)}</span>}
+          {solution.implementationNote && <span>{highlight(solution.implementationNote, query)}</span>}
+        </div>
+      )}
       {(solution.timeComplexity || solution.spaceComplexity) && (
         <div className="complexity-row">
           {solution.timeComplexity && <span>Time: {highlight(solution.timeComplexity, query)}</span>}
@@ -127,9 +133,9 @@ export default function TreeCanvas({
     <div className="grid">
       {rendered.map((problem) => {
         const pKey = problem.problem;
-        const pOpen = !!openProblems[pKey];
         const problemSlug = slugify(problem.problem);
         const isFocused = problemSlug === focusedProblemSlug;
+        const pOpen = !!openProblems[pKey] || isFocused;
         return (
           <section key={pKey} id={`problem-${problemSlug}`} className={`card${isFocused ? ' focused-card' : ''}`}>
             <div className="card-header">
@@ -206,7 +212,7 @@ export default function TreeCanvas({
                 )}
                 {(problem.patterns || []).map((pattern) => {
                   const ptKey = `${pKey}::${pattern.name}`;
-                  const ptOpen = !!openPatterns[ptKey];
+                  const ptOpen = !!openPatterns[ptKey] || isFocused;
                   return (
                     <div key={ptKey} className="pattern">
                       <button

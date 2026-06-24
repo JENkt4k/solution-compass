@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 import { InstallPrompt } from './components/InstallPrompt';
 import Wizard from './components/Wizard';
 import CompareTable from './components/CompareTable';
+import CatalogSummary from './components/CatalogSummary';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 import { slugify } from './utils/slug';
 
@@ -99,6 +100,8 @@ function App() {
       matches(s.tool) ||
       matches(s.language) ||
       matches(s.blurb) ||
+      matches(s.reuseLevel) ||
+      matches(s.implementationNote) ||
       matches(s.timeComplexity) ||
       matches(s.spaceComplexity) ||
       matches(s.code) ||
@@ -268,6 +271,7 @@ function App() {
                 <button className="btn secondary compact" type="button" onClick={clearFilters}>Clear</button>
               </div>
             )}
+            <CatalogSummary data={data} />
             <Wizard data={data} onFocus={focusRecommendation} />
             {viewMode === 'tree' ? (
               <TreeCanvas
