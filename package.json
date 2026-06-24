@@ -7,6 +7,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "validate:data": "node scripts/validate-data.mjs",
+    "validate:wizard": "node scripts/validate-wizard.mjs",
+    "validate": "npm run validate:data && npm run validate:wizard",
     "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },

@@ -1,158 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import { ProblemNode } from '../hooks/useTreeData';
-
-type WizardOption = {
-  label: string;
-  tags: string[];
-};
-
-type WizardQuestion = {
-  id: string;
-  prompt: string;
-  options: WizardOption[];
-};
+import { getRecommendations, questions } from '../lib/wizardScoring.mjs';
 
 type Recommendation = {
   node: ProblemNode;
   score: number;
   reasons: string[];
+  penalties: string[];
 };
 
-const questions: WizardQuestion[] = [
-  {
-    id: 'domain',
-    prompt: 'What kind of problem are you solving?',
-    options: [
-      { label: 'Data or records', tags: ['data', 'database', 'crud', 'etl', 'batch', 'pipeline', 'records'] },
-      { label: 'Search or discovery', tags: ['search', 'retrieval', 'ranking', 'filter', 'graph traversal', 'pathfinding'] },
-      { label: 'Optimization or planning', tags: ['optimization', 'scheduling', 'constraints', 'linear', 'integer', 'flow'] },
-      { label: 'Coordination or workflow', tags: ['concurrency', 'coordination', 'workflow', 'state machine', 'consensus', 'messaging'] },
-      { label: 'Security or identity', tags: ['security', 'auth', 'crypto', 'hashing', 'encryption'] },
-      { label: 'Prediction or recognition', tags: ['machine learning', 'classification', 'prediction', 'clustering', 'NLP'] },
-      { label: 'LLM, agents, or RAG', tags: ['AI', 'LLM', 'language model', 'RAG', 'agents', 'tools', 'structured outputs'] },
-      { label: 'Generative media', tags: ['diffusion', 'Stable Diffusion', 'image generation', 'generative media', 'ControlNet'] },
-      { label: 'AI deployment or locality', tags: ['model serving', 'managed model API', 'self-hosted inference', 'local LLM', 'edge', 'deployment', 'serving'] },
-    ],
-  },
-  {
-    id: 'timing',
-    prompt: 'How does the work happen?',
-    options: [
-      { label: 'Real-time or event-driven', tags: ['real-time', 'stream', 'events', 'event-driven', 'async'] },
-      { label: 'Scheduled or batch', tags: ['batch', 'ETL', 'scheduled jobs', 'reporting'] },
-      { label: 'Interactive request/response', tags: ['latency', 'cache', 'crud', 'search', 'database'] },
-      { label: 'Long-running process', tags: ['workflow', 'approval', 'state transitions', 'durable'] },
-      { label: 'Model inference or generation', tags: ['LLM', 'inference', 'generation', 'model serving', 'diffusion', 'local model', 'managed model API'] },
-    ],
-  },
-  {
-    id: 'answer',
-    prompt: 'What kind of answer do you need?',
-    options: [
-      { label: 'Exact optimum', tags: ['optimization', 'linear', 'integer', 'network flow', 'dynamic programming', 'constraint'] },
-      { label: 'Good enough quickly', tags: ['heuristic', 'greedy', 'cache', 'approximate', 'beam search'] },
-      { label: 'Ranked or relevant results', tags: ['ranking', 'relevance', 'search', 'retrieval'] },
-      { label: 'Valid configuration', tags: ['constraints', 'CSP', 'SAT', 'valid configurations'] },
-      { label: 'Proof or high confidence', tags: ['formal', 'verification', 'model checking', 'correctness'] },
-      { label: 'Generated text, image, or action', tags: ['LLM', 'agent', 'structured outputs', 'diffusion', 'image generation', 'tool-use'] },
-    ],
-  },
-  {
-    id: 'shape',
-    prompt: 'What shape does the problem have?',
-    options: [
-      { label: 'Relationships or paths', tags: ['graph', 'relationships', 'traversal', 'shortest path', 'flow'] },
-      { label: 'Rules and constraints', tags: ['rules', 'logic', 'constraints', 'declarative'] },
-      { label: 'States and transitions', tags: ['state', 'state machine', 'workflow', 'FSM', 'Petri'] },
-      { label: 'Text, documents, or records', tags: ['text', 'documents', 'records', 'search', 'database'] },
-      { label: 'Embeddings or memory', tags: ['embeddings', 'vector', 'LLM memory', 'semantic search', 'RAG', 'context'] },
-      { label: 'Uncertainty or simulation', tags: ['simulation', 'stochastic', 'Monte Carlo', 'queueing'] },
-    ],
-  },
-  {
-    id: 'scale',
-    prompt: 'What scale are you aiming for?',
-    options: [
-      { label: 'Small or local', tags: ['low setup', 'local', 'pseudocode', 'in-memory', 'low'] },
-      { label: 'Production service', tags: ['mature', 'service', 'database', 'monitoring', 'workflow'] },
-      { label: 'Distributed system', tags: ['distributed', 'consensus', 'stream', 'coordination', 'cluster'] },
-      { label: 'Large dataset', tags: ['large', 'warehouse', 'index', 'documents', 'data lake'] },
-      { label: 'Local model or edge', tags: ['local', 'local LLM', 'edge', 'self-hosted inference', 'self-hosted', 'model serving'] },
-    ],
-  },
-  {
-    id: 'risk',
-    prompt: 'What risk matters most?',
-    options: [
-      { label: 'Low setup cost', tags: ['low setup', 'simple', 'low', 'greedy', 'cache'] },
-      { label: 'Correctness', tags: ['correctness', 'formal', 'exact', 'transactions', 'constraints'] },
-      { label: 'Operational maturity', tags: ['mature', 'observability', 'monitoring', 'managed', 'standard'] },
-      { label: 'Speed or latency', tags: ['latency', 'cache', 'real-time', 'search', 'heuristic'] },
-      { label: 'Privacy or control', tags: ['local', 'self-hosted inference', 'self-hosted', 'privacy', 'local LLM', 'controlled infrastructure'] },
-    ],
-  },
-];
-
-function normalize(text: string) {
-  return text.toLowerCase();
-}
-
-function searchableText(node: ProblemNode) {
-  const solutionText = node.patterns.flatMap((pattern) => [
-    pattern.name,
-    ...pattern.solutions.flatMap((solution) => [
-      solution.name,
-      solution.tool,
-      solution.language,
-      solution.blurb || '',
-    ]),
-  ]);
-
-  return normalize([
-    node.problem,
-    node.subcategory || '',
-    node.description || '',
-    ...(node.tags || []),
-    ...(node.examples || []),
-    ...(node.bestFor || []),
-    ...(node.avoidWhen || []),
-    ...(node.tradeoffs || []),
-    node.complexity || '',
-    node.maturity || '',
-    node.scale || '',
-    node.setupCost || '',
-    ...solutionText,
-  ].join(' '));
-}
-
-function scoreNode(node: ProblemNode, selected: Record<string, string>) {
-  const text = searchableText(node);
-  const reasons: string[] = [];
-  let score = 0;
-
-  for (const question of questions) {
-    const selectedLabel = selected[question.id];
-    const option = question.options.find((candidate) => candidate.label === selectedLabel);
-    if (!option) continue;
-
-    const matchedTags = option.tags.filter((tag) => text.includes(normalize(tag)));
-    if (matchedTags.length) {
-      score += matchedTags.length * 2;
-      reasons.push(`${question.prompt} ${selectedLabel} (${matchedTags.slice(0, 3).join(', ')})`);
-    }
-  }
-
-  if (node.setupCost === 'Low' && Object.values(selected).includes('Low setup cost')) {
-    score += 3;
-  }
-  if (node.complexity === 'High' && Object.values(selected).includes('Small or local')) {
-    score -= 2;
-  }
-  if (node.maturity === 'Specialized' && !Object.values(selected).includes('Proof or high confidence')) {
-    score -= 1;
-  }
-
-  return { score, reasons };
+function firstSolution(node: ProblemNode) {
+  const pattern = node.patterns?.[0];
+  const solution = pattern?.solutions?.[0];
+  if (!pattern || !solution) return null;
+  return `${pattern.name}: ${solution.name}`;
 }
 
 export default function Wizard({ data, onFocus }: { data: ProblemNode[]; onFocus: (query: string) => void }) {
@@ -162,14 +23,7 @@ export default function Wizard({ data, onFocus }: { data: ProblemNode[]; onFocus
     const answered = Object.keys(answers).length;
     if (!answered) return [];
 
-    return data
-      .map((node) => {
-        const result = scoreNode(node, answers);
-        return { node, score: result.score, reasons: result.reasons };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.node.problem.localeCompare(b.node.problem))
-      .slice(0, 5);
+    return getRecommendations(data, answers, 5) as Recommendation[];
   }, [answers, data]);
 
   const reset = () => setAnswers({});
@@ -234,8 +88,17 @@ export default function Wizard({ data, onFocus }: { data: ProblemNode[]; onFocus
                 </ul>
               </div>
               <div>
-                <strong>Tradeoffs</strong>
+                <strong>Start with</strong>
                 <ul>
+                  {firstSolution(item.node) && <li>{firstSolution(item.node)}</li>}
+                  {(item.node.bestFor || []).slice(0, 2).map((fit) => <li key={fit}>{fit}</li>)}
+                </ul>
+              </div>
+              <div>
+                <strong>Watch outs</strong>
+                <ul>
+                  {item.penalties.slice(0, 1).map((penalty) => <li key={penalty}>{penalty}</li>)}
+                  {(item.node.avoidWhen || []).slice(0, 1).map((avoid) => <li key={avoid}>{avoid}</li>)}
                   {(item.node.tradeoffs || []).slice(0, 2).map((tradeoff) => <li key={tradeoff}>{tradeoff}</li>)}
                 </ul>
               </div>

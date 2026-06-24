@@ -15,6 +15,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
+- Wizard scenario validation is available with `npm run validate:wizard`.
 - AI/model references have an audit trail in `docs/ai-source-audit.md`.
 
 ## Screenshots
@@ -27,7 +28,7 @@ MVP+ is functional and deployable on GitHub Pages.
 
 | Area | Details |
 |---|---|
-| Decision Wizard | 6 guided prompts score the catalog and recommend 3-5 matching problem areas. |
+| Decision Wizard | 6 guided prompts use weighted rules, boosts, suppressions, and scenario checks to recommend 3-5 matching problem areas. |
 | Result explanations | Recommendations show matched answers, fit metadata, and tradeoffs. |
 | Decision map | Problem -> Pattern -> Solution hierarchy with tags, examples, references, and snippets. |
 | Deep links | Problem cards can be focused and shared with `#/problem/<slug>` URLs. |
@@ -88,6 +89,8 @@ Open the local Vite URL printed by the command.
 
 ```bash
 npm run validate:data
+npm run validate:wizard
+npm run validate
 ```
 
 The validator fails on:
@@ -100,6 +103,8 @@ The validator fails on:
 - Generic `tool: "Example"` placeholders.
 - Duplicate problem names.
 - Empty pattern or solution lists.
+
+The wizard validator checks representative recommendation scenarios for AI/RAG, vector memory, AI deployment, ETL/ELT, graph search, optimization, security, and prediction/recognition.
 
 ## Build
 
@@ -132,6 +137,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 The project is already shippable. Stop expanding the scope for this phase when these are true:
 
 - `npm run validate:data` passes.
+- `npm run validate:wizard` passes.
 - `npm run build` passes.
 - Live GitHub Pages smoke test passes on desktop and mobile.
 - Install icon and PWA install flow look correct after reinstall.
@@ -146,12 +152,12 @@ Short term:
 
 - Clickable tag chips with AND/OR filter modes.
 - Compact table view for scanning all solutions.
-- Weighted wizard scoring for AI, deployment, and optimization scenarios.
+- More scenario fixtures for wizard edge cases.
 - Scheduled source-audit pass for rapidly changing AI/model claims and references.
 
 Medium term:
 
-- Stronger wizard scoring with weighted rules and explicit constraints.
+- Stronger wizard scoring with explicit constraints and incompatibility rules.
 - Local editable dataset UI with JSON import/export.
 - Contribution workflow that runs `npm run validate:data`.
 - Graph/tree visualization mode.
