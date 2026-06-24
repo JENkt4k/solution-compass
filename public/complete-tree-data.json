@@ -717,7 +717,22 @@
       "Stream/Event Processing",
       "Real-time, event-driven",
       "event",
-      "processing"
+      "processing",
+      "producer",
+      "consumer",
+      "publish",
+      "subscribe",
+      "queue",
+      "topic",
+      "partition",
+      "shard",
+      "consumer group",
+      "offset",
+      "ack",
+      "routing key",
+      "JetStream",
+      "AMQP",
+      "pub/sub"
     ],
     "patterns": [
       {
@@ -752,30 +767,42 @@
           {
             "name": "Kafka",
             "tool": "Apache Kafka",
-            "language": "Java",
-            "blurb": "Distributed append-only log for event streaming, messaging, and stream processing.",
-            "url": "https://kafka.apache.org/documentation/"
+            "language": "Java (official client; common clients in Python, Go, JS)",
+            "blurb": "Distributed log for publish, subscribe, consumer groups, partitions, offsets, replay, and stream processing.",
+            "url": "https://kafka.apache.org/documentation/",
+            "timeComplexity": "O(1) per produced/consumed record plus broker, partition, and replication cost",
+            "spaceComplexity": "O(batch size) client memory; broker storage depends on retention and replication",
+            "code": "import org.apache.kafka.clients.consumer.ConsumerRecord;\nimport org.apache.kafka.clients.consumer.ConsumerRecords;\nimport org.apache.kafka.clients.consumer.KafkaConsumer;\nimport org.apache.kafka.clients.producer.KafkaProducer;\nimport org.apache.kafka.clients.producer.ProducerRecord;\nimport java.time.Duration;\nimport java.util.List;\nimport java.util.Properties;\n\nclass KafkaBasics {\n  public static void main(String[] args) {\n    Properties producerProps = new Properties();\n    producerProps.put(\"bootstrap.servers\", \"localhost:9092\");\n    producerProps.put(\"key.serializer\", \"org.apache.kafka.common.serialization.StringSerializer\");\n    producerProps.put(\"value.serializer\", \"org.apache.kafka.common.serialization.StringSerializer\");\n\n    try (KafkaProducer<String, String> producer = new KafkaProducer<>(producerProps)) {\n      producer.send(new ProducerRecord<>(\"orders\", \"order-1\", \"created\"));\n      producer.flush();\n    }\n\n    Properties consumerProps = new Properties();\n    consumerProps.put(\"bootstrap.servers\", \"localhost:9092\");\n    consumerProps.put(\"group.id\", \"billing-service\");\n    consumerProps.put(\"key.deserializer\", \"org.apache.kafka.common.serialization.StringDeserializer\");\n    consumerProps.put(\"value.deserializer\", \"org.apache.kafka.common.serialization.StringDeserializer\");\n    consumerProps.put(\"auto.offset.reset\", \"earliest\");\n\n    try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps)) {\n      consumer.subscribe(List.of(\"orders\"));\n      ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));\n      for (ConsumerRecord<String, String> record : records) {\n        System.out.printf(\"%s:%d %s=%s%n\", record.topic(), record.partition(), record.key(), record.value());\n      }\n    }\n  }\n}"
           },
           {
             "name": "RabbitMQ",
             "tool": "RabbitMQ",
-            "language": "Any",
-            "blurb": "AMQP message broker for queues, routing, pub/sub, and asynchronous integration.",
-            "url": "https://www.rabbitmq.com/docs"
+            "language": "Python (Pika); broker supports AMQP clients in many languages",
+            "blurb": "Queue-oriented broker for declare queue, publish, consume, ack, routing keys, exchanges, and pub/sub patterns.",
+            "url": "https://www.rabbitmq.com/tutorials/tutorial-one-python",
+            "timeComplexity": "O(1) per publish/consume operation plus broker routing and durability cost",
+            "spaceComplexity": "O(message size) client memory; broker queue storage grows with backlog and durability",
+            "code": "import pika\n\nconnection = pika.BlockingConnection(pika.ConnectionParameters(host=\"localhost\"))\nchannel = connection.channel()\n\n# Declare is idempotent: safe for producer and consumer startup.\nchannel.queue_declare(queue=\"orders\", durable=True)\n\n# Publish to the default exchange using the queue name as routing key.\nchannel.basic_publish(\n    exchange=\"\",\n    routing_key=\"orders\",\n    body=b\"order-1 created\",\n    properties=pika.BasicProperties(delivery_mode=2),\n)\n\ndef handle_message(ch, method, properties, body):\n    print(body.decode())\n    ch.basic_ack(delivery_tag=method.delivery_tag)\n\nchannel.basic_consume(queue=\"orders\", on_message_callback=handle_message)\nchannel.start_consuming()"
           },
           {
             "name": "Kinesis",
             "tool": "AWS Kinesis",
-            "language": "Python/Java",
-            "blurb": "AWS managed service for collecting, processing, and analyzing streaming data.",
-            "url": "https://docs.aws.amazon.com/streams/latest/dev/introduction.html"
+            "language": "Python (boto3) / Java SDK",
+            "blurb": "Managed AWS stream for create/list streams, put records, read shards, checkpoints, retention, and enhanced consumers.",
+            "url": "https://docs.aws.amazon.com/boto3/latest/reference/services/kinesis.html",
+            "timeComplexity": "O(1) per put_record/get_records call; throughput is bounded by shard limits",
+            "spaceComplexity": "O(batch size) client memory; service storage depends on stream retention",
+            "code": "import boto3\n\nkinesis = boto3.client(\"kinesis\", region_name=\"us-east-1\")\nstream = \"orders\"\n\n# Write one event. Use put_records for batching in production.\nkinesis.put_record(\n    StreamName=stream,\n    PartitionKey=\"order-1\",\n    Data=b\"order-1 created\",\n)\n\n# Read from a shard. Real consumers checkpoint and loop with backoff.\nshards = kinesis.list_shards(StreamName=stream)[\"Shards\"]\nshard_id = shards[0][\"ShardId\"]\niterator = kinesis.get_shard_iterator(\n    StreamName=stream,\n    ShardId=shard_id,\n    ShardIteratorType=\"TRIM_HORIZON\",\n)[\"ShardIterator\"]\n\nrecords = kinesis.get_records(ShardIterator=iterator, Limit=10)\nfor record in records[\"Records\"]:\n    print(record[\"PartitionKey\"], record[\"Data\"].decode())"
           },
           {
             "name": "NATS",
             "tool": "NATS",
-            "language": "Go",
-            "blurb": "High-performance messaging system for pub/sub, request-reply, and streaming workloads.",
-            "url": "https://docs.nats.io/"
+            "language": "Go (server/client); clients available for many languages",
+            "blurb": "Subject-based messaging for connect, publish, subscribe, queue groups, request-reply, and optional JetStream persistence.",
+            "url": "https://docs.nats.io/using-nats/developer/sending",
+            "timeComplexity": "O(1) per publish/receive operation plus broker routing and subscriber fanout",
+            "spaceComplexity": "O(message size) client memory; JetStream storage depends on retention and acknowledgements",
+            "code": "package main\n\nimport (\n    \"fmt\"\n    \"time\"\n\n    \"github.com/nats-io/nats.go\"\n)\n\nfunc main() {\n    nc, err := nats.Connect(nats.DefaultURL)\n    if err != nil {\n        panic(err)\n    }\n    defer nc.Drain()\n\n    // Subscribe before publishing; Flush waits until the server sees it.\n    _, err = nc.Subscribe(\"orders.created\", func(msg *nats.Msg) {\n        fmt.Printf(\"received: %s\n\", string(msg.Data))\n    })\n    if err != nil {\n        panic(err)\n    }\n    nc.Flush()\n\n    if err := nc.Publish(\"orders.created\", []byte(\"order-1\")); err != nil {\n        panic(err)\n    }\n\n    time.Sleep(200 * time.Millisecond)\n}"
           }
         ]
       },
@@ -814,7 +841,22 @@
       "EDA",
       "data-centric",
       "pipeline",
-      "pipelines"
+      "pipelines",
+      "producer",
+      "consumer",
+      "publish",
+      "subscribe",
+      "queue",
+      "topic",
+      "partition",
+      "shard",
+      "consumer group",
+      "offset",
+      "ack",
+      "routing key",
+      "JetStream",
+      "AMQP",
+      "pub/sub"
     ],
     "bestFor": [
       "Real-time events",
