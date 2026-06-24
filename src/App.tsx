@@ -7,6 +7,17 @@ import CompareTable from './components/CompareTable';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 import { slugify } from './utils/slug';
 
+const scopeOptions = [
+  { value: 'all', label: 'All' },
+  { value: 'architecture', label: 'Architecture' },
+  { value: 'stack', label: 'Stack' },
+  { value: 'runtime', label: 'Runtime' },
+  { value: 'library', label: 'Library' },
+  { value: 'language', label: 'Language' },
+  { value: 'algorithm', label: 'Algorithm' },
+  { value: 'hardware', label: 'Hardware' },
+] as const;
+
 function problemSlugFromHash() {
   const match = window.location.hash.match(/^#\/problem\/([^/]+)$/);
   return match ? decodeURIComponent(match[1]) : '';
@@ -18,6 +29,7 @@ function App() {
   const [activeTag, setActiveTag] = useState('');
   const [focusedProblemSlug, setFocusedProblemSlug] = useState('');
   const [viewMode, setViewMode] = useState<'tree' | 'compare'>('tree');
+  const [scopeLevel, setScopeLevel] = useState('all');
   const [expandedAllVersion, setExpandedAllVersion] = useState(0);
   const [collapsedAllVersion, setCollapsedAllVersion] = useState(0);
 
@@ -48,7 +60,11 @@ function App() {
       ? data.filter((p) => (p.tags || []).some((tag) => tag.toLowerCase() === activeTag.toLowerCase()))
       : data;
 
-    if (!query.trim()) return tagFiltered;
+    const scopeFiltered = scopeLevel === 'all'
+      ? tagFiltered
+      : tagFiltered.filter((p) => p.scopeLevel === scopeLevel);
+
+    if (!query.trim()) return scopeFiltered;
     const q = query.toLowerCase();
 
     const matches = (text?: string) => (text || '').toLowerCase().includes(q);
@@ -63,9 +79,10 @@ function App() {
       matches(s.code) ||
       matches(s.url);
 
-    return tagFiltered.map((p) => {
+    return scopeFiltered.map((p) => {
       const problemMatches =
         matches(p.problem) ||
+        matches(p.scopeLevel) ||
         matches(p.subcategory) ||
         matches(p.description) ||
         matches(p.complexity) ||
@@ -91,7 +108,7 @@ function App() {
       const visible = problemMatches || patterns.length > 0;
       return visible ? { ...p, patterns } : null;
     }).filter(Boolean) as ProblemNode[];
-  }, [activeTag, data, focusedProblem, query]);
+  }, [activeTag, data, focusedProblem, query, scopeLevel]);
 
   const clearFocusedHash = () => {
     if (window.location.hash) {
@@ -109,6 +126,7 @@ function App() {
   const clearFilters = () => {
     setQuery('');
     setActiveTag('');
+    setScopeLevel('all');
     clearFocusedHash();
   };
 
@@ -123,6 +141,7 @@ function App() {
     const slug = slugify(problem);
     setQuery('');
     setActiveTag('');
+    setScopeLevel('all');
     setFocusedProblemSlug(slug);
     window.location.hash = `/problem/${slug}`;
     setExpandedAllVersion((v) => v + 1);
@@ -179,12 +198,28 @@ function App() {
         {error && <div className="card error">Error: {error}</div>}
         {!loading && !error && (
           <>
-            {(query || activeTag || focusedProblem) && (
+            <div className="scope-bar" aria-label="Scope level">
+              {scopeOptions.map((option) => (
+                <button
+                  className={`segment ${scopeLevel === option.value ? 'active' : ''}`}
+                  type="button"
+                  key={option.value}
+                  onClick={() => {
+                    setScopeLevel(option.value);
+                    clearFocusedHash();
+                  }}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            {(query || activeTag || focusedProblem || scopeLevel !== 'all') && (
               <div className="filter-bar">
                 <span>
                   {focusedProblem && <>Focused: <strong>{focusedProblem.problem}</strong></>}
                   {!focusedProblem && activeTag && <>Tag: <strong>{activeTag}</strong></>}
-                  {!focusedProblem && !activeTag && query && <>Search: <strong>{query}</strong></>}
+                  {!focusedProblem && !activeTag && scopeLevel !== 'all' && <>Scope: <strong>{scopeLevel}</strong></>}
+                  {!focusedProblem && !activeTag && scopeLevel === 'all' && query && <>Search: <strong>{query}</strong></>}
                 </span>
                 <button className="btn secondary compact" type="button" onClick={clearFilters}>Clear</button>
               </div>

@@ -80,6 +80,24 @@ const scenarios = [
     },
     expectedTop: ['Machine Learning / AI', 'AI / LLM Systems', 'Vision / World Representation Models'],
   },
+  {
+    name: 'System architecture',
+    answers: {
+      domain: 'System architecture',
+      scale: 'Distributed system',
+      risk: 'Operational maturity',
+    },
+    expectedTop: ['System Architecture Patterns', 'Observability', 'Messaging / Coordination'],
+  },
+  {
+    name: 'Hardware/runtime performance',
+    answers: {
+      domain: 'Runtime, compiler, or hardware',
+      scale: 'Hardware-specific target',
+      risk: 'Speed or latency',
+    },
+    expectedTop: ['Performance / Hardware Acceleration', 'Runtime / Compiler Choices'],
+  },
 ];
 
 const errors = [];

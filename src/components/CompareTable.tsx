@@ -29,7 +29,7 @@ function short(value?: string) {
 }
 
 function problemMeta(problem: ProblemNode) {
-  return [problem.complexity, problem.setupCost, problem.maturity].filter(Boolean).join(' / ');
+  return [problem.scopeLevel, problem.complexity, problem.setupCost, problem.maturity].filter(Boolean).join(' / ');
 }
 
 export default function CompareTable({ data, onFocusProblem }: Props) {
@@ -54,6 +54,7 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
             <tr>
               <th>Problem</th>
               <th>Pattern</th>
+              <th>Scope</th>
               <th>Solution</th>
               <th>Tool</th>
               <th>Language</th>
@@ -84,6 +85,7 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
                   <span className="table-subtext">{problemMeta(row.problem)}</span>
                 </td>
                 <td>{row.patternName}</td>
+                <td>{short(row.problem.scopeLevel)}</td>
                 <td>
                   <strong>{row.solution.name}</strong>
                   {row.solution.blurb && <span className="table-subtext">{row.solution.blurb}</span>}

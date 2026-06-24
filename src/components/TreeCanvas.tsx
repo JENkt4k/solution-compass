@@ -154,6 +154,7 @@ export default function TreeCanvas({
                 {problem.subcategory && <span className="muted"><em>{highlight(problem.subcategory, query)}</em></span>}
                 {problem.description && <span className="description">{highlight(problem.description, query)}</span>}
                 <span className="decision-meta card-meta">
+                  {problem.scopeLevel && <span>Scope: {highlight(problem.scopeLevel, query)}</span>}
                   {problem.complexity && <span>Complexity: {highlight(problem.complexity, query)}</span>}
                   {problem.setupCost && <span>Setup: {highlight(problem.setupCost, query)}</span>}
                   {problem.maturity && <span>{highlight(problem.maturity, query)}</span>}

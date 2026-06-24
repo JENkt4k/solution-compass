@@ -170,7 +170,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Single process to distributed systems",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Search / Retrieval",
@@ -338,7 +339,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Thousands to billions of documents",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Workflow / State Modeling",
@@ -505,7 +507,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Team workflows to distributed orchestration",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Batch / ETL Processing",
@@ -690,7 +693,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Files to data lakes and warehouses",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Stream / Event Processing",
@@ -875,7 +879,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Service events to high-volume streams",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Caching",
@@ -938,7 +943,8 @@
     "complexity": "Low",
     "maturity": "Mature",
     "scale": "Single app to global edge",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Security & Cryptography",
@@ -1129,7 +1135,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Single app to enterprise identity",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Machine Learning / AI",
@@ -1269,7 +1276,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Prototype notebooks to production model services",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "library"
   },
   {
     "problem": "CRUD & Data Modeling",
@@ -1389,7 +1397,8 @@
     "complexity": "Low",
     "maturity": "Mature",
     "scale": "Small apps to high-volume transactional systems",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Scheduling / Optimization",
@@ -1450,7 +1459,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Small schedules to enterprise planning",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Graph Algorithms & Graph Data",
@@ -1580,7 +1590,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "In-memory graphs to graph databases",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Constraint Solving",
@@ -1708,7 +1719,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Puzzles to industrial optimization",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Formal Verification",
@@ -1767,7 +1779,8 @@
     "complexity": "High",
     "maturity": "Specialized",
     "scale": "Critical components and protocols",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Observability",
@@ -1834,7 +1847,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Single service to distributed platforms",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Messaging / Coordination",
@@ -1895,7 +1909,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Clusters and distributed services",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "State-space search",
@@ -1958,7 +1973,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Small puzzles to large planning spaces",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Heuristic search",
@@ -2027,7 +2043,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Games, routing, and planning spaces",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Linear/Integer Programming",
@@ -2084,7 +2101,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Small models to enterprise optimization",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Greedy Algorithms",
@@ -2154,7 +2172,8 @@
     "complexity": "Low",
     "maturity": "Mature",
     "scale": "Small to very large algorithmic workloads",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Dynamic Programming",
@@ -2223,7 +2242,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Algorithmic problems with bounded state spaces",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Network flow",
@@ -2323,7 +2343,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Small graphs to large optimization networks",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Logic programming",
@@ -2378,7 +2399,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Rule engines and symbolic reasoning systems",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Functional pipelines",
@@ -2432,7 +2454,8 @@
     "complexity": "Low",
     "maturity": "Mature",
     "scale": "Local collections to stream processors",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Distributed consensus",
@@ -2495,7 +2518,8 @@
     "complexity": "High",
     "maturity": "Specialized",
     "scale": "Distributed databases and control planes",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "architecture"
   },
   {
     "problem": "Formal methods & model checking",
@@ -2551,7 +2575,8 @@
     "complexity": "High",
     "maturity": "Specialized",
     "scale": "Focused critical subsystems",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "Stochastic or discrete-event simulation",
@@ -2605,7 +2630,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Small models to operational simulations",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "algorithm"
   },
   {
     "problem": "AI / LLM Systems",
@@ -2715,7 +2741,8 @@
     "complexity": "High",
     "maturity": "Rapidly evolving",
     "scale": "Local prototype to production AI service",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "LLM Memory / Context Systems",
@@ -2798,7 +2825,8 @@
     "complexity": "Medium",
     "maturity": "Emerging",
     "scale": "Single-user local apps to agent platforms",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Vector Search / Embeddings",
@@ -2918,7 +2946,8 @@
     "complexity": "Medium",
     "maturity": "Mature but evolving",
     "scale": "Local indexes to billion-vector services",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Model Adaptation",
@@ -3008,7 +3037,8 @@
     "complexity": "High",
     "maturity": "Rapidly evolving",
     "scale": "Single adapter to model operations pipeline",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "library"
   },
   {
     "problem": "Generative Media",
@@ -3091,7 +3121,8 @@
     "complexity": "High",
     "maturity": "Rapidly evolving",
     "scale": "Local GPU workflows to hosted generation services",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
   },
   {
     "problem": "Vision / World Representation Models",
@@ -3174,7 +3205,8 @@
     "complexity": "High",
     "maturity": "Research / emerging",
     "scale": "Research prototypes to specialized perception systems",
-    "setupCost": "High"
+    "setupCost": "High",
+    "scopeLevel": "library"
   },
   {
     "problem": "AI / App Deployment & Serving",
@@ -3294,6 +3326,535 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Static sites to distributed model-serving platforms",
+    "setupCost": "Medium",
+    "scopeLevel": "stack"
+  },
+  {
+    "problem": "System Architecture Patterns",
+    "scopeLevel": "architecture",
+    "subcategory": "Production-scale service, data, AI, and workflow architecture",
+    "description": "Choose high-impact architecture patterns for common production situations before selecting specific stacks or libraries.",
+    "tags": [
+      "architecture",
+      "system design",
+      "large-scale production patterns",
+      "modular monolith",
+      "microservices",
+      "event-driven architecture",
+      "CQRS",
+      "event sourcing",
+      "RAG architecture",
+      "model serving architecture",
+      "lakehouse",
+      "streaming analytics",
+      "offline-first",
+      "SLO",
+      "idempotency",
+      "backpressure",
+      "schema evolution",
+      "canary deploy",
+      "blue-green deploy"
+    ],
+    "patterns": [
+      {
+        "name": "Service Architecture",
+        "solutions": [
+          {
+            "name": "Modular monolith",
+            "tool": "Architecture pattern",
+            "language": "Any",
+            "blurb": "Keeps one deployable unit with explicit internal boundaries; often the best default until scale or ownership requires distribution.",
+            "url": "https://martinfowler.com/bliki/MonolithFirst.html"
+          },
+          {
+            "name": "Microservices",
+            "tool": "Architecture pattern",
+            "language": "Any",
+            "blurb": "Splits independently deployable services around ownership and scaling boundaries; requires strong observability and platform discipline.",
+            "url": "https://martinfowler.com/articles/microservices.html"
+          },
+          {
+            "name": "Event-driven architecture",
+            "tool": "Architecture pattern",
+            "language": "Any",
+            "blurb": "Decouples producers and consumers with events, queues, streams, idempotency, retries, ordering, and backpressure controls.",
+            "url": "https://aws.amazon.com/event-driven-architecture/"
+          },
+          {
+            "name": "CQRS / Event sourcing",
+            "tool": "Architecture pattern",
+            "language": "Any",
+            "blurb": "Separates write decisions from read models; event sourcing preserves a durable event log when auditability and replay matter.",
+            "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs"
+          }
+        ]
+      },
+      {
+        "name": "Data and AI Architecture",
+        "solutions": [
+          {
+            "name": "Lakehouse / ELT architecture",
+            "tool": "Data architecture pattern",
+            "language": "SQL/Python",
+            "blurb": "Stores raw and curated data in warehouse/lakehouse layers with contracts, lineage, tests, and transformation orchestration.",
+            "url": "https://docs.getdbt.com/docs/introduction"
+          },
+          {
+            "name": "Streaming analytics architecture",
+            "tool": "Data architecture pattern",
+            "language": "Any",
+            "blurb": "Uses streams, consumers, windows, state stores, and sinks for low-latency metrics, alerts, and operational data products.",
+            "url": "https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/overview/"
+          },
+          {
+            "name": "RAG architecture",
+            "tool": "AI architecture pattern",
+            "language": "Any",
+            "blurb": "Combines ingestion, chunking, embeddings, retrieval, reranking, prompt assembly, generation, citation, and evaluation.",
+            "url": "https://developers.openai.com/api/docs/guides/retrieval"
+          },
+          {
+            "name": "Model serving architecture",
+            "tool": "AI deployment pattern",
+            "language": "API/Python/C++",
+            "blurb": "Chooses managed APIs, self-hosted inference, batching, caching, observability, safety filters, and rollout controls.",
+            "url": "https://docs.vllm.ai/"
+          }
+        ]
+      },
+      {
+        "name": "Large-scale Production Practices",
+        "solutions": [
+          {
+            "name": "Reliability envelope",
+            "tool": "Production practice set",
+            "language": "Any",
+            "blurb": "SLOs, error budgets, health checks, observability, canaries, rollback plans, and incident feedback loops.",
+            "url": "https://sre.google/sre-book/service-level-objectives/"
+          },
+          {
+            "name": "Resilience patterns",
+            "tool": "Production practice set",
+            "language": "Any",
+            "blurb": "Timeouts, retries with jitter, idempotency keys, circuit breakers, bulkheads, queues, and backpressure.",
+            "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/"
+          },
+          {
+            "name": "Data contract practices",
+            "tool": "Production practice set",
+            "language": "Any",
+            "blurb": "Schema evolution, compatibility checks, ownership, lineage, and consumer-driven expectations for data and events.",
+            "url": "https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "service decomposition",
+      "event-driven systems",
+      "RAG apps",
+      "streaming analytics",
+      "production rollout",
+      "reliability",
+      "SLOs",
+      "idempotency",
+      "schema evolution"
+    ],
+    "bestFor": [
+      "Choosing system shape before stack/library selection",
+      "High-impact production problems",
+      "Cross-team service and data systems",
+      "AI application architecture"
+    ],
+    "avoidWhen": [
+      "A single local script or one-off analysis solves the problem",
+      "The team has no operational ownership for the architecture chosen"
+    ],
+    "tradeoffs": [
+      "Architecture patterns improve repeatability but can add ceremony",
+      "Distributed designs increase coordination, observability, and failure-mode costs"
+    ],
+    "complexity": "High",
+    "maturity": "Mature",
+    "scale": "Single product teams to large distributed systems",
+    "setupCost": "High"
+  },
+  {
+    "problem": "Performance / Hardware Acceleration",
+    "scopeLevel": "hardware",
+    "subcategory": "CPU, SIMD, multicore, GPU, CUDA, ROCm, x86, ARM, and accelerator choices",
+    "description": "Match compute-heavy workloads to hardware and parallelism models before optimizing code or choosing low-level libraries.",
+    "tags": [
+      "hardware",
+      "performance",
+      "SIMD",
+      "MIMD",
+      "CUDA",
+      "ROCm",
+      "GPU",
+      "CPU",
+      "x86",
+      "ARM",
+      "AVX2",
+      "AVX-512",
+      "NEON",
+      "OpenMP",
+      "MPI",
+      "BLAS",
+      "LAPACK",
+      "vectorization",
+      "memory bandwidth"
+    ],
+    "patterns": [
+      {
+        "name": "CPU Parallelism",
+        "solutions": [
+          {
+            "name": "SIMD vectorization",
+            "tool": "CPU instruction-level parallelism",
+            "language": "C/C++/Rust/Compiler intrinsics",
+            "blurb": "Use when the same operation applies to contiguous data; best for numeric loops, image/audio kernels, parsing, compression, and vectorized scans.",
+            "url": "https://en.cppreference.com/w/cpp/experimental/simd",
+            "timeComplexity": "Same big-O as scalar code, lower constant factor by processing multiple lanes per instruction",
+            "spaceComplexity": "Usually O(1) extra; alignment/padding may add small buffers"
+          },
+          {
+            "name": "MIMD / multicore parallelism",
+            "tool": "Thread/process parallelism",
+            "language": "C++/Rust/Go/Java/Python native workers",
+            "blurb": "Use when independent tasks or partitions can run on multiple cores; watch synchronization, contention, false sharing, and memory bandwidth.",
+            "url": "https://www.openmp.org/specifications/",
+            "timeComplexity": "Ideal O(work / cores), limited by serial work, coordination, and bandwidth",
+            "spaceComplexity": "O(worker state + partition buffers)"
+          },
+          {
+            "name": "x86 vs ARM CPU choice",
+            "tool": "Hardware platform decision",
+            "language": "Any native/runtime language",
+            "blurb": "x86 often has broad server/library maturity and AVX options; ARM often wins on power/cost density and NEON/SVE-supported workloads.",
+            "url": "https://developer.arm.com/documentation/102474/latest/"
+          }
+        ]
+      },
+      {
+        "name": "GPU and Accelerator Compute",
+        "solutions": [
+          {
+            "name": "CUDA",
+            "tool": "NVIDIA GPU compute platform",
+            "language": "CUDA C++/Python libraries",
+            "blurb": "Use for massively parallel numeric work, deep learning, simulation, and vector/matrix workloads when data transfer overhead is amortized.",
+            "url": "https://docs.nvidia.com/cuda/",
+            "timeComplexity": "Same algorithmic big-O, but parallel throughput can reduce wall time for suitable kernels",
+            "spaceComplexity": "Requires device memory for inputs, outputs, and intermediate tensors/buffers"
+          },
+          {
+            "name": "ROCm / HIP",
+            "tool": "AMD GPU compute platform",
+            "language": "HIP/C++/Python libraries",
+            "blurb": "Use for AMD GPU acceleration where ROCm-supported hardware and libraries match the workload and deployment constraints.",
+            "url": "https://rocm.docs.amd.com/"
+          },
+          {
+            "name": "GPU vs CPU decision",
+            "tool": "Performance design choice",
+            "language": "Any",
+            "blurb": "Prefer GPU for high arithmetic intensity and parallel kernels; prefer CPU when branching, latency, small batches, or transfer overhead dominates.",
+            "url": "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html"
+          }
+        ]
+      },
+      {
+        "name": "Optimized Numeric Libraries",
+        "solutions": [
+          {
+            "name": "BLAS/LAPACK",
+            "tool": "Dense linear algebra libraries",
+            "language": "Fortran/C/C++/Python/R",
+            "blurb": "Use vendor-optimized matrix/vector kernels instead of hand-rolling dense linear algebra.",
+            "url": "https://netlib.org/blas/"
+          },
+          {
+            "name": "Columnar/vectorized execution",
+            "tool": "Data processing execution model",
+            "language": "SQL/C++/Rust/Java",
+            "blurb": "Use for analytics scans and aggregations where batches, cache locality, compression, and SIMD-friendly execution dominate.",
+            "url": "https://arrow.apache.org/docs/format/Columnar.html"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "matrix multiplication",
+      "embedding search",
+      "image processing",
+      "simulation",
+      "analytics scans",
+      "model inference",
+      "compression",
+      "parsing"
+    ],
+    "bestFor": [
+      "Compute-heavy workloads",
+      "High-throughput analytics",
+      "ML inference/training",
+      "Tight latency or cost targets after algorithmic wins are exhausted"
+    ],
+    "avoidWhen": [
+      "The workload is I/O-bound or small batch",
+      "The team cannot test on target hardware",
+      "A library already solves the bottleneck well"
+    ],
+    "tradeoffs": [
+      "Hardware acceleration improves throughput but adds portability and deployment constraints",
+      "GPU speedups can disappear if transfer overhead or branching dominates"
+    ],
+    "complexity": "High",
+    "maturity": "Mature but hardware-dependent",
+    "scale": "Single machine kernels to distributed accelerated clusters",
+    "setupCost": "High"
+  },
+  {
+    "problem": "Runtime / Compiler Choices",
+    "scopeLevel": "runtime",
+    "subcategory": "Language runtime, compiler, native extension, JIT, AOT, WASM, and portability choices",
+    "description": "Choose runtimes and compiler strategies based on latency, throughput, safety, deployment, ecosystem, and team skill.",
+    "tags": [
+      "runtime",
+      "compiler",
+      "JIT",
+      "AOT",
+      "WASM",
+      "native extension",
+      "C",
+      "C++",
+      "Rust",
+      "Go",
+      "Java",
+      "JVM",
+      "Node.js",
+      "Python",
+      "TypeScript",
+      "LLVM",
+      "GraalVM",
+      "WebAssembly"
+    ],
+    "patterns": [
+      {
+        "name": "Runtime Families",
+        "solutions": [
+          {
+            "name": "Python + native libraries",
+            "tool": "Runtime/ecosystem choice",
+            "language": "Python/C/C++/Rust",
+            "blurb": "Best when productivity and data/AI ecosystem matter; push hot loops into NumPy, PyTorch, Rust, Cython, or compiled extensions.",
+            "url": "https://numpy.org/doc/stable/user/whatisnumpy.html"
+          },
+          {
+            "name": "JVM",
+            "tool": "Managed runtime",
+            "language": "Java/Kotlin/Scala",
+            "blurb": "Strong for long-running services, mature tooling, concurrency, GC tuning, and enterprise ecosystems.",
+            "url": "https://docs.oracle.com/en/java/"
+          },
+          {
+            "name": "Go",
+            "tool": "Compiled runtime",
+            "language": "Go",
+            "blurb": "Good default for network services, CLIs, static binaries, simple concurrency, and operationally small deployments.",
+            "url": "https://go.dev/doc/"
+          },
+          {
+            "name": "Rust",
+            "tool": "Native compiled language",
+            "language": "Rust",
+            "blurb": "Use when memory safety, predictable performance, native integration, and low runtime overhead matter.",
+            "url": "https://doc.rust-lang.org/book/"
+          }
+        ]
+      },
+      {
+        "name": "Compilation and Portability",
+        "solutions": [
+          {
+            "name": "JIT vs AOT",
+            "tool": "Compilation strategy",
+            "language": "JVM/.NET/JavaScript/native",
+            "blurb": "JIT can optimize hot paths at runtime; AOT improves startup, deployment predictability, and constrained environments.",
+            "url": "https://www.graalvm.org/latest/reference-manual/native-image/"
+          },
+          {
+            "name": "WebAssembly",
+            "tool": "Portable bytecode runtime",
+            "language": "Rust/C/C++/AssemblyScript",
+            "blurb": "Use for sandboxed portable modules in browsers, edge runtimes, plugins, or cross-language embedding.",
+            "url": "https://webassembly.org/docs/use-cases/"
+          },
+          {
+            "name": "Native extensions",
+            "tool": "Performance escape hatch",
+            "language": "Python/Node/Ruby + C/C++/Rust",
+            "blurb": "Use when most app code benefits from a high-level language but hotspots need compiled speed or system-library access.",
+            "url": "https://setuptools.pypa.io/en/latest/userguide/ext_modules.html"
+          }
+        ]
+      },
+      {
+        "name": "Compiler Toolchains",
+        "solutions": [
+          {
+            "name": "LLVM/Clang",
+            "tool": "Compiler infrastructure",
+            "language": "C/C++/Rust/Swift and more",
+            "blurb": "Broad compiler backend and tooling ecosystem for native optimization, sanitizers, static analysis, and custom language work.",
+            "url": "https://llvm.org/docs/"
+          },
+          {
+            "name": "GCC",
+            "tool": "Native compiler suite",
+            "language": "C/C++/Fortran/Ada and more",
+            "blurb": "Mature native compiler suite with broad platform support and strong optimization for systems code.",
+            "url": "https://gcc.gnu.org/onlinedocs/"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "service runtime choice",
+      "CLI tools",
+      "native extensions",
+      "browser plugins",
+      "edge compute",
+      "startup time",
+      "memory safety",
+      "high-throughput services"
+    ],
+    "bestFor": [
+      "Choosing implementation platform",
+      "Balancing speed, safety, ecosystem, and operability",
+      "Deciding when to use native code or WASM"
+    ],
+    "avoidWhen": [
+      "A proven team standard already fits the workload",
+      "The decision is driven by novelty rather than constraints"
+    ],
+    "tradeoffs": [
+      "Runtime choice affects hiring, libraries, deployment, latency, memory, and observability",
+      "Compiler performance wins can increase build and portability complexity"
+    ],
+    "complexity": "Medium",
+    "maturity": "Mature",
+    "scale": "Scripts to production platforms and native systems",
     "setupCost": "Medium"
+  },
+  {
+    "problem": "Algorithmic Interview Patterns",
+    "scopeLevel": "algorithm",
+    "subcategory": "Archival interview-style patterns and reusable problem classes",
+    "description": "Distills many coding-challenge problems into reusable classes, while keeping trick-only variants archival unless they map to real production work.",
+    "tags": [
+      "interview patterns",
+      "LeetCode",
+      "archival",
+      "two pointers",
+      "sliding window",
+      "prefix sums",
+      "binary search",
+      "heap",
+      "monotonic stack",
+      "union find",
+      "trie",
+      "backtracking",
+      "dynamic programming",
+      "graph traversal"
+    ],
+    "patterns": [
+      {
+        "name": "Common Reusable Patterns",
+        "solutions": [
+          {
+            "name": "Two pointers / sliding window",
+            "tool": "Algorithmic pattern",
+            "language": "Any",
+            "blurb": "Useful for contiguous sequence scans, streaming windows, deduplication, and bounded-memory filters; many puzzle variants are archival.",
+            "url": "https://cp-algorithms.com/others/maximum_average_segment.html",
+            "timeComplexity": "Usually O(n)",
+            "spaceComplexity": "Usually O(1) to O(window)"
+          },
+          {
+            "name": "Prefix sums / difference arrays",
+            "tool": "Algorithmic pattern",
+            "language": "Any",
+            "blurb": "Useful for range queries, cumulative metrics, histograms, and batch interval updates.",
+            "url": "https://cp-algorithms.com/data_structures/fenwick.html",
+            "timeComplexity": "O(n) preprocessing; O(1) simple range sums or O(log n) with Fenwick tree",
+            "spaceComplexity": "O(n)"
+          },
+          {
+            "name": "Heap / priority queue",
+            "tool": "Data structure",
+            "language": "Any",
+            "blurb": "Useful for scheduling, top-k, merge streams, shortest paths, retries, and priority work queues.",
+            "url": "https://docs.python.org/3/library/heapq.html",
+            "timeComplexity": "O(log n) push/pop; O(1) peek",
+            "spaceComplexity": "O(n)"
+          },
+          {
+            "name": "Union-find",
+            "tool": "Data structure",
+            "language": "Any",
+            "blurb": "Useful for connectivity, grouping, Kruskal MST, image/component labeling, and equivalence classes.",
+            "url": "https://cp-algorithms.com/data_structures/disjoint_set_union.html",
+            "timeComplexity": "Near O(1) amortized with path compression and union by rank",
+            "spaceComplexity": "O(n)"
+          }
+        ]
+      },
+      {
+        "name": "When To Deprioritize",
+        "solutions": [
+          {
+            "name": "Trick-only puzzle variants",
+            "tool": "Archival guidance",
+            "language": "Any",
+            "blurb": "Keep as archival when the pattern is mainly an interview trick and production code would use a database, library, solver, or clearer custom implementation.",
+            "url": "https://en.wikipedia.org/wiki/Programming_interview"
+          },
+          {
+            "name": "Library-replaced algorithms",
+            "tool": "Pragmatic implementation guidance",
+            "language": "Any",
+            "blurb": "Prefer maintained libraries for search, optimization, parsing, crypto, ML, and graph analytics unless custom constraints justify hand-rolling.",
+            "url": "https://opensource.guide/best-practices/"
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "top-k",
+      "range queries",
+      "scheduling",
+      "connectivity",
+      "deduplication",
+      "streaming windows",
+      "archival interview prep"
+    ],
+    "bestFor": [
+      "Recognizing reusable algorithmic shapes",
+      "Choosing hand-rolled code only when constraints justify it",
+      "Archiving puzzle variants without overemphasizing them"
+    ],
+    "avoidWhen": [
+      "A database query, library, solver, or platform primitive solves the real problem more reliably",
+      "The trick does not map to production constraints"
+    ],
+    "tradeoffs": [
+      "Pattern literacy helps implementation judgment but can overfit to puzzle framing",
+      "Production systems often need libraries, data modeling, and observability more than clever code"
+    ],
+    "complexity": "Medium",
+    "maturity": "Archival / educational",
+    "scale": "Local implementation details to selected production hot paths",
+    "setupCost": "Low"
   }
 ]

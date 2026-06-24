@@ -4,6 +4,7 @@ const DATA_PATH = new URL('../public/complete-tree-data.json', import.meta.url);
 const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 const errors = [];
 const warnings = [];
+const scopeLevels = new Set(['architecture', 'stack', 'runtime', 'library', 'language', 'algorithm', 'hardware']);
 
 function label(problem, pattern, solution) {
   const parts = [problem?.problem, pattern?.name, solution?.name].filter(Boolean);
@@ -54,10 +55,15 @@ if (!Array.isArray(data)) {
     requireStringArray(problem.bestFor, 'bestFor', problemContext);
     requireStringArray(problem.avoidWhen, 'avoidWhen', problemContext);
     requireStringArray(problem.tradeoffs, 'tradeoffs', problemContext);
+    requireString(problem.scopeLevel, 'scopeLevel', problemContext);
     requireString(problem.complexity, 'complexity', problemContext);
     requireString(problem.maturity, 'maturity', problemContext);
     requireString(problem.scale, 'scale', problemContext);
     requireString(problem.setupCost, 'setupCost', problemContext);
+
+    if (problem.scopeLevel && !scopeLevels.has(problem.scopeLevel)) {
+      errors.push(`${problemContext}: invalid scopeLevel "${problem.scopeLevel}"`);
+    }
 
     if (!Array.isArray(problem.patterns) || problem.patterns.length === 0) {
       errors.push(`${problemContext}: no patterns`);

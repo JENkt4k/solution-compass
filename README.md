@@ -11,8 +11,9 @@ MVP+ is functional and deployable on GitHub Pages.
 - Searchable catalog of problems, patterns, tools, algorithms, examples, snippets, and references.
 - Shareable deep links for focused problem areas, such as `#/problem/vector-search-embeddings`.
 - Clickable tag chips for quick taxonomy filtering.
+- Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
-- Normalized dataset with `33` problem areas, `60` patterns, and `189` solutions.
+- Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
@@ -36,6 +37,7 @@ MVP+ is functional and deployable on GitHub Pages.
 | Deep links | Problem cards can be focused and shared with `#/problem/<slug>` URLs. |
 | Search | Full-text filtering across titles, tags, examples, decision metadata, patterns, solutions, tools, languages, blurbs, snippets, and URLs. |
 | Tag filters | Problem tags are clickable chips for quick exact-tag filtering. |
+| Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -63,6 +65,7 @@ export interface Pattern {
 
 export interface ProblemNode {
   problem: string;
+  scopeLevel?: 'architecture' | 'stack' | 'runtime' | 'library' | 'language' | 'algorithm' | 'hardware';
   tags: string[];
   subcategory?: string;
   description?: string;
@@ -101,6 +104,7 @@ The validator fails on:
 - Missing solution `blurb`, `url`, or `language`.
 - Missing time/space complexity for snippet-bearing solutions.
 - Missing problem decision metadata.
+- Missing or invalid problem `scopeLevel`.
 - Invalid URLs.
 - Generic `tool: "Example"` placeholders.
 - Duplicate problem names.
@@ -128,7 +132,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 
 ## Current Gaps
 
-- Wizard scoring is transparent and useful, but still simple keyword/tag scoring rather than a full rules engine.
+- Wizard scoring is transparent and useful, but still weighted-rule scoring rather than a full rules engine.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - Tag filtering is exact-match only; it does not yet support AND/OR combinations.
 - No editable dataset UI yet.

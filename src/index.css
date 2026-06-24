@@ -157,6 +157,17 @@ input {
   color: #d5dde5;
 }
 
+.scope-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -353,7 +364,7 @@ input {
 
 .compare-table {
   width: 100%;
-  min-width: 1120px;
+  min-width: 1220px;
   border-collapse: collapse;
 }
 

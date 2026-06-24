@@ -60,6 +60,24 @@ export const questions = [
           'Model Adaptation': 4,
         },
       }),
+      option('System architecture', ['architecture', 'system design', 'microservices', 'event-driven architecture', 'CQRS', 'SLO', 'idempotency', 'backpressure'], {
+        boost: {
+          'System Architecture Patterns': 14,
+          'Stream / Event Processing': 5,
+          'Messaging / Coordination': 5,
+          'Observability': 4,
+        },
+      }),
+      option('Runtime, compiler, or hardware', ['runtime', 'compiler', 'hardware', 'SIMD', 'CUDA', 'ROCm', 'x86', 'ARM', 'WASM', 'JIT', 'AOT'], {
+        boost: {
+          'Runtime / Compiler Choices': 12,
+          'Performance / Hardware Acceleration': 12,
+        },
+        suppress: {
+          'AI / LLM Systems': 3,
+          'CRUD & Data Modeling': 3,
+        },
+      }),
     ],
   },
   {
@@ -163,13 +181,16 @@ export const questions = [
         boost: { Observability: 7, 'CRUD & Data Modeling': 5, 'Search / Retrieval': 4, 'AI / App Deployment & Serving': 4 },
       }),
       option('Distributed system', ['distributed', 'consensus', 'stream', 'coordination', 'cluster'], {
-        boost: { 'Distributed consensus': 9, 'Stream / Event Processing': 7, 'Messaging / Coordination': 6 },
+        boost: { 'Distributed consensus': 9, 'Stream / Event Processing': 7, 'Messaging / Coordination': 6, 'System Architecture Patterns': 5 },
       }),
       option('Large dataset', ['large', 'warehouse', 'index', 'documents', 'data lake'], {
         boost: { 'Batch / ETL Processing': 8, 'Search / Retrieval': 6, 'Vector Search / Embeddings': 6 },
       }),
       option('Local model or edge', ['local', 'local LLM', 'edge', 'self-hosted inference', 'self-hosted', 'model serving'], {
         boost: { 'AI / App Deployment & Serving': 10, 'LLM Memory / Context Systems': 6, 'Model Adaptation': 5 },
+      }),
+      option('Hardware-specific target', ['hardware', 'GPU', 'CPU', 'SIMD', 'CUDA', 'ROCm', 'x86', 'ARM', 'edge'], {
+        boost: { 'Performance / Hardware Acceleration': 12, 'Runtime / Compiler Choices': 5 },
       }),
     ],
   },
@@ -189,7 +210,7 @@ export const questions = [
         boost: { Observability: 8, 'AI / App Deployment & Serving': 5, 'Search / Retrieval': 4 },
       }),
       option('Speed or latency', ['latency', 'cache', 'real-time', 'search', 'heuristic'], {
-        boost: { Caching: 9, 'Search / Retrieval': 5, 'Stream / Event Processing': 4, 'Heuristic search': 4 },
+        boost: { Caching: 9, 'Search / Retrieval': 5, 'Stream / Event Processing': 4, 'Heuristic search': 4, 'Performance / Hardware Acceleration': 4 },
       }),
       option('Privacy or control', ['local', 'self-hosted inference', 'self-hosted', 'privacy', 'local LLM', 'controlled infrastructure'], {
         boost: { 'AI / App Deployment & Serving': 9, 'LLM Memory / Context Systems': 7, 'Security & Cryptography': 4 },
@@ -227,6 +248,7 @@ function searchableText(node) {
 
   return normalize([
     node.problem,
+    node.scopeLevel || '',
     node.subcategory || '',
     node.description || '',
     ...(node.tags || []),
