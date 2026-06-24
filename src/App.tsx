@@ -1,18 +1,52 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import TreeCanvas from './components/TreeCanvas';
 import SearchBar from './components/SearchBar';
 import { InstallPrompt } from './components/InstallPrompt';
 import Wizard from './components/Wizard';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
+import { slugify } from './utils/slug';
+
+function problemSlugFromHash() {
+  const match = window.location.hash.match(/^#\/problem\/([^/]+)$/);
+  return match ? decodeURIComponent(match[1]) : '';
+}
 
 function App() {
   const { data, loading, error } = useTreeData();
   const [query, setQuery] = useState('');
+  const [activeTag, setActiveTag] = useState('');
+  const [focusedProblemSlug, setFocusedProblemSlug] = useState('');
   const [expandedAllVersion, setExpandedAllVersion] = useState(0);
   const [collapsedAllVersion, setCollapsedAllVersion] = useState(0);
 
+  useEffect(() => {
+    const syncHash = () => {
+      const slug = problemSlugFromHash();
+      setFocusedProblemSlug(slug);
+      if (slug) {
+        setActiveTag('');
+        setExpandedAllVersion((v) => v + 1);
+      }
+    };
+
+    syncHash();
+    window.addEventListener('hashchange', syncHash);
+    return () => window.removeEventListener('hashchange', syncHash);
+  }, []);
+
+  const focusedProblem = useMemo(
+    () => data.find((problem) => slugify(problem.problem) === focusedProblemSlug),
+    [data, focusedProblemSlug],
+  );
+
   const filtered: ProblemNode[] = useMemo(() => {
-    if (!query.trim()) return data;
+    if (focusedProblem) return [focusedProblem];
+
+    const tagFiltered = activeTag
+      ? data.filter((p) => (p.tags || []).some((tag) => tag.toLowerCase() === activeTag.toLowerCase()))
+      : data;
+
+    if (!query.trim()) return tagFiltered;
     const q = query.toLowerCase();
 
     const matches = (text?: string) => (text || '').toLowerCase().includes(q);
@@ -27,7 +61,7 @@ function App() {
       matches(s.code) ||
       matches(s.url);
 
-    return data.map((p) => {
+    return tagFiltered.map((p) => {
       const problemMatches =
         matches(p.problem) ||
         matches(p.subcategory) ||
@@ -55,11 +89,45 @@ function App() {
       const visible = problemMatches || patterns.length > 0;
       return visible ? { ...p, patterns } : null;
     }).filter(Boolean) as ProblemNode[];
-  }, [data, query]);
+  }, [activeTag, data, focusedProblem, query]);
+
+  const clearFocusedHash = () => {
+    if (window.location.hash) {
+      window.history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+    setFocusedProblemSlug('');
+  };
+
+  const updateQuery = (value: string) => {
+    setQuery(value);
+    setActiveTag('');
+    clearFocusedHash();
+  };
+
+  const clearFilters = () => {
+    setQuery('');
+    setActiveTag('');
+    clearFocusedHash();
+  };
+
+  const selectTag = (tag: string) => {
+    setQuery('');
+    setActiveTag(tag);
+    clearFocusedHash();
+    setExpandedAllVersion((v) => v + 1);
+  };
+
+  const focusProblem = (problem: string) => {
+    const slug = slugify(problem);
+    setQuery('');
+    setActiveTag('');
+    setFocusedProblemSlug(slug);
+    window.location.hash = `/problem/${slug}`;
+    setExpandedAllVersion((v) => v + 1);
+  };
 
   const focusRecommendation = (value: string) => {
-    setQuery(value);
-    setExpandedAllVersion((v) => v + 1);
+    focusProblem(value);
   };
 
   return (
@@ -73,7 +141,7 @@ function App() {
           </div>
         </div>
         <div className="actions">
-          <SearchBar value={query} onChange={setQuery} placeholder="Search problems, patterns, tools, tags..." />
+          <SearchBar value={query} onChange={updateQuery} placeholder="Search problems, patterns, tools, tags..." />
           <button className="btn" onClick={() => setExpandedAllVersion((v) => v + 1)} title="Expand all">Expand all</button>
           <button className="btn secondary" onClick={() => setCollapsedAllVersion((v) => v + 1)} title="Collapse all">Collapse all</button>
         </div>
@@ -84,12 +152,26 @@ function App() {
         {error && <div className="card error">Error: {error}</div>}
         {!loading && !error && (
           <>
+            {(query || activeTag || focusedProblem) && (
+              <div className="filter-bar">
+                <span>
+                  {focusedProblem && <>Focused: <strong>{focusedProblem.problem}</strong></>}
+                  {!focusedProblem && activeTag && <>Tag: <strong>{activeTag}</strong></>}
+                  {!focusedProblem && !activeTag && query && <>Search: <strong>{query}</strong></>}
+                </span>
+                <button className="btn secondary compact" type="button" onClick={clearFilters}>Clear</button>
+              </div>
+            )}
             <Wizard data={data} onFocus={focusRecommendation} />
             <TreeCanvas
               data={filtered}
               expandAllVersion={expandedAllVersion}
               collapseAllVersion={collapsedAllVersion}
               query={query}
+              activeTag={activeTag}
+              focusedProblemSlug={focusedProblemSlug}
+              onTagClick={selectTag}
+              onProblemLink={focusProblem}
             />
           </>
         )}

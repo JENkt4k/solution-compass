@@ -2590,21 +2590,21 @@
             "tool": "Retrieval-augmented generation pattern",
             "language": "Any",
             "blurb": "Retrieves relevant external context before generation so answers can use private or changing data.",
-            "url": "https://platform.openai.com/docs/guides/retrieval"
+            "url": "https://developers.openai.com/api/docs/guides/retrieval"
           },
           {
             "name": "Agent tools / skills",
             "tool": "Tool-use pattern",
             "language": "Any",
             "blurb": "Exposes bounded external actions or workflows that a model can call when plain text generation is not enough.",
-            "url": "https://platform.openai.com/docs/guides/function-calling"
+            "url": "https://developers.openai.com/api/docs/guides/function-calling"
           },
           {
             "name": "Structured outputs",
             "tool": "Schema-constrained generation",
             "language": "JSON Schema",
             "blurb": "Constrains model responses to a predictable schema for reliable downstream automation.",
-            "url": "https://platform.openai.com/docs/guides/structured-outputs"
+            "url": "https://developers.openai.com/api/docs/guides/structured-outputs"
           },
           {
             "name": "Prompt routing",
@@ -2618,7 +2618,7 @@
             "tool": "LLM evaluation practice",
             "language": "Any",
             "blurb": "Uses test sets, graders, traces, and regression checks to keep model behavior measurable.",
-            "url": "https://platform.openai.com/docs/guides/evals"
+            "url": "https://developers.openai.com/api/docs/guides/evals"
           }
         ]
       },
@@ -2698,7 +2698,7 @@
             "tool": "Prompt/context technique",
             "language": "Any",
             "blurb": "Keeps recent conversation or state directly in the model context for maximum fidelity and minimum infrastructure.",
-            "url": "https://platform.openai.com/docs/guides/text-generation"
+            "url": "https://developers.openai.com/api/docs/guides/text-generation"
           },
           {
             "name": "Summary memory",
@@ -2798,7 +2798,7 @@
             "name": "Qdrant",
             "tool": "Vector database",
             "language": "Rust/API",
-            "blurb": "Vector database with filtering, payloads, HNSW indexing, and production-oriented APIs.",
+            "blurb": "Vector database for semantic search with filtering, payloads, HNSW indexing, and production-oriented APIs.",
             "url": "https://qdrant.tech/documentation/"
           },
           {
@@ -2832,7 +2832,7 @@
             "tool": "Retrieval design technique",
             "language": "Any",
             "blurb": "Splits documents into retrievable units; chunk size and overlap strongly affect recall and precision.",
-            "url": "https://platform.openai.com/docs/guides/embeddings"
+            "url": "https://developers.openai.com/api/docs/guides/embeddings"
           },
           {
             "name": "Hybrid search",
@@ -2914,7 +2914,7 @@
             "name": "QLoRA",
             "tool": "Quantized PEFT technique",
             "language": "Python",
-            "blurb": "Fine-tunes low-rank adapters on quantized base models to reduce memory requirements.",
+            "blurb": "Fine-tunes low-rank adapters on quantized base models to reduce memory requirements for adaptation work.",
             "url": "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
           },
           {
@@ -2936,7 +2936,7 @@
             "tool": "Architecture choice",
             "language": "Any",
             "blurb": "Keeps knowledge outside the model and retrieves it at runtime when freshness or attribution matters.",
-            "url": "https://platform.openai.com/docs/guides/retrieval"
+            "url": "https://developers.openai.com/api/docs/guides/retrieval"
           }
         ]
       }
@@ -3080,14 +3080,14 @@
             "name": "V-JEPA 2",
             "tool": "Vision world-model research family",
             "language": "Research/Python",
-            "blurb": "Extends JEPA-style video representations toward understanding, prediction, and planning in physical environments.",
+            "blurb": "Meta world-model research that extends JEPA-style video representations toward visual understanding, prediction, physical reasoning, and robot planning.",
             "url": "https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/"
           },
           {
             "name": "VL-JEPA",
             "tool": "Vision-language representation approach",
             "language": "Research/Python",
-            "blurb": "Applies JEPA-style embedding prediction to vision-language tasks without treating every task as token generation.",
+            "blurb": "Research-stage vision-language JEPA approach that predicts text embeddings rather than treating every vision-language task as token generation.",
             "url": "https://arxiv.org/abs/2512.10942"
           },
           {
@@ -3204,7 +3204,7 @@
             "tool": "Hosted AI deployment",
             "language": "API",
             "blurb": "Uses a provider-hosted model endpoint to avoid model infrastructure and focus on application behavior.",
-            "url": "https://platform.openai.com/docs/overview"
+            "url": "https://developers.openai.com/api/docs/overview"
           },
           {
             "name": "Self-hosted inference",

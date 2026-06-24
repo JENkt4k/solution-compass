@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ProblemNode, Solution } from '../hooks/useTreeData';
+import { slugify } from '../utils/slug';
 
 type Props = {
   data: ProblemNode[];
   expandAllVersion: number;
   collapseAllVersion: number;
   query: string;
+  activeTag: string;
+  focusedProblemSlug: string;
+  onTagClick: (tag: string) => void;
+  onProblemLink: (problem: string) => void;
 };
 
 function highlight(text: string, q: string) {
@@ -63,9 +68,19 @@ function SolutionItem({ solution, query }: { solution: Solution; query: string }
   );
 }
 
-export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion, query }: Props) {
+export default function TreeCanvas({
+  data,
+  expandAllVersion,
+  collapseAllVersion,
+  query,
+  activeTag,
+  focusedProblemSlug,
+  onTagClick,
+  onProblemLink,
+}: Props) {
   const [openProblems, setOpenProblems] = useState<Record<string, boolean>>({});
   const [openPatterns, setOpenPatterns] = useState<Record<string, boolean>>({});
+  const [copiedProblem, setCopiedProblem] = useState('');
 
   useEffect(() => {
     if (expandAllVersion === 0) {
@@ -93,6 +108,15 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
   const toggleProblem = (key: string) => setOpenProblems((s) => ({ ...s, [key]: !s[key] }));
   const togglePattern = (key: string) => setOpenPatterns((s) => ({ ...s, [key]: !s[key] }));
 
+  const copyProblemLink = async (problem: string) => {
+    const slug = slugify(problem);
+    const url = `${window.location.origin}${window.location.pathname}${window.location.search}#/problem/${slug}`;
+    await navigator.clipboard.writeText(url);
+    onProblemLink(problem);
+    setCopiedProblem(problem);
+    window.setTimeout(() => setCopiedProblem(''), 1600);
+  };
+
   const rendered = useMemo(() => data, [data]);
 
   if (!rendered.length) {
@@ -104,17 +128,29 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
       {rendered.map((problem) => {
         const pKey = problem.problem;
         const pOpen = !!openProblems[pKey];
+        const problemSlug = slugify(problem.problem);
+        const isFocused = problemSlug === focusedProblemSlug;
         return (
-          <section key={pKey} className="card">
-            <button
-              className="card-header toggle-row"
-              type="button"
-              aria-expanded={pOpen}
-              onClick={() => toggleProblem(pKey)}
-            >
-              <span className="chevron" aria-hidden="true">{pOpen ? 'v' : '>'}</span>
+          <section key={pKey} id={`problem-${problemSlug}`} className={`card${isFocused ? ' focused-card' : ''}`}>
+            <div className="card-header">
+              <button
+                className="chevron"
+                type="button"
+                aria-expanded={pOpen}
+                aria-label={`${pOpen ? 'Collapse' : 'Expand'} ${problem.problem}`}
+                onClick={() => toggleProblem(pKey)}
+              >
+                {pOpen ? 'v' : '>'}
+              </button>
               <span className="titleblock">
-                <span className="card-title">{highlight(problem.problem, query)}</span>
+                <span className="titleline">
+                  <button className="title-button" type="button" onClick={() => toggleProblem(pKey)}>
+                    {highlight(problem.problem, query)}
+                  </button>
+                  <button className="link-btn" type="button" onClick={() => copyProblemLink(problem.problem)}>
+                    {copiedProblem === problem.problem ? 'Copied' : 'Link'}
+                  </button>
+                </span>
                 {problem.subcategory && <span className="muted"><em>{highlight(problem.subcategory, query)}</em></span>}
                 {problem.description && <span className="description">{highlight(problem.description, query)}</span>}
                 <span className="decision-meta card-meta">
@@ -123,7 +159,16 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
                   {problem.maturity && <span>{highlight(problem.maturity, query)}</span>}
                 </span>
                 <span className="tags">
-                  {(problem.tags || []).map((t) => <span className="tag" key={t}>{highlight(t, query)}</span>)}
+                  {(problem.tags || []).map((t) => (
+                    <button
+                      className={`tag tag-button${t.toLowerCase() === activeTag.toLowerCase() ? ' active' : ''}`}
+                      type="button"
+                      key={t}
+                      onClick={() => onTagClick(t)}
+                    >
+                      {highlight(t, query)}
+                    </button>
+                  ))}
                 </span>
                 {problem.examples && problem.examples.length > 0 && (
                   <span className="examples">Examples: {problem.examples.map((ex, i) => (
@@ -131,7 +176,7 @@ export default function TreeCanvas({ data, expandAllVersion, collapseAllVersion,
                   ))}</span>
                 )}
               </span>
-            </button>
+            </div>
 
             {pOpen && (
               <div className="patterns">

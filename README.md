@@ -9,10 +9,13 @@ MVP+ is functional and deployable on GitHub Pages.
 - Static React/Vite PWA with install support and offline caching.
 - Decision Wizard with answer-based scoring and recommendation explanations.
 - Searchable catalog of problems, patterns, tools, algorithms, examples, snippets, and references.
+- Shareable deep links for focused problem areas, such as `#/problem/vector-search-embeddings`.
+- Clickable tag chips for quick taxonomy filtering.
 - Normalized dataset with `33` problem areas, `60` patterns, and `189` solutions.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
+- AI/model references have an audit trail in `docs/ai-source-audit.md`.
 
 ## Screenshots
 
@@ -27,7 +30,9 @@ MVP+ is functional and deployable on GitHub Pages.
 | Decision Wizard | 6 guided prompts score the catalog and recommend 3-5 matching problem areas. |
 | Result explanations | Recommendations show matched answers, fit metadata, and tradeoffs. |
 | Decision map | Problem -> Pattern -> Solution hierarchy with tags, examples, references, and snippets. |
+| Deep links | Problem cards can be focused and shared with `#/problem/<slug>` URLs. |
 | Search | Full-text filtering across titles, tags, examples, decision metadata, patterns, solutions, tools, languages, blurbs, snippets, and URLs. |
+| Tag filters | Problem tags are clickable chips for quick exact-tag filtering. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -118,7 +123,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 
 - Wizard scoring is transparent and useful, but still simple keyword/tag scoring rather than a full rules engine.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
-- No deep links to individual nodes yet.
+- Tag filtering is exact-match only; it does not yet support AND/OR combinations.
 - No compact table view yet.
 - No editable dataset UI yet.
 
@@ -139,12 +144,10 @@ After that, ship and collect real use feedback before adding more topic families
 
 Short term:
 
-- Deep links to problem nodes and expanded state.
 - Clickable tag chips with AND/OR filter modes.
 - Compact table view for scanning all solutions.
-- Copy-link buttons for problem nodes.
 - Weighted wizard scoring for AI, deployment, and optimization scenarios.
-- Source-audit pass for rapidly changing AI/model claims and references.
+- Scheduled source-audit pass for rapidly changing AI/model claims and references.
 
 Medium term:
 
