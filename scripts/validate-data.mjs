@@ -5,6 +5,7 @@ const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 const errors = [];
 const warnings = [];
 const scopeLevels = new Set(['architecture', 'stack', 'runtime', 'library', 'language', 'algorithm', 'hardware']);
+const impactLevels = new Set(['core', 'common', 'specialized', 'archival']);
 
 function label(problem, pattern, solution) {
   const parts = [problem?.problem, pattern?.name, solution?.name].filter(Boolean);
@@ -56,6 +57,7 @@ if (!Array.isArray(data)) {
     requireStringArray(problem.avoidWhen, 'avoidWhen', problemContext);
     requireStringArray(problem.tradeoffs, 'tradeoffs', problemContext);
     requireString(problem.scopeLevel, 'scopeLevel', problemContext);
+    requireString(problem.impactLevel, 'impactLevel', problemContext);
     requireString(problem.complexity, 'complexity', problemContext);
     requireString(problem.maturity, 'maturity', problemContext);
     requireString(problem.scale, 'scale', problemContext);
@@ -63,6 +65,10 @@ if (!Array.isArray(data)) {
 
     if (problem.scopeLevel && !scopeLevels.has(problem.scopeLevel)) {
       errors.push(`${problemContext}: invalid scopeLevel "${problem.scopeLevel}"`);
+    }
+
+    if (problem.impactLevel && !impactLevels.has(problem.impactLevel)) {
+      errors.push(`${problemContext}: invalid impactLevel "${problem.impactLevel}"`);
     }
 
     if (!Array.isArray(problem.patterns) || problem.patterns.length === 0) {

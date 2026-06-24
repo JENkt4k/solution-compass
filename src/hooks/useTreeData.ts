@@ -19,6 +19,7 @@ export interface Pattern {
 export interface ProblemNode {
   problem: string;
   scopeLevel?: 'architecture' | 'stack' | 'runtime' | 'library' | 'language' | 'algorithm' | 'hardware';
+  impactLevel?: 'core' | 'common' | 'specialized' | 'archival';
   tags: string[];
   subcategory?: string;
   description?: string;

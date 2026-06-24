@@ -249,6 +249,7 @@ function searchableText(node) {
   return normalize([
     node.problem,
     node.scopeLevel || '',
+    node.impactLevel || '',
     node.subcategory || '',
     node.description || '',
     ...(node.tags || []),

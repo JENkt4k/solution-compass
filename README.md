@@ -12,6 +12,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Shareable deep links for focused problem areas, such as `#/problem/vector-search-embeddings`.
 - Clickable tag chips for quick taxonomy filtering.
 - Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
+- Impact lens for Core, Common, Specialized, and Archival material; core work-impacting classes sort first by default.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
 - Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
 - Every solution has a short blurb and reference URL.
@@ -38,6 +39,7 @@ MVP+ is functional and deployable on GitHub Pages.
 | Search | Full-text filtering across titles, tags, examples, decision metadata, patterns, solutions, tools, languages, blurbs, snippets, and URLs. |
 | Tag filters | Problem tags are clickable chips for quick exact-tag filtering. |
 | Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
+| Impact lens | Prioritizes common production work while keeping trick/interview patterns mostly archival. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -66,6 +68,7 @@ export interface Pattern {
 export interface ProblemNode {
   problem: string;
   scopeLevel?: 'architecture' | 'stack' | 'runtime' | 'library' | 'language' | 'algorithm' | 'hardware';
+  impactLevel?: 'core' | 'common' | 'specialized' | 'archival';
   tags: string[];
   subcategory?: string;
   description?: string;
@@ -105,6 +108,7 @@ The validator fails on:
 - Missing time/space complexity for snippet-bearing solutions.
 - Missing problem decision metadata.
 - Missing or invalid problem `scopeLevel`.
+- Missing or invalid problem `impactLevel`.
 - Invalid URLs.
 - Generic `tool: "Example"` placeholders.
 - Duplicate problem names.

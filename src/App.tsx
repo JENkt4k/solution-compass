@@ -18,6 +18,21 @@ const scopeOptions = [
   { value: 'hardware', label: 'Hardware' },
 ] as const;
 
+const impactOptions = [
+  { value: 'all', label: 'All impact' },
+  { value: 'core', label: 'Core' },
+  { value: 'common', label: 'Common' },
+  { value: 'specialized', label: 'Specialized' },
+  { value: 'archival', label: 'Archival' },
+] as const;
+
+const impactRank: Record<string, number> = {
+  core: 0,
+  common: 1,
+  specialized: 2,
+  archival: 3,
+};
+
 function problemSlugFromHash() {
   const match = window.location.hash.match(/^#\/problem\/([^/]+)$/);
   return match ? decodeURIComponent(match[1]) : '';
@@ -30,6 +45,7 @@ function App() {
   const [focusedProblemSlug, setFocusedProblemSlug] = useState('');
   const [viewMode, setViewMode] = useState<'tree' | 'compare'>('tree');
   const [scopeLevel, setScopeLevel] = useState('all');
+  const [impactLevel, setImpactLevel] = useState('all');
   const [expandedAllVersion, setExpandedAllVersion] = useState(0);
   const [collapsedAllVersion, setCollapsedAllVersion] = useState(0);
 
@@ -64,7 +80,16 @@ function App() {
       ? tagFiltered
       : tagFiltered.filter((p) => p.scopeLevel === scopeLevel);
 
-    if (!query.trim()) return scopeFiltered;
+    const impactFiltered = impactLevel === 'all'
+      ? scopeFiltered
+      : scopeFiltered.filter((p) => p.impactLevel === impactLevel);
+
+    const sortByImpact = (nodes: ProblemNode[]) => [...nodes].sort((a, b) =>
+      (impactRank[a.impactLevel || 'common'] ?? 9) - (impactRank[b.impactLevel || 'common'] ?? 9) ||
+      a.problem.localeCompare(b.problem),
+    );
+
+    if (!query.trim()) return sortByImpact(impactFiltered);
     const q = query.toLowerCase();
 
     const matches = (text?: string) => (text || '').toLowerCase().includes(q);
@@ -79,10 +104,11 @@ function App() {
       matches(s.code) ||
       matches(s.url);
 
-    return scopeFiltered.map((p) => {
+    return sortByImpact(impactFiltered.map((p) => {
       const problemMatches =
         matches(p.problem) ||
         matches(p.scopeLevel) ||
+        matches(p.impactLevel) ||
         matches(p.subcategory) ||
         matches(p.description) ||
         matches(p.complexity) ||
@@ -107,8 +133,8 @@ function App() {
 
       const visible = problemMatches || patterns.length > 0;
       return visible ? { ...p, patterns } : null;
-    }).filter(Boolean) as ProblemNode[];
-  }, [activeTag, data, focusedProblem, query, scopeLevel]);
+    }).filter(Boolean) as ProblemNode[]);
+  }, [activeTag, data, focusedProblem, impactLevel, query, scopeLevel]);
 
   const clearFocusedHash = () => {
     if (window.location.hash) {
@@ -127,6 +153,7 @@ function App() {
     setQuery('');
     setActiveTag('');
     setScopeLevel('all');
+    setImpactLevel('all');
     clearFocusedHash();
   };
 
@@ -142,6 +169,7 @@ function App() {
     setQuery('');
     setActiveTag('');
     setScopeLevel('all');
+    setImpactLevel('all');
     setFocusedProblemSlug(slug);
     window.location.hash = `/problem/${slug}`;
     setExpandedAllVersion((v) => v + 1);
@@ -213,13 +241,29 @@ function App() {
                 </button>
               ))}
             </div>
-            {(query || activeTag || focusedProblem || scopeLevel !== 'all') && (
+            <div className="scope-bar impact-bar" aria-label="Impact level">
+              {impactOptions.map((option) => (
+                <button
+                  className={`segment ${impactLevel === option.value ? 'active' : ''}`}
+                  type="button"
+                  key={option.value}
+                  onClick={() => {
+                    setImpactLevel(option.value);
+                    clearFocusedHash();
+                  }}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            {(query || activeTag || focusedProblem || scopeLevel !== 'all' || impactLevel !== 'all') && (
               <div className="filter-bar">
                 <span>
                   {focusedProblem && <>Focused: <strong>{focusedProblem.problem}</strong></>}
                   {!focusedProblem && activeTag && <>Tag: <strong>{activeTag}</strong></>}
                   {!focusedProblem && !activeTag && scopeLevel !== 'all' && <>Scope: <strong>{scopeLevel}</strong></>}
-                  {!focusedProblem && !activeTag && scopeLevel === 'all' && query && <>Search: <strong>{query}</strong></>}
+                  {!focusedProblem && !activeTag && scopeLevel === 'all' && impactLevel !== 'all' && <>Impact: <strong>{impactLevel}</strong></>}
+                  {!focusedProblem && !activeTag && scopeLevel === 'all' && impactLevel === 'all' && query && <>Search: <strong>{query}</strong></>}
                 </span>
                 <button className="btn secondary compact" type="button" onClick={clearFilters}>Clear</button>
               </div>

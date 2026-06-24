@@ -171,7 +171,8 @@
     "maturity": "Mature",
     "scale": "Single process to distributed systems",
     "setupCost": "Medium",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "common"
   },
   {
     "problem": "Search / Retrieval",
@@ -340,7 +341,8 @@
     "maturity": "Mature",
     "scale": "Thousands to billions of documents",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Workflow / State Modeling",
@@ -508,7 +510,8 @@
     "maturity": "Mature",
     "scale": "Team workflows to distributed orchestration",
     "setupCost": "Medium",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "common"
   },
   {
     "problem": "Batch / ETL Processing",
@@ -694,7 +697,8 @@
     "maturity": "Mature",
     "scale": "Files to data lakes and warehouses",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Stream / Event Processing",
@@ -880,7 +884,8 @@
     "maturity": "Mature",
     "scale": "Service events to high-volume streams",
     "setupCost": "High",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Caching",
@@ -944,7 +949,8 @@
     "maturity": "Mature",
     "scale": "Single app to global edge",
     "setupCost": "Low",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Security & Cryptography",
@@ -1136,7 +1142,8 @@
     "maturity": "Mature",
     "scale": "Single app to enterprise identity",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Machine Learning / AI",
@@ -1277,7 +1284,8 @@
     "maturity": "Mature",
     "scale": "Prototype notebooks to production model services",
     "setupCost": "High",
-    "scopeLevel": "library"
+    "scopeLevel": "library",
+    "impactLevel": "common"
   },
   {
     "problem": "CRUD & Data Modeling",
@@ -1398,7 +1406,8 @@
     "maturity": "Mature",
     "scale": "Small apps to high-volume transactional systems",
     "setupCost": "Low",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Scheduling / Optimization",
@@ -1460,7 +1469,8 @@
     "maturity": "Mature",
     "scale": "Small schedules to enterprise planning",
     "setupCost": "High",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "common"
   },
   {
     "problem": "Graph Algorithms & Graph Data",
@@ -1591,7 +1601,8 @@
     "maturity": "Mature",
     "scale": "In-memory graphs to graph databases",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "common"
   },
   {
     "problem": "Constraint Solving",
@@ -1720,7 +1731,8 @@
     "maturity": "Mature",
     "scale": "Puzzles to industrial optimization",
     "setupCost": "Medium",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "common"
   },
   {
     "problem": "Formal Verification",
@@ -1780,7 +1792,8 @@
     "maturity": "Specialized",
     "scale": "Critical components and protocols",
     "setupCost": "High",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Observability",
@@ -1848,7 +1861,8 @@
     "maturity": "Mature",
     "scale": "Single service to distributed platforms",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Messaging / Coordination",
@@ -1910,7 +1924,8 @@
     "maturity": "Mature",
     "scale": "Clusters and distributed services",
     "setupCost": "Medium",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "common"
   },
   {
     "problem": "State-space search",
@@ -1974,7 +1989,8 @@
     "maturity": "Mature",
     "scale": "Small puzzles to large planning spaces",
     "setupCost": "Low",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Heuristic search",
@@ -2044,7 +2060,8 @@
     "maturity": "Mature",
     "scale": "Games, routing, and planning spaces",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Linear/Integer Programming",
@@ -2102,7 +2119,8 @@
     "maturity": "Mature",
     "scale": "Small models to enterprise optimization",
     "setupCost": "High",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Greedy Algorithms",
@@ -2173,7 +2191,8 @@
     "maturity": "Mature",
     "scale": "Small to very large algorithmic workloads",
     "setupCost": "Low",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "common"
   },
   {
     "problem": "Dynamic Programming",
@@ -2243,7 +2262,8 @@
     "maturity": "Mature",
     "scale": "Algorithmic problems with bounded state spaces",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "common"
   },
   {
     "problem": "Network flow",
@@ -2344,7 +2364,8 @@
     "maturity": "Mature",
     "scale": "Small graphs to large optimization networks",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Logic programming",
@@ -2400,7 +2421,8 @@
     "maturity": "Mature",
     "scale": "Rule engines and symbolic reasoning systems",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Functional pipelines",
@@ -2455,7 +2477,8 @@
     "maturity": "Mature",
     "scale": "Local collections to stream processors",
     "setupCost": "Low",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "common"
   },
   {
     "problem": "Distributed consensus",
@@ -2519,7 +2542,8 @@
     "maturity": "Specialized",
     "scale": "Distributed databases and control planes",
     "setupCost": "High",
-    "scopeLevel": "architecture"
+    "scopeLevel": "architecture",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Formal methods & model checking",
@@ -2576,7 +2600,8 @@
     "maturity": "Specialized",
     "scale": "Focused critical subsystems",
     "setupCost": "High",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Stochastic or discrete-event simulation",
@@ -2631,7 +2656,8 @@
     "maturity": "Mature",
     "scale": "Small models to operational simulations",
     "setupCost": "Medium",
-    "scopeLevel": "algorithm"
+    "scopeLevel": "algorithm",
+    "impactLevel": "specialized"
   },
   {
     "problem": "AI / LLM Systems",
@@ -2742,7 +2768,8 @@
     "maturity": "Rapidly evolving",
     "scale": "Local prototype to production AI service",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "LLM Memory / Context Systems",
@@ -2826,7 +2853,8 @@
     "maturity": "Emerging",
     "scale": "Single-user local apps to agent platforms",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "common"
   },
   {
     "problem": "Vector Search / Embeddings",
@@ -2947,7 +2975,8 @@
     "maturity": "Mature but evolving",
     "scale": "Local indexes to billion-vector services",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "Model Adaptation",
@@ -3038,7 +3067,8 @@
     "maturity": "Rapidly evolving",
     "scale": "Single adapter to model operations pipeline",
     "setupCost": "High",
-    "scopeLevel": "library"
+    "scopeLevel": "library",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Generative Media",
@@ -3122,7 +3152,8 @@
     "maturity": "Rapidly evolving",
     "scale": "Local GPU workflows to hosted generation services",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "specialized"
   },
   {
     "problem": "Vision / World Representation Models",
@@ -3206,7 +3237,8 @@
     "maturity": "Research / emerging",
     "scale": "Research prototypes to specialized perception systems",
     "setupCost": "High",
-    "scopeLevel": "library"
+    "scopeLevel": "library",
+    "impactLevel": "specialized"
   },
   {
     "problem": "AI / App Deployment & Serving",
@@ -3327,7 +3359,8 @@
     "maturity": "Mature",
     "scale": "Static sites to distributed model-serving platforms",
     "setupCost": "Medium",
-    "scopeLevel": "stack"
+    "scopeLevel": "stack",
+    "impactLevel": "core"
   },
   {
     "problem": "System Architecture Patterns",
@@ -3477,7 +3510,8 @@
     "complexity": "High",
     "maturity": "Mature",
     "scale": "Single product teams to large distributed systems",
-    "setupCost": "High"
+    "setupCost": "High",
+    "impactLevel": "core"
   },
   {
     "problem": "Performance / Hardware Acceleration",
@@ -3612,7 +3646,8 @@
     "complexity": "High",
     "maturity": "Mature but hardware-dependent",
     "scale": "Single machine kernels to distributed accelerated clusters",
-    "setupCost": "High"
+    "setupCost": "High",
+    "impactLevel": "common"
   },
   {
     "problem": "Runtime / Compiler Choices",
@@ -3745,7 +3780,8 @@
     "complexity": "Medium",
     "maturity": "Mature",
     "scale": "Scripts to production platforms and native systems",
-    "setupCost": "Medium"
+    "setupCost": "Medium",
+    "impactLevel": "common"
   },
   {
     "problem": "Algorithmic Interview Patterns",
@@ -3855,6 +3891,7 @@
     "complexity": "Medium",
     "maturity": "Archival / educational",
     "scale": "Local implementation details to selected production hot paths",
-    "setupCost": "Low"
+    "setupCost": "Low",
+    "impactLevel": "archival"
   }
 ]
