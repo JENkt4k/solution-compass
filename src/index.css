@@ -221,6 +221,19 @@ input {
   gap: 6px;
 }
 
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--btn-border);
+  border-radius: 8px;
+  background: #0f1418;
+}
+
+.view-toggle .segment {
+  min-height: 32px;
+}
+
 .segment {
   min-height: 34px;
   padding: 6px 10px;
@@ -308,6 +321,95 @@ input {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #151b21;
+}
+
+.compare {
+  padding: 0;
+  overflow: hidden;
+}
+
+.compare-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.compare-header p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.compare-scroll {
+  overflow: auto;
+}
+
+.compare-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.compare-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #151b21;
+  color: #d5dde5;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.compare-table tbody tr:hover,
+.clickable-row:focus {
+  background: rgba(85, 194, 166, 0.08);
+}
+
+.clickable-row {
+  cursor: pointer;
+  outline: none;
+}
+
+.clickable-row:focus {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.table-link {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-2);
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.table-link:hover {
+  text-decoration: underline;
+}
+
+.table-subtext {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .card {

@@ -3,6 +3,7 @@ import TreeCanvas from './components/TreeCanvas';
 import SearchBar from './components/SearchBar';
 import { InstallPrompt } from './components/InstallPrompt';
 import Wizard from './components/Wizard';
+import CompareTable from './components/CompareTable';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 import { slugify } from './utils/slug';
 
@@ -16,6 +17,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [activeTag, setActiveTag] = useState('');
   const [focusedProblemSlug, setFocusedProblemSlug] = useState('');
+  const [viewMode, setViewMode] = useState<'tree' | 'compare'>('tree');
   const [expandedAllVersion, setExpandedAllVersion] = useState(0);
   const [collapsedAllVersion, setCollapsedAllVersion] = useState(0);
 
@@ -130,6 +132,11 @@ function App() {
     focusProblem(value);
   };
 
+  const focusFromCompare = (value: string) => {
+    setViewMode('tree');
+    focusProblem(value);
+  };
+
   return (
     <div className="app-shell">
       <header className="topbar card">
@@ -142,8 +149,28 @@ function App() {
         </div>
         <div className="actions">
           <SearchBar value={query} onChange={updateQuery} placeholder="Search problems, patterns, tools, tags..." />
-          <button className="btn" onClick={() => setExpandedAllVersion((v) => v + 1)} title="Expand all">Expand all</button>
-          <button className="btn secondary" onClick={() => setCollapsedAllVersion((v) => v + 1)} title="Collapse all">Collapse all</button>
+          <div className="view-toggle" aria-label="View mode">
+            <button
+              className={`segment ${viewMode === 'tree' ? 'active' : ''}`}
+              type="button"
+              onClick={() => setViewMode('tree')}
+            >
+              Tree
+            </button>
+            <button
+              className={`segment ${viewMode === 'compare' ? 'active' : ''}`}
+              type="button"
+              onClick={() => setViewMode('compare')}
+            >
+              Compare
+            </button>
+          </div>
+          {viewMode === 'tree' && (
+            <>
+              <button className="btn" onClick={() => setExpandedAllVersion((v) => v + 1)} title="Expand all">Expand all</button>
+              <button className="btn secondary" onClick={() => setCollapsedAllVersion((v) => v + 1)} title="Collapse all">Collapse all</button>
+            </>
+          )}
         </div>
       </header>
       <main className="content">
@@ -163,16 +190,20 @@ function App() {
               </div>
             )}
             <Wizard data={data} onFocus={focusRecommendation} />
-            <TreeCanvas
-              data={filtered}
-              expandAllVersion={expandedAllVersion}
-              collapseAllVersion={collapsedAllVersion}
-              query={query}
-              activeTag={activeTag}
-              focusedProblemSlug={focusedProblemSlug}
-              onTagClick={selectTag}
-              onProblemLink={focusProblem}
-            />
+            {viewMode === 'tree' ? (
+              <TreeCanvas
+                data={filtered}
+                expandAllVersion={expandedAllVersion}
+                collapseAllVersion={collapsedAllVersion}
+                query={query}
+                activeTag={activeTag}
+                focusedProblemSlug={focusedProblemSlug}
+                onTagClick={selectTag}
+                onProblemLink={focusProblem}
+              />
+            ) : (
+              <CompareTable data={filtered} onFocusProblem={focusFromCompare} />
+            )}
           </>
         )}
       </main>
