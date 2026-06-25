@@ -763,6 +763,12 @@ mark {
   border-top: 1px solid var(--border);
 }
 
+.install-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .install-prompt button {
   min-height: 40px;
   padding: 8px 12px;
@@ -771,6 +777,13 @@ mark {
   color: #0c1512;
   border: none;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.install-prompt .text-button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--btn-border);
 }
 
 @media (max-width: 760px) {
@@ -821,5 +834,14 @@ mark {
 
   .wizard-header .btn {
     align-self: flex-start;
+  }
+
+  .install-prompt {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .install-actions {
+    justify-content: flex-end;
   }
 }

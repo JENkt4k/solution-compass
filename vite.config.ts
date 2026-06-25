@@ -12,7 +12,7 @@ export default defineConfig(({ command }) => {
     plugins: [
       react(),
       VitePWA({
-        registerType: 'autoUpdate',
+        registerType: 'prompt',
         includeAssets: ['pwa-icon-192.png', 'pwa-icon-512.png'],
         manifest: {
           name: 'Solution Compass',

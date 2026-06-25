@@ -157,7 +157,7 @@ The project is already shippable. Stop expanding the scope for this phase when t
 - `npm run validate:wizard` passes.
 - `npm run build` passes.
 - Live GitHub Pages smoke test passes on desktop and mobile.
-- Install icon and PWA install flow look correct after reinstall.
+- Install icon, install prompt, offline-ready message, and update refresh prompt look correct after reinstall.
 - Wizard returns sensible recommendations for at least these scenarios: AI/RAG, vector memory, optimization, search, ETL/ELT, deployment, and security.
 - README counts match the dataset.
 
