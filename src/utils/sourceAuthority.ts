@@ -30,6 +30,7 @@ const officialHosts = [
   'docs.nvidia.com',
   'rocm.docs.amd.com',
   'llvm.org',
+  'clang.llvm.org',
   'gcc.gnu.org',
   'webassembly.org',
   'numpy.org',
@@ -54,6 +55,8 @@ const officialHosts = [
   'networkx.org',
   'fenicsproject.org',
   'www.code-aster.org',
+  'openlineage.io',
+  'adr.github.io',
 ];
 
 const vendorHosts = [
@@ -108,7 +111,7 @@ export function classifySource(url?: string): SourceMeta {
     if (hostMatches(host, officialHosts)) return { label: 'Official docs', authority: 'official-docs' };
     if (hostMatches(host, vendorHosts)) return { label: 'Vendor docs', authority: 'vendor-docs' };
     if (hostMatches(host, ['wikipedia.org', 'cp-algorithms.com'])) return { label: 'Reference', authority: 'reference' };
-    if (hostMatches(host, ['github.com', 'opensource.guide'])) return { label: 'Community', authority: 'community' };
+    if (hostMatches(host, ['github.com', 'opensource.guide', 'microservices.io'])) return { label: 'Community', authority: 'community' };
 
     return { label: 'Reference', authority: 'reference' };
   } catch {

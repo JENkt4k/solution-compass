@@ -728,6 +728,72 @@
             "url": "https://www.getcensus.com/blog/what-is-reverse-etl"
           }
         ]
+      },
+      {
+        "name": "ETL / ELT / Reverse ETL Decisions",
+        "solutions": [
+          {
+            "name": "ETL",
+            "tool": "Extract-transform-load pattern",
+            "language": "Any",
+            "blurb": "Transform before loading when downstream systems need curated, governed, or constrained data shapes.",
+            "url": "https://en.wikipedia.org/wiki/Extract,_transform,_load",
+            "implementationNote": "Best when source-to-target contracts and quality gates need to sit before the warehouse."
+          },
+          {
+            "name": "ELT",
+            "tool": "Extract-load-transform pattern",
+            "language": "Warehouse/lakehouse SQL",
+            "blurb": "Load raw data first and transform in the warehouse when storage is cheap and transformations benefit from warehouse scale.",
+            "url": "https://www.ibm.com/think/topics/elt",
+            "implementationNote": "Works well with dbt-style modeling, lineage, and warehouse-native governance."
+          },
+          {
+            "name": "Reverse ETL",
+            "tool": "Warehouse activation pattern",
+            "language": "Any",
+            "blurb": "Sync modeled warehouse data back into operational tools such as CRM, marketing, or support systems.",
+            "url": "https://www.getcensus.com/blog/what-is-reverse-etl",
+            "implementationNote": "Treat it as production integration: ownership, freshness, privacy, and failure handling still matter."
+          },
+          {
+            "name": "Data contract",
+            "tool": "Data governance pattern",
+            "language": "Any",
+            "blurb": "Define schema, meaning, freshness, quality, and ownership expectations between producers and consumers.",
+            "url": "https://martinfowler.com/articles/data-mesh-principles.html",
+            "implementationNote": "Contracts prevent analytics breakage better than downstream cleanup alone."
+          }
+        ]
+      },
+      {
+        "name": "Batch Reliability Practices",
+        "solutions": [
+          {
+            "name": "Backfill strategy",
+            "tool": "Data recovery pattern",
+            "language": "Any",
+            "blurb": "Plan how historical data is recomputed after code, schema, source, or business logic changes.",
+            "url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html",
+            "implementationNote": "Backfills need idempotent outputs, partitioning, and clear overwrite semantics."
+          },
+          {
+            "name": "Data quality checks",
+            "tool": "Pipeline validation",
+            "language": "SQL/Python",
+            "blurb": "Use row counts, freshness, uniqueness, null checks, and business-rule tests to catch broken data early.",
+            "url": "https://docs.getdbt.com/docs/build/data-tests",
+            "implementationNote": "Quality checks should fail or quarantine data before it reaches business metrics."
+          },
+          {
+            "name": "Lineage and ownership",
+            "tool": "Data operations practice",
+            "language": "Any",
+            "blurb": "Track where metrics and tables come from so incidents can be debugged and owned.",
+            "url": "https://openlineage.io/docs/",
+            "implementationNote": "Lineage is most valuable when connected to owners and alerting."
+          }
+        ]
       }
     ],
     "examples": [
@@ -775,7 +841,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with freshness, ownership, and whether transforms belong before or after loading; choose ETL/ELT tooling after the data contract is clear."
+    "firstMove": "Start with freshness, ownership, and whether transforms belong before or after loading; choose ETL/ELT tooling after the data contract is clear.",
+    "stillBestWhen": [
+      "Freshness requirements fit scheduled intervals and correctness/backfill matters more than sub-second updates",
+      "Transformations need repeatability, lineage, data quality checks, and controlled retries",
+      "The warehouse/lakehouse is the analytical center of gravity"
+    ],
+    "replacedBy": [
+      "Streaming when decisions or user experiences require low-latency updates",
+      "Direct operational queries when the dataset is small and source load is acceptable",
+      "Reverse ETL or activation tools when the goal is syncing warehouse-derived segments into business systems"
+    ],
+    "failureModes": [
+      "No data contract, so source changes silently break downstream metrics",
+      "Backfills and late-arriving data are not planned before production",
+      "ETL/ELT choice is made from tooling preference instead of ownership, freshness, and governance"
+    ]
   },
   {
     "problem": "Stream / Event Processing",
@@ -909,6 +990,72 @@
             "url": "https://opentelemetry.io/docs/concepts/signals/logs/"
           }
         ]
+      },
+      {
+        "name": "Queue vs Stream vs Workflow",
+        "solutions": [
+          {
+            "name": "Work queue",
+            "tool": "Queue pattern",
+            "language": "Any",
+            "blurb": "Use when each task should be processed by one worker and backlog handling matters more than replayable history.",
+            "url": "https://www.rabbitmq.com/tutorials/tutorial-one-python",
+            "implementationNote": "Good for jobs, email, image processing, and side effects; define retries and dead-letter behavior."
+          },
+          {
+            "name": "Event stream",
+            "tool": "Append-only event log",
+            "language": "Kafka/Kinesis/Pulsar",
+            "blurb": "Use when multiple consumers need replay, ordered partitions, and durable event history.",
+            "url": "https://kafka.apache.org/documentation/",
+            "implementationNote": "Model partition keys, retention, schemas, and consumer offsets explicitly."
+          },
+          {
+            "name": "Durable workflow",
+            "tool": "Workflow engine",
+            "language": "Temporal/Step Functions/Camunda",
+            "blurb": "Use when business state, retries, timers, compensation, and human/long-running steps define the problem.",
+            "url": "https://docs.temporal.io/",
+            "implementationNote": "Prefer workflow engines when process state matters more than raw message throughput."
+          },
+          {
+            "name": "Low-latency pub/sub",
+            "tool": "NATS / messaging fabric",
+            "language": "Any",
+            "blurb": "Use when simple fast messaging, request/reply, or ephemeral pub/sub is more important than long event retention.",
+            "url": "https://docs.nats.io/",
+            "implementationNote": "Do not use ephemeral messaging as a source-of-truth event log."
+          }
+        ]
+      },
+      {
+        "name": "Event Contract Operations",
+        "solutions": [
+          {
+            "name": "Schema registry",
+            "tool": "Event schema governance",
+            "language": "Avro/Protobuf/JSON Schema",
+            "blurb": "Use schema compatibility rules so producers can evolve events without breaking consumers.",
+            "url": "https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html",
+            "implementationNote": "Version event meaning, not only field shape."
+          },
+          {
+            "name": "Idempotent consumer",
+            "tool": "Reliability pattern",
+            "language": "Any",
+            "blurb": "Make consumers safe to retry, replay, and run after partial failure.",
+            "url": "https://microservices.io/patterns/communication-style/idempotent-consumer.html",
+            "implementationNote": "Use dedupe keys, transactional writes, or state checks around side effects."
+          },
+          {
+            "name": "Dead-letter and replay plan",
+            "tool": "Operational recovery pattern",
+            "language": "Any",
+            "blurb": "Separate poison messages, inspect failures, and replay safely after fixes.",
+            "url": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html",
+            "implementationNote": "Replay needs runbooks and blast-radius controls, not only a topic or queue."
+          }
+        ]
       }
     ],
     "examples": [
@@ -963,7 +1110,22 @@
     "setupCost": "High",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with event contracts, ordering, replay, idempotency, and consumer failure handling before choosing Kafka, Kinesis, RabbitMQ, or NATS."
+    "firstMove": "Start with event contracts, ordering, replay, idempotency, and consumer failure handling before choosing Kafka, Kinesis, RabbitMQ, or NATS.",
+    "stillBestWhen": [
+      "Many consumers need the same facts with independent timing or replay needs",
+      "Low-latency pipelines, audit logs, or event-sourced workflows need durable ordered history",
+      "Producers and consumers must be decoupled but event contracts can be governed"
+    ],
+    "replacedBy": [
+      "A queue when each message should be handled by one worker and replay/history is not central",
+      "A workflow engine when the core problem is durable business process state",
+      "Batch ETL when freshness can be minutes, hours, or days"
+    ],
+    "failureModes": [
+      "Treating Kafka, Kinesis, RabbitMQ, and NATS as interchangeable messaging products",
+      "No idempotency, so retries and replay corrupt downstream state",
+      "No schema evolution policy, so consumers break when event payloads change"
+    ]
   },
   {
     "problem": "Caching",
@@ -3655,6 +3817,80 @@
             "url": "https://cloud.google.com/architecture/batch-inference-reference-architecture"
           }
         ]
+      },
+      {
+        "name": "Managed vs Self-Hosted AI Serving",
+        "solutions": [
+          {
+            "name": "Managed model API",
+            "tool": "Hosted model service",
+            "language": "API",
+            "blurb": "Use when speed to market, model quality, scaling, and operations simplicity matter more than infrastructure control.",
+            "url": "https://developers.openai.com/api/docs/overview",
+            "implementationNote": "Measure cost, latency, data retention, and reliability against actual traffic before self-hosting."
+          },
+          {
+            "name": "Self-hosted GPU serving",
+            "tool": "vLLM/TGI/Triton-style deployment",
+            "language": "Python/C++/GPU",
+            "blurb": "Use when utilization, privacy, custom weights, or latency justify owning model serving infrastructure.",
+            "url": "https://docs.vllm.ai/",
+            "implementationNote": "Plan batching, autoscaling, model loading, GPU memory, and fallback behavior."
+          },
+          {
+            "name": "Local/edge inference",
+            "tool": "On-device or local runtime",
+            "language": "C++/Python/Edge",
+            "blurb": "Use when offline operation, privacy, or low-latency local interaction matters more than central model quality.",
+            "url": "https://github.com/ggml-org/llama.cpp",
+            "implementationNote": "Expect model size, quantization, hardware variability, and update distribution to dominate."
+          },
+          {
+            "name": "Batch inference",
+            "tool": "Offline prediction pattern",
+            "language": "Any",
+            "blurb": "Use scheduled inference when throughput and cost are more important than request latency.",
+            "url": "https://cloud.google.com/architecture/batch-inference-reference-architecture",
+            "implementationNote": "Good for enrichment, scoring, reporting, and offline recommendations."
+          }
+        ]
+      },
+      {
+        "name": "Deployment Shape Decisions",
+        "solutions": [
+          {
+            "name": "Static hosting",
+            "tool": "Static/CDN deployment",
+            "language": "HTML/CSS/JS",
+            "blurb": "Use for frontend-only apps where CDN caching and low operational overhead are enough.",
+            "url": "https://docs.github.com/en/pages",
+            "implementationNote": "Keep dynamic state in APIs, external services, or client-side storage."
+          },
+          {
+            "name": "Containers",
+            "tool": "Portable service packaging",
+            "language": "Docker/OCI",
+            "blurb": "Use for consistent service deployment when runtime dependencies and process control matter.",
+            "url": "https://docs.docker.com/get-started/",
+            "implementationNote": "A container is packaging, not an orchestration strategy."
+          },
+          {
+            "name": "Serverless",
+            "tool": "Managed function/runtime platform",
+            "language": "Any",
+            "blurb": "Use for bursty, event-driven, or low-ops workloads with acceptable cold-start/runtime constraints.",
+            "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+            "implementationNote": "Watch state, timeout, dependency size, observability, and vendor integration constraints."
+          },
+          {
+            "name": "Kubernetes",
+            "tool": "Container orchestration",
+            "language": "YAML/API",
+            "blurb": "Use when many services need scheduling, rollout control, networking, and platform-level standardization.",
+            "url": "https://kubernetes.io/docs/home/",
+            "implementationNote": "Avoid Kubernetes when one or two services on a managed platform would meet the need."
+          }
+        ]
       }
     ],
     "examples": [
@@ -3689,7 +3925,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with locality, latency, cost, privacy, and operational ownership; pick managed APIs or self-hosted inference after those constraints are known."
+    "firstMove": "Start with locality, latency, cost, privacy, and operational ownership; pick managed APIs or self-hosted inference after those constraints are known.",
+    "stillBestWhen": [
+      "The product is ready to serve users and runtime constraints are clearer than model experimentation",
+      "Latency, locality, privacy, cost, and operational ownership determine model/app shape",
+      "Deployment decisions include observability, rollout, rollback, and security boundaries"
+    ],
+    "replacedBy": [
+      "Local notebooks or prototypes before product requirements and evals are stable",
+      "Managed APIs when self-hosting is driven by novelty rather than measured cost/privacy/latency needs",
+      "Static hosting when the app is only frontend assets without server or model runtime"
+    ],
+    "failureModes": [
+      "Self-hosted models are chosen before traffic, utilization, GPU availability, and ops ownership are understood",
+      "Serverless or edge is chosen without cold-start, runtime, and state constraints",
+      "No rollback, tracing, rate limits, or model/version observability after launch"
+    ]
   },
   {
     "problem": "System Architecture Patterns",
@@ -3809,6 +4060,72 @@
             "url": "https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html"
           }
         ]
+      },
+      {
+        "name": "Architecture Shape Decisions",
+        "solutions": [
+          {
+            "name": "Monolith first",
+            "tool": "Architecture strategy",
+            "language": "Any",
+            "blurb": "Use one deployable system when the domain is still changing and one team can own the product end to end.",
+            "url": "https://martinfowler.com/bliki/MonolithFirst.html",
+            "implementationNote": "A monolith can still be modular; defer service splits until boundaries are proven."
+          },
+          {
+            "name": "Modular monolith",
+            "tool": "Architecture pattern",
+            "language": "Any",
+            "blurb": "Use internal modules and explicit boundaries without distributed deployment overhead.",
+            "url": "https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures",
+            "implementationNote": "Good default when teams need structure but not networked service complexity."
+          },
+          {
+            "name": "Microservices",
+            "tool": "Distributed architecture",
+            "language": "Any",
+            "blurb": "Use independently deployable services when ownership, scale, reliability, or release cadence requires separation.",
+            "url": "https://martinfowler.com/articles/microservices.html",
+            "implementationNote": "Split around data ownership and team responsibility, not nouns or controller names."
+          },
+          {
+            "name": "Event-driven architecture",
+            "tool": "Asynchronous architecture",
+            "language": "Any",
+            "blurb": "Use events to decouple producers and consumers when state changes need multiple downstream reactions.",
+            "url": "https://aws.amazon.com/event-driven-architecture/",
+            "implementationNote": "Define event contracts, idempotency, ordering, and replay before choosing infrastructure."
+          }
+        ]
+      },
+      {
+        "name": "Migration and Decision Records",
+        "solutions": [
+          {
+            "name": "Architecture decision record",
+            "tool": "Decision documentation",
+            "language": "Markdown",
+            "blurb": "Capture context, options, decision, consequences, and revisit triggers for major technical choices.",
+            "url": "https://adr.github.io/",
+            "implementationNote": "Use ADRs for choices that affect cost, ownership, reliability, or long-lived constraints."
+          },
+          {
+            "name": "Strangler fig migration",
+            "tool": "Incremental migration pattern",
+            "language": "Any",
+            "blurb": "Replace legacy capability gradually by routing slices of traffic or functionality to the new system.",
+            "url": "https://martinfowler.com/bliki/StranglerFigApplication.html",
+            "implementationNote": "Prefer reversible slices with observability over big-bang rewrites."
+          },
+          {
+            "name": "SLO-first architecture",
+            "tool": "Reliability planning",
+            "language": "Any",
+            "blurb": "Use user-visible reliability targets to decide where redundancy, observability, and operational effort are justified.",
+            "url": "https://sre.google/sre-book/service-level-objectives/",
+            "implementationNote": "Let SLOs constrain architecture instead of adding reliability mechanisms everywhere."
+          }
+        ]
       }
     ],
     "examples": [
@@ -3841,7 +4158,22 @@
     "scale": "Single product teams to large distributed systems",
     "setupCost": "High",
     "impactLevel": "core",
-    "firstMove": "Start by naming the dominant constraint: ownership, scale, latency, reliability, data freshness, or model locality; choose architecture only after that constraint is explicit."
+    "firstMove": "Start by naming the dominant constraint: ownership, scale, latency, reliability, data freshness, or model locality; choose architecture only after that constraint is explicit.",
+    "stillBestWhen": [
+      "The dominant risk is ownership, reliability, data flow, latency, or coordination rather than a single library choice",
+      "The system needs a migration path from today's design to a more scalable operating model",
+      "Cross-team boundaries, platform responsibilities, and failure modes are part of the problem"
+    ],
+    "replacedBy": [
+      "A simple modular monolith when one team owns the product and deployment is straightforward",
+      "A managed platform or SaaS product when the business does not need custom architecture",
+      "A workflow engine, queue, or stream when the architecture problem is really one coordination path"
+    ],
+    "failureModes": [
+      "Starting with microservices before data ownership and team boundaries are clear",
+      "Optimizing for theoretical scale while ignoring migration, observability, and operations",
+      "Choosing the final architecture without naming the first reversible step"
+    ]
   },
   {
     "problem": "Performance / Hardware Acceleration",
@@ -4083,6 +4415,72 @@
             "url": "https://gcc.gnu.org/onlinedocs/"
           }
         ]
+      },
+      {
+        "name": "Runtime Decision Triggers",
+        "solutions": [
+          {
+            "name": "Stay with team standard",
+            "tool": "Default platform choice",
+            "language": "Any",
+            "blurb": "Use the existing language/runtime when it meets latency, safety, ecosystem, and operational needs.",
+            "url": "https://martinfowler.com/bliki/PolyglotProgramming.html",
+            "implementationNote": "The cheapest runtime is often the one the team can operate well."
+          },
+          {
+            "name": "Native rewrite for hot path",
+            "tool": "Performance escape hatch",
+            "language": "C/C++/Rust",
+            "blurb": "Use native code only for measured hotspots where library, algorithm, and data-layout fixes are insufficient.",
+            "url": "https://doc.rust-lang.org/book/",
+            "implementationNote": "Isolate native code behind a small stable interface."
+          },
+          {
+            "name": "WASM module",
+            "tool": "Portable sandboxed runtime",
+            "language": "Rust/C/C++/AssemblyScript",
+            "blurb": "Use when portable sandboxed execution across browsers, plugins, edge, or embedded hosts matters.",
+            "url": "https://webassembly.org/docs/use-cases/",
+            "implementationNote": "WASM helps portability but can complicate debugging and host integration."
+          },
+          {
+            "name": "Managed runtime",
+            "tool": "JVM/.NET/BEAM/Node runtime",
+            "language": "Java/C#/Elixir/JavaScript",
+            "blurb": "Use when ecosystem, observability, concurrency model, and developer speed matter more than bare-metal control.",
+            "url": "https://docs.oracle.com/en/java/",
+            "implementationNote": "JIT/runtime behavior can be a feature or a constraint depending on startup, memory, and latency needs."
+          }
+        ]
+      },
+      {
+        "name": "Compiler and Profiling Practices",
+        "solutions": [
+          {
+            "name": "Profile before changing runtime",
+            "tool": "Performance engineering practice",
+            "language": "Any",
+            "blurb": "Find whether time is spent in CPU, memory, I/O, serialization, database, network, or data movement before changing languages.",
+            "url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+            "implementationNote": "Runtime changes are expensive; profiling often points to simpler fixes."
+          },
+          {
+            "name": "AOT/native image",
+            "tool": "Compilation strategy",
+            "language": "GraalVM/.NET/Rust/Go",
+            "blurb": "Use ahead-of-time or native compilation when startup, packaging, or constrained environments matter.",
+            "url": "https://www.graalvm.org/latest/reference-manual/native-image/",
+            "implementationNote": "AOT can trade dynamic behavior and build complexity for startup and deployment predictability."
+          },
+          {
+            "name": "Compiler sanitizers and static analysis",
+            "tool": "Correctness tooling",
+            "language": "C/C++/Rust/native",
+            "blurb": "Use compiler and static-analysis tooling to catch memory, undefined behavior, and concurrency bugs in systems code.",
+            "url": "https://clang.llvm.org/docs/index.html",
+            "implementationNote": "Compiler choice also affects safety tooling, diagnostics, and CI quality."
+          }
+        ]
       }
     ],
     "examples": [
@@ -4113,7 +4511,22 @@
     "scale": "Scripts to production platforms and native systems",
     "setupCost": "Medium",
     "impactLevel": "common",
-    "firstMove": "Start with deployment, latency, safety, ecosystem, and team skill constraints; change runtime/compiler only for measured needs."
+    "firstMove": "Start with deployment, latency, safety, ecosystem, and team skill constraints; change runtime/compiler only for measured needs.",
+    "stillBestWhen": [
+      "The decision is constrained by deployment target, latency, memory, safety, ecosystem, or team expertise",
+      "Profiling shows runtime or compiler behavior is a real bottleneck",
+      "Interop with native libraries, GPUs, browsers, plugins, or edge runtimes is part of the requirement"
+    ],
+    "replacedBy": [
+      "The team's standard language/runtime when it already meets measured needs",
+      "Library or architecture changes when bottlenecks are algorithmic, I/O, or data movement rather than runtime overhead",
+      "Managed services when custom runtime control does not create business value"
+    ],
+    "failureModes": [
+      "Changing language for performance without profiling the actual bottleneck",
+      "Ignoring hiring, ecosystem, debugging, deployment, and observability costs",
+      "Using native extensions or WASM before the boundary and failure model are stable"
+    ]
   },
   {
     "problem": "Algorithmic Interview Patterns",
