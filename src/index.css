@@ -216,6 +216,14 @@ input {
   font-size: 12px;
 }
 
+.summary-block b {
+  color: #d5dde5;
+}
+
+.summary-wide {
+  grid-column: span 2;
+}
+
 .wizard {
   display: grid;
   gap: 12px;
@@ -821,6 +829,10 @@ mark {
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .summary-wide {
+    grid-column: auto;
   }
 
   .wizard-header,
