@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ProblemNode, Solution } from '../hooks/useTreeData';
 import { slugify } from '../utils/slug';
+import { classifySource } from '../utils/sourceAuthority';
 
 type Props = {
   data: ProblemNode[];
@@ -25,6 +26,7 @@ function highlight(text: string, q: string) {
 
 function SolutionItem({ solution, query }: { solution: Solution; query: string }) {
   const [copied, setCopied] = useState(false);
+  const source = classifySource(solution.url);
 
   const copyCode = async () => {
     if (!solution.code) return;
@@ -44,6 +46,9 @@ function SolutionItem({ solution, query }: { solution: Solution; query: string }
           <a className="reference-link" href={solution.url} target="_blank" rel="noreferrer">
             Reference
           </a>
+        )}
+        {solution.url && (
+          <span className={`source-badge source-${source.authority}`}>{source.label}</span>
         )}
       </div>
       {solution.blurb && <p className="solution-blurb">{highlight(solution.blurb, query)}</p>}

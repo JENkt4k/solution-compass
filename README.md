@@ -9,6 +9,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Static React/Vite PWA with install support and offline caching.
 - Decision Wizard with answer-based scoring and recommendation explanations.
 - Searchable catalog of problems, patterns, tools, algorithms, examples, snippets, and references.
+- Reference links show source/authority badges such as official docs, standards, academic papers, vendor docs, reference, or community.
 - Shareable deep links for focused problem areas, such as `#/problem/vector-search-embeddings`.
 - Clickable tag chips for quick taxonomy filtering.
 - Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
@@ -41,6 +42,7 @@ MVP+ is functional and deployable on GitHub Pages.
 | Compare view | Dense solution table with problem, pattern, tool, language, fit, complexity, and reference columns. |
 | Deep links | Problem cards can be focused and shared with `#/problem/<slug>` URLs. |
 | Search | Full-text filtering across titles, tags, examples, decision metadata, patterns, solutions, tools, languages, blurbs, snippets, and URLs. |
+| Source badges | Reference URLs are classified with authority badges so users can distinguish official docs, standards, academic papers, vendor docs, and background references. |
 | Tag filters | Problem tags are clickable chips for quick exact-tag filtering. |
 | Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
 | Impact lens | Prioritizes common production work while keeping trick/interview patterns mostly archival. |
@@ -152,6 +154,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 - Zoom Mode is a first-pass static set of reference tracks; it does not yet generate custom diagrams or migration plans.
 - Evaluation Mode is guidance-oriented; it does not yet produce scored interview rubrics or exported evaluation packets.
 - Rare scientific/engineering methods are represented selectively; broader GIS, CAE, CFD, and multiphysics coverage is still intentionally incomplete.
+- Source/authority badges are inferred from URL domains; edge cases may need explicit per-solution metadata later.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - Tag filtering is exact-match only; it does not yet support AND/OR combinations.
 - No editable dataset UI yet.

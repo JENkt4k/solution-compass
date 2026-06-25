@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { ProblemNode, Solution } from '../hooks/useTreeData';
+import { classifySource } from '../utils/sourceAuthority';
 
 type CompareRow = {
   problem: ProblemNode;
@@ -68,53 +69,61 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr
-                className="clickable-row"
-                key={`${row.problem.problem}::${row.patternName}::${row.solution.name}::${row.solution.tool}`}
-                tabIndex={0}
-                onClick={() => onFocusProblem(row.problem.problem)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    onFocusProblem(row.problem.problem);
-                  }
-                }}
-              >
-                <td>
-                  <button className="table-link" type="button" onClick={() => onFocusProblem(row.problem.problem)}>
-                    {row.problem.problem}
-                  </button>
-                  <span className="table-subtext">{problemMeta(row.problem)}</span>
-                  {row.problem.firstMove && <span className="table-subtext">First move: {row.problem.firstMove}</span>}
-                </td>
-                <td>{row.patternName}</td>
-                <td>{short(row.problem.scopeLevel)}</td>
-                <td>{short(row.problem.impactLevel)}</td>
-                <td>
-                  <strong>{row.solution.name}</strong>
-                  {row.solution.blurb && <span className="table-subtext">{row.solution.blurb}</span>}
-                  {row.solution.implementationNote && <span className="table-subtext">{row.solution.implementationNote}</span>}
-                </td>
-                <td>{short(row.solution.reuseLevel)}</td>
-                <td>{row.solution.tool}</td>
-                <td>{row.solution.language}</td>
-                <td>{short(row.problem.scale)}</td>
-                <td>{short(row.solution.timeComplexity)}</td>
-                <td>{short(row.solution.spaceComplexity)}</td>
-                <td>
-                  {row.solution.url ? (
-                    <a
-                      className="reference-link"
-                      href={row.solution.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      Open
-                    </a>
-                  ) : '-'}
-                </td>
-              </tr>
+              (() => {
+                const source = classifySource(row.solution.url);
+                return (
+                  <tr
+                    className="clickable-row"
+                    key={`${row.problem.problem}::${row.patternName}::${row.solution.name}::${row.solution.tool}`}
+                    tabIndex={0}
+                    onClick={() => onFocusProblem(row.problem.problem)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        onFocusProblem(row.problem.problem);
+                      }
+                    }}
+                  >
+                    <td>
+                      <button className="table-link" type="button" onClick={() => onFocusProblem(row.problem.problem)}>
+                        {row.problem.problem}
+                      </button>
+                      <span className="table-subtext">{problemMeta(row.problem)}</span>
+                      {row.problem.firstMove && <span className="table-subtext">First move: {row.problem.firstMove}</span>}
+                    </td>
+                    <td>{row.patternName}</td>
+                    <td>{short(row.problem.scopeLevel)}</td>
+                    <td>{short(row.problem.impactLevel)}</td>
+                    <td>
+                      <strong>{row.solution.name}</strong>
+                      {row.solution.blurb && <span className="table-subtext">{row.solution.blurb}</span>}
+                      {row.solution.implementationNote && <span className="table-subtext">{row.solution.implementationNote}</span>}
+                    </td>
+                    <td>{short(row.solution.reuseLevel)}</td>
+                    <td>{row.solution.tool}</td>
+                    <td>{row.solution.language}</td>
+                    <td>{short(row.problem.scale)}</td>
+                    <td>{short(row.solution.timeComplexity)}</td>
+                    <td>{short(row.solution.spaceComplexity)}</td>
+                    <td>
+                      {row.solution.url ? (
+                        <span className="reference-cell">
+                          <a
+                            className="reference-link"
+                            href={row.solution.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            Open
+                          </a>
+                          <span className={`source-badge source-${source.authority}`}>{source.label}</span>
+                        </span>
+                      ) : '-'}
+                    </td>
+                  </tr>
+                );
+              })()
             ))}
           </tbody>
         </table>

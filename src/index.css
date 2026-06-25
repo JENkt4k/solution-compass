@@ -803,6 +803,51 @@ input {
   text-decoration: underline;
 }
 
+.reference-cell {
+  display: grid;
+  gap: 5px;
+  align-items: start;
+}
+
+.source-badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  background: #151d24;
+  color: #d5dde5;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.source-official-docs {
+  border-color: rgba(85, 194, 166, 0.8);
+  color: #dffbf4;
+}
+
+.source-standard {
+  border-color: rgba(143, 183, 255, 0.8);
+  color: #dbe7ff;
+}
+
+.source-academic {
+  border-color: rgba(214, 179, 103, 0.85);
+  color: #f4dfad;
+}
+
+.source-vendor-docs {
+  border-color: rgba(164, 139, 255, 0.75);
+  color: #e4ddff;
+}
+
+.source-community,
+.source-reference {
+  color: var(--muted);
+}
+
 .solution-blurb {
   margin: 0;
 }
