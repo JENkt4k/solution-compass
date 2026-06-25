@@ -301,6 +301,64 @@
             "url": "https://www.meilisearch.com/docs"
           }
         ]
+      },
+      {
+        "name": "Retrieval Strategy Selection",
+        "solutions": [
+          {
+            "name": "Full-text / lexical search",
+            "tool": "Inverted index",
+            "language": "Search engine",
+            "blurb": "Use when exact terms, filters, facets, permissions, highlighting, and explainable matching matter.",
+            "url": "https://lucene.apache.org/core/",
+            "implementationNote": "Start here for product search before adding vectors unless semantic recall is clearly missing."
+          },
+          {
+            "name": "Vector / semantic retrieval",
+            "tool": "Embedding search",
+            "language": "Any",
+            "blurb": "Use when wording varies, queries are conceptual, or documents need similarity search beyond exact tokens.",
+            "url": "https://developers.openai.com/api/docs/guides/embeddings",
+            "implementationNote": "Evaluate recall and false positives; semantic similarity can miss exact identifiers, rare terms, or negation."
+          },
+          {
+            "name": "Hybrid search",
+            "tool": "Lexical + vector retrieval",
+            "language": "Any",
+            "blurb": "Combine lexical and vector retrieval when exact keywords and semantic recall both matter.",
+            "url": "https://www.elastic.co/what-is/hybrid-search",
+            "implementationNote": "Tune fusion/reranking with real queries; hybrid search is not automatically better without evaluation."
+          },
+          {
+            "name": "Reranking",
+            "tool": "Second-stage ranking",
+            "language": "Any",
+            "blurb": "Use a stronger model to reorder candidate results after a cheap first-stage retrieval pass.",
+            "url": "https://www.pinecone.io/learn/series/rag/rerankers/",
+            "implementationNote": "Reranking helps when the candidate set has good recall but poor ordering."
+          }
+        ]
+      },
+      {
+        "name": "Search Quality Operations",
+        "solutions": [
+          {
+            "name": "Relevance evaluation set",
+            "tool": "Search quality practice",
+            "language": "Any",
+            "blurb": "Collect representative queries and expected results so ranking changes can be measured.",
+            "url": "https://www.elastic.co/search-labs/blog/articles/evaluating-search-relevance-part-1",
+            "implementationNote": "Use judgments, click logs, zero-result queries, and support tickets as search-quality signals."
+          },
+          {
+            "name": "Index freshness strategy",
+            "tool": "Indexing architecture",
+            "language": "Any",
+            "blurb": "Choose sync, async, streaming, or batch indexing based on how stale results may be.",
+            "url": "https://solr.apache.org/guide/solr/latest/indexing-guide/indexing-with-update-handlers.html",
+            "implementationNote": "Freshness requirements drive queueing, backfill, replay, and deletion handling."
+          }
+        ]
       }
     ],
     "examples": [
@@ -344,7 +402,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with exact search requirements, ranking quality, freshness, and filters before choosing Elasticsearch, Solr, Meilisearch, or hosted search."
+    "firstMove": "Start with exact search requirements, ranking quality, freshness, and filters before choosing Elasticsearch, Solr, Meilisearch, or hosted search.",
+    "stillBestWhen": [
+      "Users need exact terms, filters, facets, sorting, autocomplete, or auditability",
+      "Ranking can be evaluated from clicks, relevance judgments, or support tickets",
+      "Freshness and structured filtering matter as much as semantic similarity"
+    ],
+    "replacedBy": [
+      "Vector search when semantic similarity dominates and exact terms are unreliable",
+      "SQL or OLAP queries when data is structured and exact predicates are enough",
+      "Recommendation/ranking models when personalization dominates retrieval"
+    ],
+    "failureModes": [
+      "Index freshness lags behind source-of-truth data",
+      "Ranking looks plausible but has no relevance metric or feedback loop",
+      "Synonyms, stemming, permissions, or filters are bolted on after launch"
+    ]
   },
   {
     "problem": "Workflow / State Modeling",
@@ -2758,6 +2831,72 @@
             "url": "https://docs.vllm.ai/"
           }
         ]
+      },
+      {
+        "name": "RAG vs Fine-Tuning vs Tools",
+        "solutions": [
+          {
+            "name": "RAG for changing/private knowledge",
+            "tool": "Retrieval-augmented generation",
+            "language": "Any",
+            "blurb": "Use retrieval when answers depend on private, recent, or large knowledge that should be cited or updated without retraining.",
+            "url": "https://developers.openai.com/api/docs/guides/retrieval",
+            "implementationNote": "Measure retrieval recall, citation quality, and answer faithfulness before changing vector databases."
+          },
+          {
+            "name": "Fine-tuning for stable behavior",
+            "tool": "Model adaptation pattern",
+            "language": "Any",
+            "blurb": "Use fine-tuning when the task format, tone, or classification behavior is stable and examples are more important than fresh knowledge.",
+            "url": "https://platform.openai.com/docs/guides/fine-tuning",
+            "implementationNote": "Fine-tuning does not replace retrieval for frequently changing facts or large private corpora."
+          },
+          {
+            "name": "Tool/workflow automation",
+            "tool": "Function calling / tool use",
+            "language": "Any",
+            "blurb": "Use tools when the model needs to read systems, call APIs, update records, or trigger bounded workflows instead of only generating text.",
+            "url": "https://developers.openai.com/api/docs/guides/function-calling",
+            "implementationNote": "Make tool calls idempotent, permissioned, observable, and reversible where possible."
+          },
+          {
+            "name": "Structured extraction",
+            "tool": "Structured outputs",
+            "language": "JSON Schema",
+            "blurb": "Use schema-constrained output when downstream systems need predictable fields instead of prose.",
+            "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+            "implementationNote": "Prefer schemas and validation for extraction; do not rely on prompt wording alone."
+          }
+        ]
+      },
+      {
+        "name": "LLM Quality and Operations",
+        "solutions": [
+          {
+            "name": "Evaluation-first development",
+            "tool": "Eval harness",
+            "language": "Any",
+            "blurb": "Build small representative eval sets before optimizing prompts, retrieval, or model choice.",
+            "url": "https://developers.openai.com/api/docs/guides/evals",
+            "implementationNote": "Track regressions by task class: retrieval miss, grounding error, formatting error, policy/tool error."
+          },
+          {
+            "name": "Tracing and feedback loops",
+            "tool": "Observability pattern",
+            "language": "Any",
+            "blurb": "Log prompts, retrieved chunks, tool calls, model outputs, and user feedback so failures are diagnosable.",
+            "url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+            "implementationNote": "For sensitive data, pair observability with retention, redaction, and access controls."
+          },
+          {
+            "name": "Human review gates",
+            "tool": "Risk control pattern",
+            "language": "Any",
+            "blurb": "Use review or approval for irreversible, high-cost, regulated, or user-impacting actions.",
+            "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+            "implementationNote": "Human review is most useful when the system shows evidence, alternatives, and confidence signals."
+          }
+        ]
       }
     ],
     "examples": [
@@ -2787,7 +2926,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with task shape, evaluation set, and failure modes; choose prompting, tools, RAG, or structured outputs based on measurable behavior."
+    "firstMove": "Start with task shape, evaluation set, and failure modes; choose prompting, tools, RAG, or structured outputs based on measurable behavior.",
+    "stillBestWhen": [
+      "Users need natural-language interaction over ambiguous or changing inputs",
+      "The task benefits from reasoning over retrieved context, tools, or structured extraction",
+      "Behavior can be measured with evals, traces, and regression examples"
+    ],
+    "replacedBy": [
+      "Deterministic parsers, SQL, rules engines, or search when the task is exact and bounded",
+      "Classic workflow automation when actions are known and do not require language reasoning",
+      "Fine-tuning or smaller classifiers when the task is stable, high-volume, and tightly scoped"
+    ],
+    "failureModes": [
+      "No eval set, so regressions and hallucinations are invisible",
+      "Agents call tools without permissions, idempotency, or human review boundaries",
+      "RAG retrieves plausible but irrelevant context and the model answers confidently anyway"
+    ]
   },
   {
     "problem": "LLM Memory / Context Systems",
@@ -2843,6 +2997,72 @@
             "url": "https://langchain-ai.github.io/langgraph/concepts/memory/"
           }
         ]
+      },
+      {
+        "name": "Memory Governance",
+        "solutions": [
+          {
+            "name": "TTL and forgetting policy",
+            "tool": "Memory lifecycle control",
+            "language": "Any",
+            "blurb": "Expire or delete memories by sensitivity, age, confidence, and user preference.",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/memory/",
+            "implementationNote": "Memory without deletion rules becomes a correctness, privacy, and trust risk."
+          },
+          {
+            "name": "Provenance and citations",
+            "tool": "Memory evidence control",
+            "language": "Any",
+            "blurb": "Store where a memory came from and when it was last confirmed so the assistant can cite or challenge it.",
+            "url": "https://developers.openai.com/api/docs/guides/retrieval",
+            "implementationNote": "Prefer evidence-linked memory for facts; summaries alone are not enough for high-stakes decisions."
+          },
+          {
+            "name": "User-editable profile memory",
+            "tool": "Preference memory pattern",
+            "language": "Any",
+            "blurb": "Let users inspect, correct, and remove durable preferences or facts used across sessions.",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/memory/",
+            "implementationNote": "User control matters more as memory becomes durable and personalized."
+          }
+        ]
+      },
+      {
+        "name": "Memory System Comparison",
+        "solutions": [
+          {
+            "name": "Short-term context buffer",
+            "tool": "Prompt state",
+            "language": "Any",
+            "blurb": "Best for recent conversation and exact state that fits in the context window.",
+            "url": "https://developers.openai.com/api/docs/guides/text-generation",
+            "implementationNote": "Use before adding databases when the task is short-lived."
+          },
+          {
+            "name": "Summary memory",
+            "tool": "Compression",
+            "language": "Any",
+            "blurb": "Best for long conversations where broad continuity matters more than exact recall.",
+            "url": "https://www.pinecone.io/learn/series/langchain/langchain-conversational-memory/",
+            "implementationNote": "Audit summaries against source turns to detect drift."
+          },
+          {
+            "name": "Vector memory",
+            "tool": "Embedding retrieval",
+            "language": "Any",
+            "blurb": "Best for fuzzy recall over many memories, notes, or episodes.",
+            "url": "https://qdrant.tech/documentation/concepts/",
+            "implementationNote": "Needs metadata, scoping, and retrieval evals to avoid irrelevant recall."
+          },
+          {
+            "name": "Graph memory",
+            "tool": "Structured entity memory",
+            "language": "Graph/Any",
+            "blurb": "Best when entities, relationships, and multi-hop queries matter more than semantic similarity.",
+            "url": "https://neo4j.com/developer-blog/knowledge-graphs-llms-multi-hop-question-answering/",
+            "implementationNote": "Requires extraction quality and curation discipline."
+          }
+        ]
       }
     ],
     "examples": [
@@ -2873,7 +3093,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "common",
-    "firstMove": "Start by deciding what must persist, expire, be cited, or be forgotten; avoid vector memory until retrieval quality is measurable."
+    "firstMove": "Start by deciding what must persist, expire, be cited, or be forgotten; avoid vector memory until retrieval quality is measurable.",
+    "stillBestWhen": [
+      "The app needs continuity across turns, sessions, tools, or user preferences",
+      "Stored context can be scoped, expired, cited, corrected, and forgotten",
+      "Memory quality can be measured by task success, retrieval precision, and user corrections"
+    ],
+    "replacedBy": [
+      "Plain context-window state when the interaction is short and bounded",
+      "Database records when the memory is really structured product data",
+      "Search/RAG when memory is document knowledge rather than personal or agent state"
+    ],
+    "failureModes": [
+      "Memory accumulates stale, private, or irrelevant facts without deletion rules",
+      "Summaries drift from original evidence and become uncitable",
+      "Vector memory retrieves semantically similar but task-irrelevant episodes"
+    ]
   },
   {
     "problem": "Vector Search / Embeddings",
@@ -2966,6 +3201,64 @@
             "url": "https://www.pinecone.io/learn/series/rag/rerankers/"
           }
         ]
+      },
+      {
+        "name": "Index and Retrieval Decisions",
+        "solutions": [
+          {
+            "name": "Exact vector scan",
+            "tool": "Brute-force similarity",
+            "language": "Any",
+            "blurb": "Use for small corpora, evaluation baselines, or when approximate indexes add unnecessary complexity.",
+            "url": "https://faiss.ai/",
+            "implementationNote": "Exact search is a useful baseline before HNSW/IVF tuning."
+          },
+          {
+            "name": "HNSW indexes",
+            "tool": "Approximate nearest neighbor index",
+            "language": "Vector DB / library",
+            "blurb": "Use for low-latency approximate retrieval with tunable recall/memory tradeoffs.",
+            "url": "https://qdrant.tech/documentation/concepts/indexing/",
+            "implementationNote": "Tune recall and latency together; memory use and filter behavior matter."
+          },
+          {
+            "name": "IVFFlat / partitioned indexes",
+            "tool": "Approximate nearest neighbor index",
+            "language": "pgvector/FAISS",
+            "blurb": "Use partitioned ANN when large vector sets need faster search with explicit training/tuning tradeoffs.",
+            "url": "https://github.com/pgvector/pgvector",
+            "implementationNote": "Compare against exact search and HNSW for the actual corpus and filters."
+          },
+          {
+            "name": "Metadata filtering",
+            "tool": "Retrieval constraint",
+            "language": "Vector DB / SQL",
+            "blurb": "Use metadata for tenant, permission, type, freshness, and source filters before semantic ranking.",
+            "url": "https://qdrant.tech/documentation/concepts/filtering/",
+            "implementationNote": "Filters are part of correctness, not just performance."
+          }
+        ]
+      },
+      {
+        "name": "Embedding Evaluation",
+        "solutions": [
+          {
+            "name": "Chunking evals",
+            "tool": "Retrieval evaluation practice",
+            "language": "Any",
+            "blurb": "Test chunk size, overlap, section boundaries, and metadata against real query-answer pairs.",
+            "url": "https://developers.openai.com/api/docs/guides/embeddings",
+            "implementationNote": "Bad chunking often looks like a model failure but is really a retrieval failure."
+          },
+          {
+            "name": "Hybrid retrieval evals",
+            "tool": "Search evaluation practice",
+            "language": "Any",
+            "blurb": "Compare lexical, vector, and hybrid retrieval on exact terms, synonyms, rare entities, and conceptual queries.",
+            "url": "https://www.elastic.co/what-is/hybrid-search",
+            "implementationNote": "Promote hybrid only when it improves measured recall/precision for target queries."
+          }
+        ]
       }
     ],
     "examples": [
@@ -2996,7 +3289,22 @@
     "setupCost": "Medium",
     "scopeLevel": "stack",
     "impactLevel": "core",
-    "firstMove": "Start with chunking, metadata filters, and retrieval evaluation; choose vector database only after recall/precision needs are testable."
+    "firstMove": "Start with chunking, metadata filters, and retrieval evaluation; choose vector database only after recall/precision needs are testable.",
+    "stillBestWhen": [
+      "Semantic similarity or recommendation recall matters more than exact keyword matching",
+      "Chunking, metadata, and retrieval quality can be evaluated against representative queries",
+      "Embeddings can be stored and refreshed within privacy, cost, and latency limits"
+    ],
+    "replacedBy": [
+      "Full-text search when exact names, identifiers, filters, or auditability dominate",
+      "SQL/graph queries when relationships are explicit and structured",
+      "Direct context-window stuffing when the corpus is tiny and bounded"
+    ],
+    "failureModes": [
+      "Chunking destroys context or mixes unrelated concepts",
+      "Metadata filters are weak, so retrieval leaks tenants, permissions, or stale documents",
+      "Vector DB choice is optimized before embedding quality, evals, and hybrid retrieval are tested"
+    ]
   },
   {
     "problem": "Model Adaptation",

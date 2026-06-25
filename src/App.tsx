@@ -130,6 +130,9 @@ function App() {
         p.bestFor,
         p.avoidWhen,
         p.tradeoffs,
+        p.stillBestWhen,
+        p.replacedBy,
+        p.failureModes,
       ]);
 
       if (problemMatches) {

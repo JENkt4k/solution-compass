@@ -30,6 +30,9 @@ export interface ProblemNode {
   bestFor?: string[];
   avoidWhen?: string[];
   tradeoffs?: string[];
+  stillBestWhen?: string[];
+  replacedBy?: string[];
+  failureModes?: string[];
   complexity?: string;
   maturity?: string;
   scale?: string;

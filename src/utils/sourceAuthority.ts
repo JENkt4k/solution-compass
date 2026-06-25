@@ -21,6 +21,7 @@ const officialHosts = [
   'docs.docker.com',
   'docs.github.com',
   'developers.openai.com',
+  'platform.openai.com',
   'docs.aws.amazon.com',
   'learn.microsoft.com',
   'cloud.google.com',

@@ -193,7 +193,7 @@ export default function TreeCanvas({
 
             {pOpen && (
               <div className="patterns">
-                {(problem.firstMove || problem.bestFor || problem.avoidWhen || problem.tradeoffs) && (
+                {(problem.firstMove || problem.bestFor || problem.avoidWhen || problem.tradeoffs || problem.stillBestWhen || problem.replacedBy || problem.failureModes) && (
                   <div className="decision-details">
                     {problem.firstMove && (
                       <div>
@@ -217,6 +217,24 @@ export default function TreeCanvas({
                       <div>
                         <strong>Tradeoffs</strong>
                         <ul>{problem.tradeoffs.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                    {problem.stillBestWhen && (
+                      <div>
+                        <strong>Still best when</strong>
+                        <ul>{problem.stillBestWhen.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                    {problem.replacedBy && (
+                      <div>
+                        <strong>Often replaced by</strong>
+                        <ul>{problem.replacedBy.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                      </div>
+                    )}
+                    {problem.failureModes && (
+                      <div>
+                        <strong>Failure modes</strong>
+                        <ul>{problem.failureModes.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
                       </div>
                     )}
                   </div>

@@ -19,7 +19,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Evaluation Mode maps engineering roles to useful signals, weak signals, practical exercises, and related problem areas.
 - Core/common problem areas include a `firstMove` recommendation to steer the first practical action.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
-- Normalized dataset with `39` problem areas, `75` patterns, and `235` solutions.
+- Normalized dataset with `39` problem areas, `83` patterns, and `261` solutions.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
@@ -88,6 +88,9 @@ export interface ProblemNode {
   bestFor?: string[];
   avoidWhen?: string[];
   tradeoffs?: string[];
+  stillBestWhen?: string[];
+  replacedBy?: string[];
+  failureModes?: string[];
   complexity?: string;
   maturity?: string;
   scale?: string;
@@ -154,6 +157,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 - Zoom Mode is a first-pass static set of reference tracks; it does not yet generate custom diagrams or migration plans.
 - Evaluation Mode is guidance-oriented; it does not yet produce scored interview rubrics or exported evaluation packets.
 - Rare scientific/engineering methods are represented selectively; broader GIS, CAE, CFD, and multiphysics coverage is still intentionally incomplete.
+- AI/RAG, search, vector retrieval, and memory guidance is deeper than before but still needs periodic source review and domain-specific eval examples.
 - Source/authority badges are inferred from URL domains; edge cases may need explicit per-solution metadata later.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - Tag filtering is exact-match only; it does not yet support AND/OR combinations.
