@@ -14,6 +14,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
 - Impact lens for Core, Common, Specialized, and Archival material; core work-impacting classes sort first by default.
 - Catalog Signals panel summarizes scope, impact, snippet coverage, and implementation guidance counts.
+- Core/common problem areas include a `firstMove` recommendation to steer the first practical action.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
 - Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
 - Every solution has a short blurb and reference URL.
@@ -77,6 +78,7 @@ export interface ProblemNode {
   subcategory?: string;
   description?: string;
   examples?: string[];
+  firstMove?: string;
   bestFor?: string[];
   avoidWhen?: string[];
   tradeoffs?: string[];
@@ -111,6 +113,7 @@ The validator fails on:
 - Missing solution `blurb`, `url`, or `language`.
 - Missing time/space complexity for snippet-bearing solutions.
 - Missing problem decision metadata.
+- Missing `firstMove` on core/common problem areas.
 - Missing or invalid problem `scopeLevel`.
 - Missing or invalid problem `impactLevel`.
 - Invalid solution `reuseLevel`.

@@ -64,6 +64,10 @@ if (!Array.isArray(data)) {
     requireString(problem.scale, 'scale', problemContext);
     requireString(problem.setupCost, 'setupCost', problemContext);
 
+    if (['core', 'common'].includes(problem.impactLevel)) {
+      requireString(problem.firstMove, 'firstMove', problemContext);
+    }
+
     if (problem.scopeLevel && !scopeLevels.has(problem.scopeLevel)) {
       errors.push(`${problemContext}: invalid scopeLevel "${problem.scopeLevel}"`);
     }

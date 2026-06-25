@@ -90,6 +90,7 @@ export default function Wizard({ data, onFocus }: { data: ProblemNode[]; onFocus
               <div>
                 <strong>Start with</strong>
                 <ul>
+                  {item.node.firstMove && <li>{item.node.firstMove}</li>}
                   {firstSolution(item.node) && <li>{firstSolution(item.node)}</li>}
                   {(item.node.bestFor || []).slice(0, 2).map((fit) => <li key={fit}>{fit}</li>)}
                 </ul>

@@ -172,7 +172,8 @@
     "scale": "Single process to distributed systems",
     "setupCost": "Medium",
     "scopeLevel": "architecture",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by removing shared mutable state; use queues, actors, or transactions before low-level locks when possible."
   },
   {
     "problem": "Search / Retrieval",
@@ -342,7 +343,8 @@
     "scale": "Thousands to billions of documents",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with exact search requirements, ranking quality, freshness, and filters before choosing Elasticsearch, Solr, Meilisearch, or hosted search."
   },
   {
     "problem": "Workflow / State Modeling",
@@ -511,7 +513,8 @@
     "scale": "Team workflows to distributed orchestration",
     "setupCost": "Medium",
     "scopeLevel": "architecture",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by drawing states, transitions, retries, and ownership; choose Temporal, Camunda, Step Functions, or code after lifecycle complexity is visible."
   },
   {
     "problem": "Batch / ETL Processing",
@@ -698,7 +701,8 @@
     "scale": "Files to data lakes and warehouses",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with freshness, ownership, and whether transforms belong before or after loading; choose ETL/ELT tooling after the data contract is clear."
   },
   {
     "problem": "Stream / Event Processing",
@@ -885,7 +889,8 @@
     "scale": "Service events to high-volume streams",
     "setupCost": "High",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with event contracts, ordering, replay, idempotency, and consumer failure handling before choosing Kafka, Kinesis, RabbitMQ, or NATS."
   },
   {
     "problem": "Caching",
@@ -950,7 +955,8 @@
     "scale": "Single app to global edge",
     "setupCost": "Low",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with the invalidation model and TTL policy; add Redis or application caches only after the source of truth and staleness tolerance are clear."
   },
   {
     "problem": "Security & Cryptography",
@@ -1143,7 +1149,8 @@
     "scale": "Single app to enterprise identity",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with threat model and managed primitives; prefer vetted libraries and platform services over custom crypto or auth flows."
   },
   {
     "problem": "Machine Learning / AI",
@@ -1285,7 +1292,8 @@
     "scale": "Prototype notebooks to production model services",
     "setupCost": "High",
     "scopeLevel": "library",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start with labeled data, baseline metrics, and evaluation split; use simpler models before deep learning if they meet the target."
   },
   {
     "problem": "CRUD & Data Modeling",
@@ -1407,7 +1415,8 @@
     "scale": "Small apps to high-volume transactional systems",
     "setupCost": "Low",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with ownership, relationships, transactions, and query patterns; pick schema/database design before adding service abstractions."
   },
   {
     "problem": "Scheduling / Optimization",
@@ -1470,7 +1479,8 @@
     "scale": "Small schedules to enterprise planning",
     "setupCost": "High",
     "scopeLevel": "architecture",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by separating hard constraints from preferences; use solvers when constraints change or need explainable feasibility."
   },
   {
     "problem": "Graph Algorithms & Graph Data",
@@ -1602,7 +1612,8 @@
     "scale": "In-memory graphs to graph databases",
     "setupCost": "Medium",
     "scopeLevel": "algorithm",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by deciding whether the graph is a data model or an algorithmic subroutine; use graph databases/libraries unless the traversal is small and custom."
   },
   {
     "problem": "Constraint Solving",
@@ -1732,7 +1743,8 @@
     "scale": "Puzzles to industrial optimization",
     "setupCost": "Medium",
     "scopeLevel": "architecture",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by expressing variables, domains, and constraints declaratively; use CP-SAT or SAT/SMT before writing brittle search logic."
   },
   {
     "problem": "Formal Verification",
@@ -1862,7 +1874,8 @@
     "scale": "Single service to distributed platforms",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with the debugging questions and SLOs; instrument logs, metrics, and traces around user-visible failure modes first."
   },
   {
     "problem": "Messaging / Coordination",
@@ -1925,7 +1938,8 @@
     "scale": "Clusters and distributed services",
     "setupCost": "Medium",
     "scopeLevel": "architecture",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by deciding whether you need messaging, coordination, or consensus; avoid adding quorum systems when a queue or database lock is enough."
   },
   {
     "problem": "State-space search",
@@ -2192,7 +2206,8 @@
     "scale": "Small to very large algorithmic workloads",
     "setupCost": "Low",
     "scopeLevel": "algorithm",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by proving the greedy choice property or accepting approximation; otherwise use DP, search, or optimization solvers."
   },
   {
     "problem": "Dynamic Programming",
@@ -2263,7 +2278,8 @@
     "scale": "Algorithmic problems with bounded state spaces",
     "setupCost": "Medium",
     "scopeLevel": "algorithm",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by identifying state, recurrence, and ordering; prefer library/solver alternatives when the state space is generic optimization."
   },
   {
     "problem": "Network flow",
@@ -2478,7 +2494,8 @@
     "scale": "Local collections to stream processors",
     "setupCost": "Low",
     "scopeLevel": "algorithm",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start with pure transforms and data contracts; use pipelines for composable transformations, not hidden orchestration state."
   },
   {
     "problem": "Distributed consensus",
@@ -2769,7 +2786,8 @@
     "scale": "Local prototype to production AI service",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with task shape, evaluation set, and failure modes; choose prompting, tools, RAG, or structured outputs based on measurable behavior."
   },
   {
     "problem": "LLM Memory / Context Systems",
@@ -2854,7 +2872,8 @@
     "scale": "Single-user local apps to agent platforms",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start by deciding what must persist, expire, be cited, or be forgotten; avoid vector memory until retrieval quality is measurable."
   },
   {
     "problem": "Vector Search / Embeddings",
@@ -2976,7 +2995,8 @@
     "scale": "Local indexes to billion-vector services",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with chunking, metadata filters, and retrieval evaluation; choose vector database only after recall/precision needs are testable."
   },
   {
     "problem": "Model Adaptation",
@@ -3360,7 +3380,8 @@
     "scale": "Static sites to distributed model-serving platforms",
     "setupCost": "Medium",
     "scopeLevel": "stack",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start with locality, latency, cost, privacy, and operational ownership; pick managed APIs or self-hosted inference after those constraints are known."
   },
   {
     "problem": "System Architecture Patterns",
@@ -3511,7 +3532,8 @@
     "maturity": "Mature",
     "scale": "Single product teams to large distributed systems",
     "setupCost": "High",
-    "impactLevel": "core"
+    "impactLevel": "core",
+    "firstMove": "Start by naming the dominant constraint: ownership, scale, latency, reliability, data freshness, or model locality; choose architecture only after that constraint is explicit."
   },
   {
     "problem": "Performance / Hardware Acceleration",
@@ -3647,7 +3669,8 @@
     "maturity": "Mature but hardware-dependent",
     "scale": "Single machine kernels to distributed accelerated clusters",
     "setupCost": "High",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start with profiling and data movement; use optimized libraries before writing SIMD, CUDA, or ROCm kernels."
   },
   {
     "problem": "Runtime / Compiler Choices",
@@ -3781,7 +3804,8 @@
     "maturity": "Mature",
     "scale": "Scripts to production platforms and native systems",
     "setupCost": "Medium",
-    "impactLevel": "common"
+    "impactLevel": "common",
+    "firstMove": "Start with deployment, latency, safety, ecosystem, and team skill constraints; change runtime/compiler only for measured needs."
   },
   {
     "problem": "Algorithmic Interview Patterns",

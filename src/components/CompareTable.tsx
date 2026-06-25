@@ -85,6 +85,7 @@ export default function CompareTable({ data, onFocusProblem }: Props) {
                     {row.problem.problem}
                   </button>
                   <span className="table-subtext">{problemMeta(row.problem)}</span>
+                  {row.problem.firstMove && <span className="table-subtext">First move: {row.problem.firstMove}</span>}
                 </td>
                 <td>{row.patternName}</td>
                 <td>{short(row.problem.scopeLevel)}</td>

@@ -254,6 +254,7 @@ function searchableText(node) {
     node.impactLevel || '',
     node.subcategory || '',
     node.description || '',
+    node.firstMove || '',
     ...(node.tags || []),
     ...(node.examples || []),
     ...(node.bestFor || []),

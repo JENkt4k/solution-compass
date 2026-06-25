@@ -26,6 +26,7 @@ export interface ProblemNode {
   subcategory?: string;
   description?: string;
   examples?: string[];
+  firstMove?: string;
   bestFor?: string[];
   avoidWhen?: string[];
   tradeoffs?: string[];

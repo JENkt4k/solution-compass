@@ -188,8 +188,14 @@ export default function TreeCanvas({
 
             {pOpen && (
               <div className="patterns">
-                {(problem.bestFor || problem.avoidWhen || problem.tradeoffs) && (
+                {(problem.firstMove || problem.bestFor || problem.avoidWhen || problem.tradeoffs) && (
                   <div className="decision-details">
+                    {problem.firstMove && (
+                      <div>
+                        <strong>First move</strong>
+                        <p>{highlight(problem.firstMove, query)}</p>
+                      </div>
+                    )}
                     {problem.bestFor && (
                       <div>
                         <strong>Best for</strong>

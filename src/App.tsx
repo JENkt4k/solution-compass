@@ -114,6 +114,7 @@ function App() {
         matches(p.impactLevel) ||
         matches(p.subcategory) ||
         matches(p.description) ||
+        matches(p.firstMove) ||
         matches(p.complexity) ||
         matches(p.maturity) ||
         matches(p.scale) ||

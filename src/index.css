@@ -369,6 +369,10 @@ input {
   padding-left: 18px;
 }
 
+.decision-details p {
+  margin: 4px 0 0;
+}
+
 .decision-details {
   padding: 10px;
   border: 1px solid var(--border);

@@ -33,6 +33,9 @@ export default function CatalogSummary({ data }: Props) {
     };
   }, [data]);
 
+  const workImpacting = (metrics.impact.core || 0) + (metrics.impact.common || 0);
+  const lowerPriority = (metrics.impact.specialized || 0) + (metrics.impact.archival || 0);
+
   return (
     <section className="catalog-summary card">
       <div>
@@ -48,7 +51,12 @@ export default function CatalogSummary({ data }: Props) {
           <span>{metrics.snippets} snippets</span>
         </div>
         <div className="summary-block">
-          <strong>Impact</strong>
+          <strong>Usefulness</strong>
+          <span>work-impacting: {workImpacting}</span>
+          <span>context-specific/archive: {lowerPriority}</span>
+        </div>
+        <div className="summary-block">
+          <strong>Impact detail</strong>
           {entries(metrics.impact).map(([label, value]) => <span key={label}>{label}: {value}</span>)}
         </div>
         <div className="summary-block">
