@@ -78,6 +78,18 @@ export const questions = [
           'CRUD & Data Modeling': 3,
         },
       }),
+      option('Scientific or engineering methods', ['scientific', 'engineering', 'GIS', 'hydrology', 'cartographic', 'skeletonization', 'FEA', 'simulation', 'solver', 'mesh', 'geometry', 'topology'], {
+        boost: {
+          'Hydrology / Cartographic Generalization': 14,
+          'Engineering Simulation / FEA': 14,
+          'Performance / Hardware Acceleration': 3,
+          'Runtime / Compiler Choices': 2,
+        },
+        suppress: {
+          'Algorithmic Interview Patterns': 5,
+          'AI / LLM Systems': 3,
+        },
+      }),
     ],
   },
   {
@@ -191,6 +203,9 @@ export const questions = [
       }),
       option('Hardware-specific target', ['hardware', 'GPU', 'CPU', 'SIMD', 'CUDA', 'ROCm', 'x86', 'ARM', 'edge'], {
         boost: { 'Performance / Hardware Acceleration': 12, 'Runtime / Compiler Choices': 5 },
+      }),
+      option('Scientific model or simulation', ['scientific', 'simulation', 'solver', 'mesh', 'FEA', 'GIS', 'hydrology', 'geometry', 'topology'], {
+        boost: { 'Engineering Simulation / FEA': 10, 'Hydrology / Cartographic Generalization': 8 },
       }),
     ],
   },

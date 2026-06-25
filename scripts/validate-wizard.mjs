@@ -98,6 +98,15 @@ const scenarios = [
     },
     expectedTop: ['Performance / Hardware Acceleration', 'Runtime / Compiler Choices'],
   },
+  {
+    name: 'Scientific/engineering methods',
+    answers: {
+      domain: 'Scientific or engineering methods',
+      scale: 'Scientific model or simulation',
+      risk: 'Correctness',
+    },
+    expectedTop: ['Hydrology / Cartographic Generalization', 'Engineering Simulation / FEA'],
+  },
 ];
 
 const errors = [];

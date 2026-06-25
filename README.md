@@ -18,7 +18,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Evaluation Mode maps engineering roles to useful signals, weak signals, practical exercises, and related problem areas.
 - Core/common problem areas include a `firstMove` recommendation to steer the first practical action.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
-- Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
+- Normalized dataset with `39` problem areas, `75` patterns, and `235` solutions.
 - Every solution has a short blurb and reference URL.
 - Every problem area has decision metadata: best fit, avoid conditions, tradeoffs, complexity, maturity, scale, and setup cost.
 - Dataset validation is available with `npm run validate:data`.
@@ -45,8 +45,8 @@ MVP+ is functional and deployable on GitHub Pages.
 | Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
 | Impact lens | Prioritizes common production work while keeping trick/interview patterns mostly archival. |
 | Catalog signals | Summary metrics show useful/core vs specialized/archival coverage and snippet/reuse guidance counts. |
-| Zoom Mode | Business-to-implementation fly-through for SaaS/CRM, retail, social, video/media, analytics, AI/RAG, and ML platform scenarios. |
-| Evaluation Mode | Role-fit assessment guidance for application, backend, platform, data, AI/ML, and staff-level engineering. |
+| Zoom Mode | Business-to-implementation fly-through for SaaS/CRM, retail, social, video/media, analytics, AI/RAG, ML platform, and scientific/engineering scenarios. |
+| Evaluation Mode | Role-fit assessment guidance for application, backend, platform, data, AI/ML, staff-level, and scientific applications engineering. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -126,7 +126,7 @@ The validator fails on:
 - Duplicate problem names.
 - Empty pattern or solution lists.
 
-The wizard validator checks representative recommendation scenarios for AI/RAG, vector memory, AI deployment, ETL/ELT, graph search, optimization, security, and prediction/recognition.
+The wizard validator checks representative recommendation scenarios for AI/RAG, vector memory, AI deployment, ETL/ELT, graph search, optimization, security, prediction/recognition, architecture, hardware/runtime, and scientific/engineering methods.
 
 ## Build
 
@@ -151,6 +151,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 - Wizard scoring is transparent and useful, but still weighted-rule scoring rather than a full rules engine.
 - Zoom Mode is a first-pass static set of reference tracks; it does not yet generate custom diagrams or migration plans.
 - Evaluation Mode is guidance-oriented; it does not yet produce scored interview rubrics or exported evaluation packets.
+- Rare scientific/engineering methods are represented selectively; broader GIS, CAE, CFD, and multiphysics coverage is still intentionally incomplete.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - Tag filtering is exact-match only; it does not yet support AND/OR combinations.
 - No editable dataset UI yet.

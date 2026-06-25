@@ -24,6 +24,7 @@ const goals: ZoomOption[] = [
   { label: 'Scale', terms: ['distributed', 'stream', 'search', 'cache', 'warehouse'] },
   { label: 'AI capability', terms: ['ai', 'llm', 'rag', 'vector', 'inference'] },
   { label: 'Developer productivity', terms: ['platform', 'runtime', 'workflow', 'architecture'] },
+  { label: 'Scientific validity', terms: ['simulation', 'geometry', 'validation', 'hydrology', 'solver', 'mesh'] },
 ];
 
 const tracks: PlatformTrack[] = [
@@ -96,6 +97,16 @@ const tracks: PlatformTrack[] = [
     implementation: ['Training pipeline', 'Model registry policy', 'Online/offline feature parity', 'Drift monitoring'],
     deliverables: ['ML lifecycle diagram', 'Evaluation report', 'Deployment checklist', 'Rollback plan'],
     problemRefs: ['Machine Learning / AI', 'Batch / ETL Processing', 'Model Adaptation', 'AI / App Deployment & Serving', 'Observability'],
+  },
+  {
+    domain: 'Scientific / Engineering',
+    workloads: ['Hydrology mapping', 'Geometry preservation', 'FEA simulation', 'Solver automation', 'Validation'],
+    architecture: ['Domain model before tool choice', 'Preserve scientific assumptions and topology explicitly', 'Automate repeatable analysis only after validation is defined'],
+    stack: ['GIS/CAE package', 'Geometry kernel', 'Solver', 'Python automation', 'Versioned inputs/results', 'Validation benchmarks'],
+    patterns: ['Topology-preserving simplification', 'Medial-axis/skeleton methods', 'Mesh convergence', 'Solver verification', 'Scientific workflow automation'],
+    implementation: ['Input data audit', 'Method comparison matrix', 'Validation case', 'Parameter sensitivity check', 'Reproducible report script'],
+    deliverables: ['Method decision record', 'Geometry/topology risk checklist', 'Benchmark result set', 'Validation report', 'Automation runbook'],
+    problemRefs: ['Hydrology / Cartographic Generalization', 'Engineering Simulation / FEA', 'Performance / Hardware Acceleration', 'Runtime / Compiler Choices'],
   },
 ];
 

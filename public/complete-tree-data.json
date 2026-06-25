@@ -3933,5 +3933,226 @@
     "scale": "Local implementation details to selected production hot paths",
     "setupCost": "Low",
     "impactLevel": "archival"
+  },
+  {
+    "problem": "Hydrology / Cartographic Generalization",
+    "scopeLevel": "algorithm",
+    "subcategory": "Domain-specific computational geometry and GIS simplification",
+    "description": "Chooses GIS and hydrography methods for simplifying maps, extracting drainage structure, and preserving topology or geometry relationships.",
+    "tags": [
+      "GIS",
+      "hydrology",
+      "cartographic generalization",
+      "skeletonization",
+      "medial axis",
+      "Voronoi",
+      "Delaunay",
+      "watershed",
+      "line simplification",
+      "geometry preservation",
+      "topology"
+    ],
+    "patterns": [
+      {
+        "name": "Topology-Preserving Generalization",
+        "solutions": [
+          {
+            "name": "Gold/Thibault skeleton retraction",
+            "tool": "Medial-axis / Voronoi-Delaunay method",
+            "language": "GIS / Computational geometry",
+            "blurb": "Use when topology preservation, neighboring-feature separation, contour relationships, or hydrographic geometry matter more than raw vertex reduction.",
+            "url": "https://icaci.org/files/documents/ICC_proceedings/ICC2001/icc2001/file/f13034.pdf",
+            "implementationNote": "Still valuable where ordinary line simplification can create overlaps, crossings, or loss of geometry relationships; usually requires custom geometry expertise."
+          },
+          {
+            "name": "Medial axis / skeleton pruning",
+            "tool": "Shape descriptor and pruning family",
+            "language": "GIS / image processing / geometry",
+            "blurb": "Use for preserving object structure while simplifying salients, branches, and shape features under controlled pruning rules.",
+            "url": "https://en.wikipedia.org/wiki/Medial_axis",
+            "implementationNote": "Sensitive to noise; best used with pruning, scale controls, or domain-specific rules for junctions, ridges, valleys, and preserved corners."
+          }
+        ]
+      },
+      {
+        "name": "Common Replacement Families",
+        "solutions": [
+          {
+            "name": "Douglas-Peucker simplification",
+            "tool": "Line simplification",
+            "language": "GIS libraries",
+            "blurb": "Fast default for reducing line vertices when visual shape preservation is enough and topological conflicts are handled elsewhere.",
+            "url": "https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Prefer built-in GIS/library implementations; watch for angular artifacts and topology problems near dense neighboring lines."
+          },
+          {
+            "name": "Visvalingam-Whyatt simplification",
+            "tool": "Area-based line simplification",
+            "language": "GIS libraries",
+            "blurb": "Removes points by effective area and often preserves perceived line character better than pure distance-tolerance simplification.",
+            "url": "https://en.wikipedia.org/wiki/Visvalingam%E2%80%93Whyatt_algorithm",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Good for cartographic simplification, but does not automatically solve hydrologic topology or neighboring-feature constraints."
+          },
+          {
+            "name": "DEM watershed delineation",
+            "tool": "Terrain-derived hydrology",
+            "language": "ArcGIS/QGIS/Python/R",
+            "blurb": "Use elevation models, flow direction, and flow accumulation when hydrologic correctness from terrain is more important than preserving source-map geometry.",
+            "url": "https://en.wikipedia.org/wiki/Watershed_delineation",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "DEM resolution, pour-point snapping, urban drainage, culverts, and hydrologic conditioning can dominate correctness."
+          },
+          {
+            "name": "GPU/vector-tile adaptive LOD",
+            "tool": "Real-time map visualization",
+            "language": "WebGL/GPU GIS",
+            "blurb": "Use for interactive rendering of large vector datasets where view-dependent level-of-detail matters more than a permanent generalized dataset.",
+            "url": "https://arxiv.org/abs/1909.05511",
+            "implementationNote": "Best for visualization pipelines; does not replace topology-aware hydrographic model generalization."
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "USGS hydrology maps",
+      "river network generalization",
+      "contour simplification",
+      "watershed map production",
+      "topology-safe GIS generalization",
+      "scale-dependent hydrography"
+    ],
+    "bestFor": [
+      "Simplifying hydrography or contour data without breaking spatial relationships",
+      "Preserving geometry/topology when ordinary line simplification is too destructive",
+      "Evaluating older domain algorithms against modern GIS pipelines"
+    ],
+    "avoidWhen": [
+      "The goal is only fast visual vertex reduction",
+      "DEM-derived hydrologic correctness is more important than preserving source geometry",
+      "A standard GIS generalization tool already satisfies topology and scale requirements"
+    ],
+    "tradeoffs": [
+      "Skeleton methods preserve relationships but are sensitive to sampling, noise, and junction handling",
+      "Modern GIS tools are easier to operate but may hide topology, hydrologic, or geometry-loss failure modes",
+      "DEM workflows can improve hydrologic realism while diverging from legacy map geometry"
+    ],
+    "complexity": "High",
+    "maturity": "Specialized / domain-specific",
+    "scale": "GIS production maps to scientific hydrography pipelines",
+    "setupCost": "High",
+    "impactLevel": "specialized"
+  },
+  {
+    "problem": "Engineering Simulation / FEA",
+    "scopeLevel": "stack",
+    "subcategory": "Scientific computing and engineering analysis software",
+    "description": "Chooses simulation approaches, solvers, meshing strategies, and software workflows for finite element and engineering analysis.",
+    "tags": [
+      "FEA",
+      "finite element analysis",
+      "simulation",
+      "CAE",
+      "engineering",
+      "meshing",
+      "solver",
+      "multiphysics",
+      "CFD",
+      "structural analysis",
+      "thermal analysis"
+    ],
+    "patterns": [
+      {
+        "name": "Modeling and Solver Choice",
+        "solutions": [
+          {
+            "name": "Linear static FEA",
+            "tool": "Baseline finite element analysis",
+            "language": "ANSYS/Abaqus/Nastran/CalculiX",
+            "blurb": "Use as the first engineering simulation baseline when assumptions are small deformation, linear material behavior, and static loading.",
+            "url": "https://en.wikipedia.org/wiki/Finite_element_method",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Start simple and validate assumptions before nonlinear, transient, contact, or multiphysics models."
+          },
+          {
+            "name": "Nonlinear / contact FEA",
+            "tool": "Advanced solver workflow",
+            "language": "ANSYS/Abaqus/COMSOL/Nastran",
+            "blurb": "Use when geometry, material behavior, boundary conditions, or contact interactions violate linear assumptions.",
+            "url": "https://doc.comsol.com/5.5/doc/com.comsol.help.sme/sme_ug_modeling.05.130.html",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Expect solver convergence, meshing, timestep/load-step strategy, and material model validation to dominate software work."
+          },
+          {
+            "name": "Open-source FEA stack",
+            "tool": "CalculiX / Code_Aster / Elmer / FEniCS",
+            "language": "Python/C++/Fortran",
+            "blurb": "Use when extensibility, auditability, research workflows, or cost control matter more than integrated commercial CAD/CAE workflow.",
+            "url": "https://www.code-aster.org/spip.php?rubrique2",
+            "implementationNote": "Strong for custom workflows, automation, and research; requires more engineering/software ownership."
+          }
+        ]
+      },
+      {
+        "name": "Software Engineering Around Simulation",
+        "solutions": [
+          {
+            "name": "Mesh convergence and verification",
+            "tool": "Simulation quality pattern",
+            "language": "CAE workflow",
+            "blurb": "Use mesh refinement, benchmark cases, and sensitivity checks to separate numerical artifacts from real engineering behavior.",
+            "url": "https://www.nafems.org/publications/resource_center/nwc12_80/",
+            "implementationNote": "A pretty contour plot is not enough; software evaluation should include convergence, assumptions, and validation evidence."
+          },
+          {
+            "name": "Simulation automation pipeline",
+            "tool": "Parametric CAE workflow",
+            "language": "Python/APDL/MATLAB/CAE APIs",
+            "blurb": "Use scripted preprocessing, solve orchestration, postprocessing, and report generation for repeatable engineering studies.",
+            "url": "https://fenicsproject.org/",
+            "implementationNote": "Treat models as software artifacts: version inputs, parameters, solver settings, result scripts, and validation cases."
+          },
+          {
+            "name": "Topology optimization",
+            "tool": "Optimization-driven engineering design",
+            "language": "CAE / optimization solvers",
+            "blurb": "Use when design space, loads, manufacturing constraints, and objectives can be formalized for material/layout optimization.",
+            "url": "https://en.wikipedia.org/wiki/Topology_optimization",
+            "reuseLevel": "library-preferred",
+            "implementationNote": "Powerful for design exploration, but manufacturability, constraints, and validation still decide whether results are usable."
+          }
+        ]
+      }
+    ],
+    "examples": [
+      "structural stress analysis",
+      "thermal simulation",
+      "contact/nonlinear analysis",
+      "mesh convergence",
+      "CAD/CAE automation",
+      "simulation validation",
+      "topology optimization"
+    ],
+    "bestFor": [
+      "Evaluating engineering software and solver workflows",
+      "Choosing between commercial CAE, open-source solvers, and custom simulation pipelines",
+      "Separating numerical/software artifacts from physical engineering conclusions"
+    ],
+    "avoidWhen": [
+      "A closed-form calculation or hand check is sufficient",
+      "Inputs, boundary conditions, or material properties are too uncertain to justify detailed simulation",
+      "Regulated safety decisions lack validation against experiments or accepted benchmarks"
+    ],
+    "tradeoffs": [
+      "Commercial CAE improves workflow integration but can limit automation, transparency, or cost control",
+      "Open-source/custom workflows improve control but require stronger engineering software ownership",
+      "Solver sophistication does not compensate for poor assumptions, mesh quality, or validation"
+    ],
+    "complexity": "High",
+    "maturity": "Mature but domain-specialized",
+    "scale": "Design checks to automated simulation platforms",
+    "setupCost": "High",
+    "impactLevel": "specialized"
   }
 ]

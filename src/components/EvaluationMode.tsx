@@ -134,6 +134,25 @@ const roles: EvaluationRole[] = [
     ],
     relatedProblems: ['System Architecture Patterns', 'Observability', 'Stream / Event Processing', 'Security & Cryptography'],
   },
+  {
+    name: 'FEA / Scientific Applications Engineer',
+    summary: 'Evaluate whether they can connect domain physics, numerical methods, software automation, and validation evidence.',
+    bestSignals: [
+      'Separates physical assumptions, numerical artifacts, and software defects',
+      'Uses convergence, benchmarks, and validation data before trusting results',
+      'Can automate repeatable studies without hiding engineering judgment',
+    ],
+    weakSignals: [
+      'Tool-button fluency does not prove solver or modeling judgment',
+      'Attractive contour plots are weak evidence without assumptions and validation',
+    ],
+    exercises: [
+      'Compare two solver workflows for a nonlinear/contact or thermal problem',
+      'Review an FEA result and identify mesh, boundary condition, and validation risks',
+      'Automate a small parametric study with versioned inputs and result checks',
+    ],
+    relatedProblems: ['Engineering Simulation / FEA', 'Hydrology / Cartographic Generalization', 'Performance / Hardware Acceleration', 'Runtime / Compiler Choices'],
+  },
 ];
 
 const focusGuidance: Record<typeof focusAreas[number], string[]> = {

@@ -93,46 +93,65 @@ function App() {
     );
 
     if (!query.trim()) return sortByImpact(impactFiltered);
-    const q = query.toLowerCase();
-
-    const matches = (text?: string) => (text || '').toLowerCase().includes(q);
-    const matchesArr = (arr?: string[]) => (arr || []).some((t) => matches(t));
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const includesAll = (parts: Array<string | string[] | undefined>) => {
+      const text = parts.flatMap((part) => Array.isArray(part) ? part : [part || '']).join(' ').toLowerCase();
+      return terms.every((term) => text.includes(term));
+    };
+    const matches = (text?: string) => includesAll([text]);
     const solutionMatches = (s: ProblemNode['patterns'][number]['solutions'][number]) =>
-      matches(s.name) ||
-      matches(s.tool) ||
-      matches(s.language) ||
-      matches(s.blurb) ||
-      matches(s.reuseLevel) ||
-      matches(s.implementationNote) ||
-      matches(s.timeComplexity) ||
-      matches(s.spaceComplexity) ||
-      matches(s.code) ||
-      matches(s.url);
+      includesAll([
+        s.name,
+        s.tool,
+        s.language,
+        s.blurb,
+        s.reuseLevel,
+        s.implementationNote,
+        s.timeComplexity,
+        s.spaceComplexity,
+        s.code,
+        s.url,
+      ]);
 
     return sortByImpact(impactFiltered.map((p) => {
-      const problemMatches =
-        matches(p.problem) ||
-        matches(p.scopeLevel) ||
-        matches(p.impactLevel) ||
-        matches(p.subcategory) ||
-        matches(p.description) ||
-        matches(p.firstMove) ||
-        matches(p.complexity) ||
-        matches(p.maturity) ||
-        matches(p.scale) ||
-        matches(p.setupCost) ||
-        matchesArr(p.tags) ||
-        matchesArr(p.examples) ||
-        matchesArr(p.bestFor) ||
-        matchesArr(p.avoidWhen) ||
-        matchesArr(p.tradeoffs);
+      const problemMatches = includesAll([
+        p.problem,
+        p.scopeLevel,
+        p.impactLevel,
+        p.subcategory,
+        p.description,
+        p.firstMove,
+        p.complexity,
+        p.maturity,
+        p.scale,
+        p.setupCost,
+        p.tags,
+        p.examples,
+        p.bestFor,
+        p.avoidWhen,
+        p.tradeoffs,
+      ]);
 
       if (problemMatches) {
         return p;
       }
 
       const patterns = (p.patterns || []).map((pt) => {
-        const patternMatches = matches(pt.name);
+        const patternMatches = includesAll([
+          pt.name,
+          ...(pt.solutions || []).flatMap((solution) => [
+            solution.name,
+            solution.tool,
+            solution.language,
+            solution.blurb,
+            solution.reuseLevel,
+            solution.implementationNote,
+            solution.timeComplexity,
+            solution.spaceComplexity,
+            solution.code,
+            solution.url,
+          ]),
+        ]);
         const solutions = patternMatches ? pt.solutions : (pt.solutions || []).filter(solutionMatches);
         return { ...pt, solutions, __visible: patternMatches || solutions.length > 0 };
       }).filter((pt) => pt.__visible);
