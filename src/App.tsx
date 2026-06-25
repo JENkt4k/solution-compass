@@ -6,6 +6,7 @@ import Wizard from './components/Wizard';
 import CompareTable from './components/CompareTable';
 import CatalogSummary from './components/CatalogSummary';
 import ZoomMode from './components/ZoomMode';
+import EvaluationMode from './components/EvaluationMode';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 import { slugify } from './utils/slug';
 
@@ -275,6 +276,7 @@ function App() {
             )}
             <CatalogSummary data={data} />
             <ZoomMode data={data} onFocus={focusRecommendation} />
+            <EvaluationMode data={data} onFocus={focusRecommendation} />
             <Wizard data={data} onFocus={focusRecommendation} />
             {viewMode === 'tree' ? (
               <TreeCanvas

@@ -241,7 +241,18 @@ input {
   margin-bottom: 16px;
 }
 
+.evaluation-mode {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
 .zoom-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.evaluation-header h2 {
   margin: 0;
   font-size: 18px;
 }
@@ -251,10 +262,45 @@ input {
   color: var(--muted);
 }
 
+.evaluation-header p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
 .zoom-controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 10px;
+}
+
+.evaluation-controls,
+.evaluation-summary,
+.evaluation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.evaluation-summary > div,
+.evaluation-grid article {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #151b21;
+  color: #d5dde5;
+}
+
+.evaluation-summary p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.evaluation-summary ul,
+.evaluation-grid ul {
+  margin: 0;
+  padding-left: 18px;
 }
 
 .zoom-rail {
