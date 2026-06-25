@@ -235,6 +235,87 @@ input {
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
 }
 
+.zoom-mode {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.zoom-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.zoom-header p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.zoom-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.zoom-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.zoom-rail article,
+.zoom-result {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #151b21;
+  color: #d5dde5;
+}
+
+.zoom-rail article > span,
+.zoom-result span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.zoom-rail article > p {
+  margin: 0;
+}
+
+.zoom-rail ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.zoom-recommendations {
+  display: grid;
+  gap: 8px;
+}
+
+.zoom-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.zoom-result {
+  text-align: left;
+  cursor: pointer;
+}
+
+.zoom-result:hover,
+.zoom-result:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.zoom-result small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
 .wizard-header {
   display: flex;
   justify-content: space-between;

@@ -5,6 +5,7 @@ import { InstallPrompt } from './components/InstallPrompt';
 import Wizard from './components/Wizard';
 import CompareTable from './components/CompareTable';
 import CatalogSummary from './components/CatalogSummary';
+import ZoomMode from './components/ZoomMode';
 import { useTreeData, ProblemNode } from './hooks/useTreeData';
 import { slugify } from './utils/slug';
 
@@ -273,6 +274,7 @@ function App() {
               </div>
             )}
             <CatalogSummary data={data} />
+            <ZoomMode data={data} onFocus={focusRecommendation} />
             <Wizard data={data} onFocus={focusRecommendation} />
             {viewMode === 'tree' ? (
               <TreeCanvas

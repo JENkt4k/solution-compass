@@ -14,6 +14,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Scope lens for Architecture, Stack, Runtime, Library, Language, Algorithm, and Hardware views.
 - Impact lens for Core, Common, Specialized, and Archival material; core work-impacting classes sort first by default.
 - Catalog Signals panel summarizes scope, impact, snippet coverage, and implementation guidance counts.
+- Zoom Mode maps from business goal and platform type down through workload, architecture, stack, patterns, implementation, and deliverables.
 - Core/common problem areas include a `firstMove` recommendation to steer the first practical action.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
 - Normalized dataset with `37` problem areas, `71` patterns, and `223` solutions.
@@ -43,6 +44,7 @@ MVP+ is functional and deployable on GitHub Pages.
 | Scope lens | Segmented filtering from architecture down to hardware and algorithms. |
 | Impact lens | Prioritizes common production work while keeping trick/interview patterns mostly archival. |
 | Catalog signals | Summary metrics show useful/core vs specialized/archival coverage and snippet/reuse guidance counts. |
+| Zoom Mode | Business-to-implementation fly-through for SaaS/CRM, retail, social, video/media, analytics, AI/RAG, and ML platform scenarios. |
 | PWA | Installable, offline-ready static app via `vite-plugin-pwa`. |
 | Data validation | Local script checks required fields, URLs, metadata, duplicate problem names, and placeholder tools. |
 | Deploy | GitHub Pages compatible build path for `JENkt4k/solution-compass`. |
@@ -145,6 +147,7 @@ Or use the existing GitHub Pages workflow in `.github/workflows/pages.yml`.
 ## Current Gaps
 
 - Wizard scoring is transparent and useful, but still weighted-rule scoring rather than a full rules engine.
+- Zoom Mode is a first-pass static set of reference tracks; it does not yet generate custom diagrams or migration plans.
 - Snippet coverage is selective: graph search, A*, IDA*, beam search, knapsack, LCS, edit distance, MST, Huffman coding, activity selection, CP-SAT, SQL CRUD, Redis cache, and network flow examples are covered, but many tools intentionally link to references instead of embedding code.
 - Tag filtering is exact-match only; it does not yet support AND/OR combinations.
 - No editable dataset UI yet.
@@ -168,6 +171,7 @@ After that, ship and collect real use feedback before adding more topic families
 Short term:
 
 - Clickable tag chips with AND/OR filter modes.
+- Reference architecture diagrams for Zoom Mode platform tracks.
 - More scenario fixtures for wizard edge cases.
 - Scheduled source-audit pass for rapidly changing AI/model claims and references.
 
