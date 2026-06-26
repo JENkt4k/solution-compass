@@ -17,6 +17,7 @@ MVP+ is functional and deployable on GitHub Pages.
 - Catalog Signals panel summarizes scope, impact, snippet coverage, and implementation guidance counts.
 - Zoom Mode maps from business goal and platform type down through workload, architecture, stack, patterns, implementation, and deliverables.
 - Evaluation Mode maps engineering roles to useful signals, weak signals, practical exercises, and related problem areas.
+- Decision-depth metadata is available behind compact card disclosures for replacement context, durable use cases, and failure modes.
 - Core/common problem areas include a `firstMove` recommendation to steer the first practical action.
 - Tree and Compare views for browsing cards or scanning solutions in a dense table.
 - Normalized dataset with `39` problem areas, `93` patterns, and `297` solutions.

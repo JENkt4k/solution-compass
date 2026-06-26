@@ -141,6 +141,8 @@ export default function TreeCanvas({
         const problemSlug = slugify(problem.problem);
         const isFocused = problemSlug === focusedProblemSlug;
         const pOpen = !!openProblems[pKey] || isFocused;
+        const hasPrimaryDecisionDetails = !!(problem.firstMove || problem.bestFor || problem.avoidWhen || problem.tradeoffs);
+        const hasDecisionDepth = !!(problem.stillBestWhen || problem.replacedBy || problem.failureModes);
         return (
           <section key={pKey} id={`problem-${problemSlug}`} className={`card${isFocused ? ' focused-card' : ''}`}>
             <div className="card-header">
@@ -193,7 +195,7 @@ export default function TreeCanvas({
 
             {pOpen && (
               <div className="patterns">
-                {(problem.firstMove || problem.bestFor || problem.avoidWhen || problem.tradeoffs || problem.stillBestWhen || problem.replacedBy || problem.failureModes) && (
+                {hasPrimaryDecisionDetails && (
                   <div className="decision-details">
                     {problem.firstMove && (
                       <div>
@@ -219,25 +221,32 @@ export default function TreeCanvas({
                         <ul>{problem.tradeoffs.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
                       </div>
                     )}
-                    {problem.stillBestWhen && (
-                      <div>
-                        <strong>Still best when</strong>
-                        <ul>{problem.stillBestWhen.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
-                      </div>
-                    )}
-                    {problem.replacedBy && (
-                      <div>
-                        <strong>Often replaced by</strong>
-                        <ul>{problem.replacedBy.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
-                      </div>
-                    )}
-                    {problem.failureModes && (
-                      <div>
-                        <strong>Failure modes</strong>
-                        <ul>{problem.failureModes.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
-                      </div>
-                    )}
                   </div>
+                )}
+                {hasDecisionDepth && (
+                  <details className="decision-depth">
+                    <summary>Decision depth</summary>
+                    <div className="decision-details depth-grid">
+                      {problem.stillBestWhen && (
+                        <div>
+                          <strong>Still best when</strong>
+                          <ul>{problem.stillBestWhen.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                        </div>
+                      )}
+                      {problem.replacedBy && (
+                        <div>
+                          <strong>Often replaced by</strong>
+                          <ul>{problem.replacedBy.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                        </div>
+                      )}
+                      {problem.failureModes && (
+                        <div>
+                          <strong>Failure modes</strong>
+                          <ul>{problem.failureModes.slice(0, 3).map((item) => <li key={item}>{highlight(item, query)}</li>)}</ul>
+                        </div>
+                      )}
+                    </div>
+                  </details>
                 )}
                 {(problem.patterns || []).map((pattern) => {
                   const ptKey = `${pKey}::${pattern.name}`;

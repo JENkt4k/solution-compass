@@ -515,6 +515,32 @@ input {
   background: #151b21;
 }
 
+.decision-depth {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #141a20;
+}
+
+.decision-depth summary {
+  min-height: 36px;
+  padding: 8px 10px;
+  color: #d5dde5;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.decision-depth summary:hover {
+  color: var(--accent);
+}
+
+.decision-depth .depth-grid {
+  margin-top: 0;
+  border-width: 1px 0 0;
+  border-radius: 0 0 8px 8px;
+  background: #151b21;
+}
+
 .compare {
   padding: 0;
   overflow: hidden;
