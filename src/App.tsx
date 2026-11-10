@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import MeritConcurrency from './components/MeritConcurrency';
 import TreeCanvas from './components/TreeCanvas';
 import SearchBar from './components/SearchBar';
 import { InstallPrompt } from './components/InstallPrompt';
@@ -297,6 +298,7 @@ function App() {
               </div>
             )}
             <CatalogSummary data={data} />
+            <MeritConcurrency />
             <ZoomMode data={data} onFocus={focusRecommendation} />
             <EvaluationMode data={data} onFocus={focusRecommendation} />
             <Wizard data={data} onFocus={focusRecommendation} />
