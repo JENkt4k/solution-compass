@@ -8,9 +8,11 @@
     "serve": "vite preview",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:wizard": "node scripts/validate-wizard.mjs",
-    "validate": "npm run validate:data && npm run validate:wizard",
+    "validate": "npm run validate:data && npm run validate:wizard && npm run validate:merit",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "validate:merit": "node scripts/validate-merit.mjs",
+    "import:merit": "node scripts/import-merit-cases.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",

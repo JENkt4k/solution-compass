@@ -205,3 +205,7 @@ Long term:
 ## License
 
 MIT
+
+## Merit concurrency test cases
+
+The app includes a separate searchable panel with 36 proposed workloads, documentation / precise / hardened specification views, and copyable Codex prompts. Implementations and results can be imported from commit-pinned GitHub JSON URLs using `npm run import:merit -- URL`. See [workflow and limitations](docs/merit/concurrency-cases.md). These specifications do not imply existing Merit compiler support.
